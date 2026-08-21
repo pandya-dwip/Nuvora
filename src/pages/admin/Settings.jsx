@@ -43,7 +43,6 @@ export default function AdminSettings() {
           <input
             id="storeName"
             type="text"
-            required
             value={formData.storeName}
             onChange={(e) => setFormData({ ...formData, storeName: e.target.value })}
             className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900"
@@ -57,7 +56,6 @@ export default function AdminSettings() {
           <input
             id="supportEmail"
             type="email"
-            required
             value={formData.supportEmail}
             onChange={(e) => setFormData({ ...formData, supportEmail: e.target.value })}
             className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900"
@@ -72,7 +70,6 @@ export default function AdminSettings() {
             <input
               id="currency"
               type="text"
-              required
               value={formData.currency}
               onChange={(e) => setFormData({ ...formData, currency: e.target.value })}
               className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900"
@@ -86,7 +83,6 @@ export default function AdminSettings() {
             <input
               id="taxRate"
               type="number"
-              required
               value={formData.taxRate}
               onChange={(e) => setFormData({ ...formData, taxRate: e.target.value })}
               className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900"
@@ -100,7 +96,6 @@ export default function AdminSettings() {
             <input
               id="freeShippingThreshold"
               type="number"
-              required
               value={formData.freeShippingThreshold}
               onChange={(e) => setFormData({ ...formData, freeShippingThreshold: e.target.value })}
               className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900"

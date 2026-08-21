@@ -81,7 +81,6 @@ export default function AdminCategories() {
           <input
             id="categoryName"
             type="text"
-            required
             value={newCatName}
             onChange={(e) => setNewCatName(e.target.value)}
             placeholder="e.g. Footwear, Smart Home..."

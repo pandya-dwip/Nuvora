@@ -129,7 +129,6 @@ export default function Profile() {
                 <input
                   id="name"
                   type="text"
-                  required
                   value={profileData.name}
                   onChange={(e) => setProfileData({ ...profileData, name: e.target.value })}
                   className="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -143,7 +142,6 @@ export default function Profile() {
                 <input
                   id="email"
                   type="email"
-                  required
                   value={profileData.email}
                   onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
                   className="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -210,7 +208,6 @@ export default function Profile() {
                 <input
                   id="currentPass"
                   type="password"
-                  required
                   value={passwords.current}
                   onChange={(e) => setPasswords({ ...passwords, current: e.target.value })}
                   placeholder="••••••••"
@@ -225,7 +222,6 @@ export default function Profile() {
                 <input
                   id="newPass"
                   type="password"
-                  required
                   value={passwords.newPass}
                   onChange={(e) => setPasswords({ ...passwords, newPass: e.target.value })}
                   placeholder="••••••••"
@@ -240,7 +236,6 @@ export default function Profile() {
                 <input
                   id="confirmPass"
                   type="password"
-                  required
                   value={passwords.confirm}
                   onChange={(e) => setPasswords({ ...passwords, confirm: e.target.value })}
                   placeholder="••••••••"

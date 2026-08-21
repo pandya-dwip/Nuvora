@@ -76,7 +76,6 @@ export default function AdminProductForm() {
             id="name"
             name="name"
             type="text"
-            required
             value={formData.name}
             onChange={handleChange}
             placeholder="e.g. Minimalist Noise-Cancelling Headphones"
@@ -92,7 +91,6 @@ export default function AdminProductForm() {
             <select
               id="category"
               name="category"
-              required
               value={formData.category}
               onChange={handleChange}
               className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900 cursor-pointer"
@@ -132,7 +130,6 @@ export default function AdminProductForm() {
               name="price"
               type="number"
               step="0.01"
-              required
               value={formData.price}
               onChange={handleChange}
               placeholder="129.00"
@@ -164,7 +161,6 @@ export default function AdminProductForm() {
               id="stock"
               name="stock"
               type="number"
-              required
               value={formData.stock}
               onChange={handleChange}
               placeholder="25"

@@ -28,20 +28,24 @@ export default function Checkout() {
     .filter(Boolean);
 
   const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.product.price * item.quantity,
+    (sum, item) => sum + item.product.price * item.quantity,
     0
   );
   const shipping = subtotal > 200 || subtotal === 0 ? 0 : 15.0;
   const tax = subtotal * 0.08;
-  const total = subtotal + shipping + tax;
+  const grandTotal = subtotal + shipping + tax;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handlePlaceOrder = (e) => {
     e.preventDefault();
-    if (cartItems.length === 0) return;
+
+    if (cartItems.length === 0) {
+      alert('Your cart is empty. Please add items before checking out.');
+      return;
+    }
 
     const newOrder = placeOrder(formData, paymentMethod);
     if (newOrder) {
@@ -51,15 +55,17 @@ export default function Checkout() {
 
   if (cartItems.length === 0) {
     return (
-      <div className="px-margin-mobile md:px-margin-desktop py-stack-lg text-center max-w-md mx-auto">
-        <span className="material-symbols-outlined text-5xl text-outline mb-2">remove_shopping_cart</span>
-        <h2 className="text-headline-md font-headline-md text-on-surface mb-2">No Items to Checkout</h2>
-        <p className="text-body-md text-on-surface-variant mb-6">Your shopping cart is currently empty.</p>
+      <div className="px-margin-mobile md:px-margin-desktop py-16 text-center max-w-md mx-auto">
+        <span className="material-symbols-outlined text-5xl text-outline mb-2">shopping_bag</span>
+        <h2 className="text-headline-md font-headline-md text-on-surface mb-2">Your Cart is Empty</h2>
+        <p className="text-body-md text-on-surface-variant mb-6">
+          You have no items in your shopping cart to checkout.
+        </p>
         <Link
           to="/shop"
           className="bg-primary text-on-primary px-6 py-3 rounded font-label-sm text-label-sm inline-block"
         >
-          Return to Shop
+          Explore Collection
         </Link>
       </div>
     );
@@ -67,16 +73,13 @@ export default function Checkout() {
 
   return (
     <div className="px-margin-mobile md:px-margin-desktop py-stack-lg">
-      <div className="mb-stack-md flex items-center justify-between">
+      <div className="mb-stack-md">
         <h1 className="text-display-lg-mobile md:text-display-lg font-display-lg-mobile md:font-display-lg text-on-background">
           Checkout
         </h1>
-        <Link to="/cart" className="text-label-sm font-label-sm text-primary hover:underline">
-          &larr; Return to Cart
-        </Link>
       </div>
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-start">
+      <form onSubmit={handlePlaceOrder} className="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-start">
         {/* Left Column: Form Details */}
         <div className="lg:col-span-2 flex flex-col gap-stack-md">
           {/* Shipping Address */}
@@ -93,7 +96,6 @@ export default function Checkout() {
                   id="fullName"
                   name="fullName"
                   type="text"
-                  required
                   value={formData.fullName}
                   onChange={handleChange}
                   className="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -107,7 +109,6 @@ export default function Checkout() {
                   id="email"
                   name="email"
                   type="email"
-                  required
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -121,7 +122,6 @@ export default function Checkout() {
                   id="address"
                   name="address"
                   type="text"
-                  required
                   value={formData.address}
                   onChange={handleChange}
                   className="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -135,7 +135,6 @@ export default function Checkout() {
                   id="city"
                   name="city"
                   type="text"
-                  required
                   value={formData.city}
                   onChange={handleChange}
                   className="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -150,7 +149,6 @@ export default function Checkout() {
                     id="state"
                     name="state"
                     type="text"
-                    required
                     value={formData.state}
                     onChange={handleChange}
                     className="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -164,7 +162,6 @@ export default function Checkout() {
                     id="zip"
                     name="zip"
                     type="text"
-                    required
                     value={formData.zip}
                     onChange={handleChange}
                     className="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -229,7 +226,6 @@ export default function Checkout() {
                     id="cardNumber"
                     name="cardNumber"
                     type="text"
-                    required
                     value={formData.cardNumber}
                     onChange={handleChange}
                     className="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -243,7 +239,6 @@ export default function Checkout() {
                     id="expiry"
                     name="expiry"
                     type="text"
-                    required
                     placeholder="MM/YY"
                     value={formData.expiry}
                     onChange={handleChange}
@@ -258,7 +253,6 @@ export default function Checkout() {
                     id="cvc"
                     name="cvc"
                     type="text"
-                    required
                     placeholder="123"
                     value={formData.cvc}
                     onChange={handleChange}
@@ -267,22 +261,23 @@ export default function Checkout() {
                 </div>
               </div>
             ) : (
-              <div className="p-4 bg-surface-container-low rounded text-body-md text-on-surface-variant text-sm">
-                Mock PayPal Checkout: Place Order will complete your order securely.
+              <div className="p-4 bg-surface-container-low rounded border border-outline-variant text-body-md text-sm">
+                You will be redirected to PayPal to complete your purchase securely.
               </div>
             )}
           </div>
         </div>
 
-        {/* Right Column: Order Review Panel */}
-        <div className="bg-surface-container-low border border-outline-variant rounded p-stack-md flex flex-col gap-stack-md">
+        {/* Right Column: Order Summary */}
+        <div className="bg-surface border border-outline-variant rounded p-stack-md flex flex-col gap-stack-md">
           <h2 className="text-headline-md font-headline-md text-on-background border-b border-outline-variant pb-3">
-            Review Items ({cartItems.length})
+            Order Summary
           </h2>
 
-          <div className="flex flex-col gap-3 border-b border-outline-variant pb-4">
+          {/* Cart Items */}
+          <div className="flex flex-col gap-3 max-h-64 overflow-y-auto pr-1">
             {cartItems.map((item) => (
-              <div key={item.productId} className="flex items-center justify-between text-body-md text-sm">
+              <div key={`${item.productId}-${item.color}`} className="flex items-center justify-between text-body-md text-sm">
                 <div className="flex items-center gap-3">
                   <img
                     alt={item.product.name}
@@ -290,7 +285,7 @@ export default function Checkout() {
                     src={item.product.image}
                   />
                   <div>
-                    <p className="font-medium text-on-background line-clamp-1">{item.product.name}</p>
+                    <p className="font-medium text-on-background truncate max-w-[150px]">{item.product.name}</p>
                     <p className="text-xs text-on-surface-variant">Qty: {item.quantity}</p>
                   </div>
                 </div>
@@ -301,29 +296,32 @@ export default function Checkout() {
             ))}
           </div>
 
-          <div className="flex flex-col gap-2 text-body-md text-on-surface-variant text-sm border-b border-outline-variant pb-4">
+          <hr className="border-t border-outline-variant" />
+
+          {/* Pricing Breakdown */}
+          <div className="flex flex-col gap-2 text-body-md text-on-surface-variant text-sm">
             <div className="flex justify-between">
               <span>Subtotal</span>
-              <span className="font-medium text-on-surface">${subtotal.toFixed(2)}</span>
+              <span>${subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
-              <span>Shipping</span>
+              <span>Estimated Shipping</span>
               <span>{shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</span>
             </div>
             <div className="flex justify-between">
               <span>Estimated Tax (8%)</span>
               <span>${tax.toFixed(2)}</span>
             </div>
+            <div className="flex justify-between text-headline-md font-headline-md text-on-background pt-2 border-t border-outline-variant">
+              <span>Total</span>
+              <span className="text-primary">${grandTotal.toFixed(2)}</span>
+            </div>
           </div>
 
-          <div className="flex justify-between text-headline-md font-headline-md text-on-background">
-            <span>Total</span>
-            <span className="text-primary">${total.toFixed(2)}</span>
-          </div>
-
+          {/* Place Order CTA */}
           <button
             type="submit"
-            className="w-full bg-primary text-on-primary py-3.5 rounded font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary-container transition-colors cursor-pointer"
+            className="w-full py-4 rounded bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary-container transition-colors duration-200 cursor-pointer mt-2"
           >
             Place Order
           </button>

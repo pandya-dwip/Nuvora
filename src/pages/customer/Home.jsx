@@ -248,7 +248,6 @@ export default function Home() {
               className="flex-1 bg-surface-container-lowest border border-outline-variant px-4 py-3 rounded text-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary placeholder-outline"
               id="newsletter-email"
               placeholder="Enter your email"
-              required
               type="email"
             />
             <button

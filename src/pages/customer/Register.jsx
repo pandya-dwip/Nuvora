@@ -16,6 +16,11 @@ export default function Register() {
     e.preventDefault();
     setErrorMsg('');
 
+    if (!fullName.trim() || !email.trim() || !password.trim()) {
+      setErrorMsg('Please fill in all details to register.');
+      return;
+    }
+
     if (password !== confirmPassword) {
       setErrorMsg('Passwords do not match.');
       return;
@@ -31,35 +36,40 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-[85vh] flex flex-col md:flex-row my-6 rounded-lg overflow-hidden border border-outline-variant bg-surface-container-lowest">
-      {/* Left Side: Editorial Image */}
-      <div className="hidden md:block md:w-1/2 relative bg-surface-container overflow-hidden">
+    <div className="min-h-screen w-full flex flex-col md:flex-row bg-background">
+      {/* Left Side: Editorial Banner */}
+      <div className="w-full md:w-1/2 relative min-h-[40vh] md:min-h-screen bg-slate-900 overflow-hidden flex flex-col justify-between p-8 md:p-12 text-white">
         <img
-          alt="Editorial brand fashion"
-          className="w-full h-full object-cover"
+          alt="Editorial luxury hero background"
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
           src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&auto=format&fit=crop"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-        <div className="absolute bottom-margin-desktop left-margin-desktop text-on-primary z-10">
-          <p className="font-display-lg text-display-lg max-w-sm text-on-background drop-shadow-sm">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/30"></div>
+
+        {/* Top Branding */}
+        <div className="relative z-10">
+          <Link to="/login" className="text-2xl font-bold tracking-widest text-white uppercase font-display">
+            LUXE
+          </Link>
+        </div>
+
+        {/* Bottom Editorial Statement */}
+        <div className="relative z-10 mt-auto max-w-md">
+          <h2 className="text-3xl md:text-5xl font-bold font-display text-white leading-tight mb-2 drop-shadow-sm">
             Curated for the Modern Eye.
-          </p>
+          </h2>
         </div>
       </div>
 
       {/* Right Side: Form */}
-      <div className="w-full md:w-1/2 flex items-center justify-center p-margin-mobile md:p-margin-desktop">
-        <div className="w-full max-w-md flex flex-col gap-stack-md">
+      <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-16 bg-surface">
+        <div className="w-full max-w-md flex flex-col gap-6">
           {/* Header */}
-          <div className="text-center md:text-left flex flex-col gap-stack-sm mb-stack-md">
-            <Link
-              to="/login"
-              className="font-headline-md text-headline-md font-bold tracking-tight text-primary mb-stack-md block"
-            >
-              LUXE
-            </Link>
-            <h1 className="font-headline-md text-headline-md">Create your account</h1>
-            <p className="text-on-surface-variant font-body-md text-body-md">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-bold text-on-background mb-2">
+              Create your account
+            </h1>
+            <p className="text-body-md text-on-surface-variant">
               Join us and start shopping.
             </p>
           </div>
@@ -72,16 +82,15 @@ export default function Register() {
           )}
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="flex flex-col gap-stack-md">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             {/* Full Name */}
             <div className="flex flex-col gap-1">
-              <label className="font-label-sm text-label-sm text-on-surface" htmlFor="fullName">
+              <label htmlFor="fullName" className="font-label-sm text-xs font-semibold text-on-surface uppercase tracking-wider">
                 Full Name
               </label>
               <input
                 id="fullName"
                 type="text"
-                required
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="Jane Doe"
@@ -91,30 +100,28 @@ export default function Register() {
 
             {/* Email */}
             <div className="flex flex-col gap-1">
-              <label className="font-label-sm text-label-sm text-on-surface" htmlFor="email">
+              <label htmlFor="email" className="font-label-sm text-xs font-semibold text-on-surface uppercase tracking-wider">
                 Email Address
               </label>
               <input
                 id="email"
                 type="email"
-                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="name@example.com"
+                placeholder="you@example.com"
                 className="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary placeholder-outline"
               />
             </div>
 
             {/* Password */}
             <div className="flex flex-col gap-1">
-              <label className="font-label-sm text-label-sm text-on-surface" htmlFor="password">
+              <label htmlFor="password" className="font-label-sm text-xs font-semibold text-on-surface uppercase tracking-wider">
                 Password
               </label>
               <div className="relative">
                 <input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
-                  required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
@@ -135,13 +142,12 @@ export default function Register() {
 
             {/* Confirm Password */}
             <div className="flex flex-col gap-1">
-              <label className="font-label-sm text-label-sm text-on-surface" htmlFor="confirmPassword">
+              <label htmlFor="confirmPassword" className="font-label-sm text-xs font-semibold text-on-surface uppercase tracking-wider">
                 Confirm Password
               </label>
               <input
                 id="confirmPassword"
                 type={showPassword ? 'text' : 'password'}
-                required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="••••••••"
@@ -150,14 +156,13 @@ export default function Register() {
             </div>
 
             {/* Terms Checkbox */}
-            <div className="flex items-start">
+            <div className="flex items-start my-1">
               <input
                 id="terms"
                 type="checkbox"
-                required
-                className="h-4 w-4 mt-1 rounded border-outline-variant text-primary focus:ring-primary cursor-pointer"
+                className="h-4 w-4 mt-0.5 rounded border-outline-variant text-primary focus:ring-primary cursor-pointer"
               />
-              <label htmlFor="terms" className="ml-2 block font-label-sm text-label-sm text-secondary cursor-pointer">
+              <label htmlFor="terms" className="ml-2 block text-xs text-on-surface-variant cursor-pointer">
                 I agree to the{' '}
                 <a href="#" className="text-on-surface underline hover:text-primary">
                   Terms of Service
@@ -172,19 +177,19 @@ export default function Register() {
             {/* Create Account CTA */}
             <button
               type="submit"
-              className="w-full py-3 px-4 rounded bg-primary-container text-white font-label-sm text-label-sm hover:bg-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-container cursor-pointer"
+              className="w-full py-3.5 px-4 rounded bg-[#1B3B32] text-white font-label-sm text-sm uppercase tracking-wider font-semibold hover:bg-[#122A23] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1B3B32] cursor-pointer mt-2"
             >
               Create Account
             </button>
           </form>
 
           {/* Link to Login */}
-          <div className="mt-stack-lg text-center">
-            <p className="font-body-md text-body-md text-secondary">
+          <div className="text-center pt-2">
+            <p className="font-body-md text-sm text-on-surface-variant">
               Already have an account?
               <Link
                 to="/login"
-                className="font-label-sm text-label-sm text-on-surface hover:text-primary underline decoration-outline-variant ml-1"
+                className="font-semibold text-on-surface hover:text-primary underline decoration-outline-variant ml-1"
               >
                 Sign in
               </Link>

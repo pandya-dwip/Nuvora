@@ -141,7 +141,7 @@ export function StoreProvider({ children }) {
         'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop',
       images: [
         productData.image ||
-          'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop',
       ],
       description: productData.description || '',
       status: productData.status || 'Active',
@@ -155,11 +155,11 @@ export function StoreProvider({ children }) {
       prev.map((p) =>
         String(p.id) === String(id)
           ? {
-              ...p,
-              ...productData,
-              price: Number(productData.price ?? p.price),
-              stock: Number(productData.stock ?? p.stock),
-            }
+            ...p,
+            ...productData,
+            price: Number(productData.price ?? p.price),
+            stock: Number(productData.stock ?? p.stock),
+          }
           : p
       )
     );
