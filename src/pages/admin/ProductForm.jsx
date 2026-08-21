@@ -52,166 +52,211 @@ export default function AdminProductForm() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg border border-gray-200 shadow-sm space-y-6">
-      <div className="flex items-center justify-between border-b border-gray-200 pb-4">
+    <div className="w-full space-y-stack-md">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-outline-variant pb-4">
         <div>
-          <h1 className="text-xl font-bold text-gray-900">
-            {isEditing ? 'Edit Product' : 'Add New Product'}
-          </h1>
-          <p className="text-xs text-gray-500">
-            {isEditing ? `Modifying product #${productId}` : 'Create a new catalog item.'}
+          <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md font-bold text-on-background">
+            {isEditing ? `Edit Product #${productId}` : 'Create New Catalog Product'}
+          </h2>
+          <p className="text-body-md text-on-surface-variant text-sm mt-1">
+            Configure product pricing, category taxonomy, media assets, and stock quantity.
           </p>
         </div>
-        <Link to="/admin/products" className="text-xs text-gray-600 hover:underline font-medium">
-          &larr; Back to Products
+        <Link
+          to="/admin/products"
+          className="font-label-sm text-xs font-bold text-on-surface hover:text-primary flex items-center gap-1"
+        >
+          &larr; Back to Products Catalog
         </Link>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="name" className="block text-xs font-semibold uppercase text-gray-700 mb-1">
-            Product Title *
-          </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="e.g. Minimalist Noise-Cancelling Headphones"
-            className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900"
-          />
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-start w-full">
+        {/* Left 2 Columns: Form Fields */}
+        <div className="lg:col-span-2 bg-surface p-stack-md rounded border border-outline-variant shadow-xs space-y-5">
           <div>
-            <label htmlFor="category" className="block text-xs font-semibold uppercase text-gray-700 mb-1">
-              Category *
+            <label htmlFor="name" className="block font-label-sm text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1.5">
+              Product Title *
             </label>
-            <select
-              id="category"
-              name="category"
-              value={formData.category}
+            <input
+              id="name"
+              name="name"
+              type="text"
+              value={formData.name}
               onChange={handleChange}
-              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900 cursor-pointer"
+              placeholder="e.g. Minimalist Noise-Cancelling Headphones"
+              className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="category" className="block font-label-sm text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1.5">
+                Department Category *
+              </label>
+              <select
+                id="category"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer font-medium"
+              >
+                {categories.map((c) => (
+                  <option key={c.id || c.name} value={c.name}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="status" className="block font-label-sm text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1.5">
+                Catalog Status
+              </label>
+              <select
+                id="status"
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer font-medium"
+              >
+                <option value="Active">Active (Visible)</option>
+                <option value="Inactive">Inactive (Hidden)</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label htmlFor="price" className="block font-label-sm text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1.5">
+                Retail Price ($) *
+              </label>
+              <input
+                id="price"
+                name="price"
+                type="number"
+                step="0.01"
+                value={formData.price}
+                onChange={handleChange}
+                placeholder="129.00"
+                className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="originalPrice" className="block font-label-sm text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1.5">
+                Original Price ($)
+              </label>
+              <input
+                id="originalPrice"
+                name="originalPrice"
+                type="number"
+                step="0.01"
+                value={formData.originalPrice}
+                onChange={handleChange}
+                placeholder="159.00"
+                className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="stock" className="block font-label-sm text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1.5">
+                Stock Quantity *
+              </label>
+              <input
+                id="stock"
+                name="stock"
+                type="number"
+                value={formData.stock}
+                onChange={handleChange}
+                placeholder="25"
+                className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary font-bold"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="image" className="block font-label-sm text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1.5">
+              Primary Image URL
+            </label>
+            <input
+              id="image"
+              name="image"
+              type="url"
+              value={formData.image}
+              onChange={handleChange}
+              placeholder="https://images.unsplash.com/photo-..."
+              className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary font-mono text-xs"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="description" className="block font-label-sm text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1.5">
+              Product Copywriting & Specifications
+            </label>
+            <textarea
+              id="description"
+              name="description"
+              rows="5"
+              value={formData.description}
+              onChange={handleChange}
+              placeholder="Enter product description, material composition, or key features..."
+              className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary"
+            ></textarea>
+          </div>
+
+          <div className="flex justify-end gap-3 pt-4 border-t border-outline-variant">
+            <Link
+              to="/admin/products"
+              className="px-5 py-2.5 border border-outline-variant text-on-surface rounded font-label-sm text-xs font-bold uppercase tracking-wider hover:bg-surface-container-low"
             >
-              {categories.map((c) => (
-                <option key={c.id || c.name} value={c.name}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label htmlFor="status" className="block text-xs font-semibold uppercase text-gray-700 mb-1">
-              Catalog Status
-            </label>
-            <select
-              id="status"
-              name="status"
-              value={formData.status}
-              onChange={handleChange}
-              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900 cursor-pointer"
+              Cancel
+            </Link>
+            <button
+              type="submit"
+              className="px-6 py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded font-label-sm text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs"
             >
-              <option value="Active">Active</option>
-              <option value="Inactive">Inactive</option>
-            </select>
+              {isEditing ? 'Save Changes' : 'Create Product'}
+            </button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div>
-            <label htmlFor="price" className="block text-xs font-semibold uppercase text-gray-700 mb-1">
-              Price ($) *
-            </label>
-            <input
-              id="price"
-              name="price"
-              type="number"
-              step="0.01"
-              value={formData.price}
-              onChange={handleChange}
-              placeholder="129.00"
-              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900"
-            />
+        {/* Right Column: Live Media Preview */}
+        <div className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs space-y-4">
+          <h3 className="text-headline-md font-headline-md font-bold text-on-background border-b border-outline-variant pb-3">
+            Product Media Preview
+          </h3>
+          <div className="aspect-square w-full rounded bg-surface-container-lowest border border-outline-variant overflow-hidden flex items-center justify-center relative">
+            {formData.image ? (
+              <img
+                alt="Live product preview"
+                className="w-full h-full object-cover"
+                src={formData.image}
+              />
+            ) : (
+              <div className="text-center text-on-surface-variant p-4">
+                <span className="material-symbols-outlined text-4xl block mb-1">image</span>
+                <span className="text-xs">No image URL provided yet</span>
+              </div>
+            )}
           </div>
 
-          <div>
-            <label htmlFor="originalPrice" className="block text-xs font-semibold uppercase text-gray-700 mb-1">
-              Original Price ($)
-            </label>
-            <input
-              id="originalPrice"
-              name="originalPrice"
-              type="number"
-              step="0.01"
-              value={formData.originalPrice}
-              onChange={handleChange}
-              placeholder="159.00"
-              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900"
-            />
+          <div className="bg-surface-container-low p-4 rounded border border-outline-variant space-y-2 text-xs">
+            <p className="font-bold text-on-background text-sm truncate">
+              {formData.name || 'Untitled Product'}
+            </p>
+            <p className="text-on-surface-variant font-semibold">{formData.category}</p>
+            <div className="flex items-center gap-2 pt-1">
+              <span className="text-lg font-bold text-on-background font-display">
+                ${formData.price ? Number(formData.price).toFixed(2) : '0.00'}
+              </span>
+              {formData.originalPrice && (
+                <span className="text-on-surface-variant line-through">
+                  ${Number(formData.originalPrice).toFixed(2)}
+                </span>
+              )}
+            </div>
           </div>
-
-          <div>
-            <label htmlFor="stock" className="block text-xs font-semibold uppercase text-gray-700 mb-1">
-              Stock Quantity *
-            </label>
-            <input
-              id="stock"
-              name="stock"
-              type="number"
-              value={formData.stock}
-              onChange={handleChange}
-              placeholder="25"
-              className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label htmlFor="image" className="block text-xs font-semibold uppercase text-gray-700 mb-1">
-            Image URL
-          </label>
-          <input
-            id="image"
-            name="image"
-            type="url"
-            value={formData.image}
-            onChange={handleChange}
-            placeholder="https://images.unsplash.com/photo-..."
-            className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="description" className="block text-xs font-semibold uppercase text-gray-700 mb-1">
-            Product Description
-          </label>
-          <textarea
-            id="description"
-            name="description"
-            rows="4"
-            value={formData.description}
-            onChange={handleChange}
-            placeholder="Product specifications, details, features..."
-            className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900"
-          ></textarea>
-        </div>
-
-        <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
-          <Link
-            to="/admin/products"
-            className="px-4 py-2 border border-gray-300 rounded text-sm font-medium hover:bg-gray-50"
-          >
-            Cancel
-          </Link>
-          <button
-            type="submit"
-            className="px-6 py-2 bg-slate-900 text-white rounded text-sm font-medium hover:bg-slate-800 transition-colors cursor-pointer"
-          >
-            {isEditing ? 'Save Changes' : 'Create Product'}
-          </button>
         </div>
       </form>
     </div>

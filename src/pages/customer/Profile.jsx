@@ -203,8 +203,8 @@ export default function Profile() {
           <button
             onClick={() => setActiveTab('info')}
             className={`w-full text-left px-4 py-3.5 rounded-lg text-label-sm font-medium flex items-center justify-between transition-all cursor-pointer ${activeTab === 'info'
-                ? 'bg-[#1B3B32] text-white font-bold shadow-sm'
-                : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-background'
+              ? 'bg-[#1B3B32] text-white font-bold shadow-sm'
+              : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-background'
               }`}
           >
             <div className="flex items-center gap-3">
@@ -217,8 +217,8 @@ export default function Profile() {
           <button
             onClick={() => setActiveTab('addresses')}
             className={`w-full text-left px-4 py-3.5 rounded-lg text-label-sm font-medium flex items-center justify-between transition-all cursor-pointer ${activeTab === 'addresses'
-                ? 'bg-[#1B3B32] text-white font-bold shadow-sm'
-                : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-background'
+              ? 'bg-[#1B3B32] text-white font-bold shadow-sm'
+              : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-background'
               }`}
           >
             <div className="flex items-center gap-3">
@@ -231,8 +231,8 @@ export default function Profile() {
           <button
             onClick={() => setActiveTab('security')}
             className={`w-full text-left px-4 py-3.5 rounded-lg text-label-sm font-medium flex items-center justify-between transition-all cursor-pointer ${activeTab === 'security'
-                ? 'bg-[#1B3B32] text-white font-bold shadow-sm'
-                : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-background'
+              ? 'bg-[#1B3B32] text-white font-bold shadow-sm'
+              : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-background'
               }`}
           >
             <div className="flex items-center gap-3">
@@ -371,8 +371,8 @@ export default function Profile() {
                   <div
                     key={addr.id}
                     className={`rounded-xl p-5 border transition-all flex flex-col justify-between relative ${addr.isDefault
-                        ? 'border-[#1B3B32] bg-[#1B3B32]/5 shadow-sm'
-                        : 'border-outline-variant bg-surface-container-lowest'
+                      ? 'border-[#1B3B32] bg-[#1B3B32]/5 shadow-sm'
+                      : 'border-outline-variant bg-surface-container-lowest'
                       }`}
                   >
                     <div>

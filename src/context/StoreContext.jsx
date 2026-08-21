@@ -20,7 +20,17 @@ export function StoreProvider({ children }) {
   };
 
   // State Declarations
-  const [users, setUsers] = useState(() => loadInitial('nuvora_users', initialUsers));
+  const [users, setUsers] = useState(() => {
+    const loaded = loadInitial('nuvora_users', initialUsers);
+    if (!Array.isArray(loaded)) return initialUsers;
+    return loaded.map((u) => {
+      const match = initialUsers.find((init) => init.email.toLowerCase() === u.email.toLowerCase());
+      return {
+        ...u,
+        password: u.password || (match ? match.password : 'password123'),
+      };
+    });
+  });
   const [currentUser, setCurrentUser] = useState(() => loadInitial('nuvora_current_user', null));
   const [products, setProducts] = useState(() => {
     const loaded = loadInitial('nuvora_products', initialProducts);
@@ -89,6 +99,13 @@ export function StoreProvider({ children }) {
     if (!user) {
       return { success: false, message: 'Invalid email or user does not exist.' };
     }
+    const expectedPassword =
+      user.password ||
+      initialUsers.find((i) => i.email.toLowerCase() === email.toLowerCase().trim())?.password;
+
+    if (expectedPassword && expectedPassword !== password) {
+      return { success: false, message: 'Incorrect password. Please check your credentials.' };
+    }
     if (user.disabled) {
       return { success: false, message: 'Your account has been disabled. Please contact support.' };
     }
@@ -107,6 +124,7 @@ export function StoreProvider({ children }) {
       id: Date.now(),
       name: userData.fullName || userData.name,
       email: userData.email,
+      password: userData.password || 'password123',
       role: 'customer',
       disabled: false,
     };

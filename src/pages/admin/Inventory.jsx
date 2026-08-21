@@ -14,123 +14,163 @@ export default function AdminInventory() {
   });
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Inventory Control</h1>
-          <p className="text-sm text-gray-500">Monitor stock levels and perform quick inventory adjustments.</p>
-        </div>
+    <div className="w-full space-y-stack-md">
+      {/* Page Header */}
+      <div>
+        <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md font-bold text-on-background">Inventory Control & Stock Adjustments</h2>
+        <p className="text-body-md text-on-surface-variant text-sm mt-1">Real-time stock monitoring, threshold alerts, and batch adjustments.</p>
       </div>
 
-      {/* Control Bar */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm flex flex-col sm:flex-row gap-4 items-center justify-between">
-        <div className="flex gap-2">
-          {['All', 'Low', 'Out'].map((f) => (
+      {/* Control Bar: Filters & Search */}
+      <div className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs flex flex-col sm:flex-row gap-stack-sm items-center justify-between">
+        <div className="flex items-center gap-2">
+          {[
+            { id: 'All', label: `All Items (${products.length})` },
+            { id: 'Low', label: `Low Stock (${products.filter((p) => p.stock > 0 && p.stock < 10).length})` },
+            { id: 'Out', label: `Out of Stock (${products.filter((p) => p.stock === 0).length})` },
+          ].map((f) => (
             <button
-              key={f}
-              onClick={() => setFilter(f)}
-              className={`px-3 py-1.5 rounded text-xs font-semibold uppercase cursor-pointer ${
-                filter === f ? 'bg-slate-900 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              key={f.id}
+              onClick={() => setFilter(f.id)}
+              className={`px-4 py-2 rounded font-label-sm text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer ${
+                filter === f.id
+                  ? 'bg-primary text-on-primary shadow-xs'
+                  : 'bg-surface-container-low text-on-surface hover:bg-surface-container'
               }`}
             >
-              {f === 'Low' ? 'Low Stock (< 10)' : f === 'Out' ? 'Out of Stock' : 'All Items'}
+              {f.label}
             </button>
           ))}
         </div>
 
-        <div className="relative w-full sm:w-64">
-          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[18px]">
+        <div className="relative w-full sm:w-72">
+          <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[20px]">
             search
           </span>
           <input
             type="text"
-            placeholder="Search inventory..."
+            placeholder="Search inventory title..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-1.5 bg-gray-50 border border-gray-200 rounded text-sm focus:outline-none focus:border-slate-900"
+            className="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary placeholder-outline"
           />
         </div>
       </div>
 
       {/* Inventory Table */}
-      <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-        <table className="w-full text-left text-sm">
-          <thead className="bg-gray-50 border-b border-gray-200 text-gray-600 font-semibold uppercase text-xs">
-            <tr>
-              <th className="p-3">Product</th>
-              <th className="p-3">Category</th>
-              <th className="p-3">Price</th>
-              <th className="p-3">Stock Status</th>
-              <th className="p-3">Adjust Stock</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            {filtered.length > 0 ? (
-              filtered.map((product) => (
-                <tr key={product.id} className="hover:bg-gray-50">
-                  <td className="p-3">
-                    <div className="flex items-center gap-3">
-                      <img
-                        alt={product.name}
-                        className="w-10 h-10 rounded object-cover border border-gray-200 bg-gray-100"
-                        src={product.image}
-                      />
-                      <span className="font-semibold text-gray-900">{product.name}</span>
-                    </div>
-                  </td>
-                  <td className="p-3 text-gray-600 font-medium">{product.category}</td>
-                  <td className="p-3 font-bold text-gray-900">${Number(product.price).toFixed(2)}</td>
-                  <td className="p-3">
-                    <span
-                      className={`px-2.5 py-1 rounded text-xs font-bold uppercase ${
-                        product.stock === 0
-                          ? 'bg-red-100 text-red-800'
-                          : product.stock < 10
-                          ? 'bg-amber-100 text-amber-800'
-                          : 'bg-emerald-100 text-emerald-800'
-                      }`}
-                    >
-                      {product.stock === 0
-                        ? 'Out of Stock'
-                        : product.stock < 10
-                        ? `Low Stock (${product.stock})`
-                        : `In Stock (${product.stock})`}
-                    </span>
-                  </td>
-                  <td className="p-3">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => updateStock(product.id, Math.max(0, product.stock - 1))}
-                        className="w-7 h-7 bg-gray-100 hover:bg-gray-200 rounded flex items-center justify-center font-bold text-gray-700 cursor-pointer"
-                      >
-                        -
-                      </button>
-                      <input
-                        type="number"
-                        min="0"
-                        value={product.stock}
-                        onChange={(e) => updateStock(product.id, e.target.value)}
-                        className="w-16 px-2 py-1 border border-gray-200 rounded text-center text-sm font-semibold focus:outline-none focus:border-slate-900"
-                      />
-                      <button
-                        onClick={() => updateStock(product.id, product.stock + 1)}
-                        className="w-7 h-7 bg-gray-100 hover:bg-gray-200 rounded flex items-center justify-center font-bold text-gray-700 cursor-pointer"
-                      >
-                        +
-                      </button>
-                    </div>
+      <div className="bg-surface rounded border border-outline-variant shadow-xs overflow-hidden w-full">
+        <div className="overflow-x-auto w-full">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-surface-container-low border-b border-outline-variant text-on-surface-variant font-label-sm text-xs uppercase tracking-wider">
+              <tr>
+                <th className="p-4">Product</th>
+                <th className="p-4">Category</th>
+                <th className="p-4">Price</th>
+                <th className="p-4">Stock Health</th>
+                <th className="p-4 text-center">Live Stock Adjuster</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-outline-variant/60">
+              {filtered.length > 0 ? (
+                filtered.map((product) => (
+                  <tr key={product.id} className="hover:bg-surface-container-lowest transition-colors">
+                    <td className="p-4">
+                      <div className="flex items-center gap-3.5">
+                        <img
+                          alt={product.name}
+                          className="w-12 h-12 rounded object-cover border border-outline-variant bg-surface"
+                          src={product.image}
+                        />
+                        <div>
+                          <span className="font-bold text-on-background block max-w-xs truncate">
+                            {product.name}
+                          </span>
+                          <span className="text-xs text-on-surface-variant font-mono">ID: #{product.id}</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="p-4 text-on-surface font-semibold">{product.category}</td>
+                    <td className="p-4 font-bold text-on-background font-display">
+                      ${Number(product.price).toFixed(2)}
+                    </td>
+                    <td className="p-4">
+                      <div className="flex flex-col gap-1.5 max-w-[160px]">
+                        <div className="flex justify-between items-center text-xs">
+                          <span
+                            className={`font-bold ${
+                              product.stock === 0
+                                ? 'text-error'
+                                : product.stock < 10
+                                ? 'text-secondary'
+                                : 'text-primary'
+                            }`}
+                          >
+                            {product.stock === 0
+                              ? 'Out of Stock'
+                              : product.stock < 10
+                              ? `Low Stock (${product.stock})`
+                              : `In Stock (${product.stock})`}
+                          </span>
+                        </div>
+                        <div className="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full transition-all duration-300 ${
+                              product.stock === 0
+                                ? 'bg-error'
+                                : product.stock < 10
+                                ? 'bg-secondary'
+                                : 'bg-primary'
+                            }`}
+                            style={{ width: `${Math.min(100, (product.stock / 30) * 100)}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="p-4 text-center">
+                      <div className="inline-flex items-center gap-2 p-1 bg-surface-container-low border border-outline-variant rounded">
+                        <button
+                          onClick={() => updateStock(product.id, Math.max(0, product.stock - 1))}
+                          className="w-8 h-8 bg-surface hover:bg-surface-container border border-outline-variant rounded font-bold text-on-surface flex items-center justify-center transition-colors cursor-pointer shadow-xs"
+                          title="Decrease 1"
+                        >
+                          -1
+                        </button>
+                        <input
+                          type="number"
+                          min="0"
+                          value={product.stock}
+                          onChange={(e) => updateStock(product.id, e.target.value)}
+                          className="w-16 py-1 bg-surface border border-outline-variant rounded text-center font-bold text-on-background focus:outline-none focus:ring-1 focus:ring-primary"
+                        />
+                        <button
+                          onClick={() => updateStock(product.id, product.stock + 1)}
+                          className="w-8 h-8 bg-surface hover:bg-surface-container border border-outline-variant rounded font-bold text-on-surface flex items-center justify-center transition-colors cursor-pointer shadow-xs"
+                          title="Increase 1"
+                        >
+                          +1
+                        </button>
+                        <button
+                          onClick={() => updateStock(product.id, product.stock + 10)}
+                          className="px-2 py-1 bg-primary hover:bg-primary-container text-on-primary rounded font-label-sm text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-xs"
+                          title="Add 10 Batch"
+                        >
+                          +10
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" className="text-center py-12 text-on-surface-variant">
+                    <span className="material-symbols-outlined text-4xl text-outline block mb-2">search_off</span>
+                    No inventory records matching current filter.
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="5" className="text-center py-8 text-gray-500">
-                  No inventory items match filter.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

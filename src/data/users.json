@@ -3,12 +3,21 @@
     "id": 1,
     "name": "Jane Doe",
     "email": "jane@example.com",
+    "password": "customer123",
     "role": "customer"
   },
   {
     "id": 2,
     "name": "Admin User",
     "email": "admin@example.com",
+    "password": "admin123",
     "role": "admin"
+  },
+  {
+    "id": 3,
+    "name": "Dwip",
+    "email": "dwip@gmail.com",
+    "password": "password123",
+    "role": "customer"
   }
 ]

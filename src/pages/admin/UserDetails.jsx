@@ -12,81 +12,131 @@ export default function AdminUserDetails() {
 
   if (!user) {
     return (
-      <div className="p-8 text-center bg-white rounded border border-gray-200">
-        <h2 className="text-xl font-bold text-gray-800 mb-2">User Not Found</h2>
-        <Link to="/admin/users" className="text-emerald-600 font-semibold hover:underline">
-          Return to Users List
+      <div className="p-12 text-center bg-surface rounded border border-outline-variant max-w-md mx-auto">
+        <span className="material-symbols-outlined text-5xl text-outline mb-2">person_off</span>
+        <h2 className="text-headline-md font-headline-md font-bold text-on-surface mb-2">User Record Not Found</h2>
+        <p className="text-body-md text-on-surface-variant text-sm mb-6">No user account matching ID #{userId} exists.</p>
+        <Link to="/admin/users" className="bg-primary text-on-primary px-5 py-2.5 rounded font-label-sm text-xs font-bold uppercase tracking-wider inline-block">
+          Return to Users
         </Link>
       </div>
     );
   }
 
+  const totalSpent = userOrders
+    .filter((o) => o.status !== 'Cancelled')
+    .reduce((sum, o) => sum + Number(o.total || 0), 0);
+
+  const userInitial = user.name ? user.name.charAt(0).toUpperCase() : 'U';
+
   return (
-    <div className="space-y-6 max-w-4xl">
-      <div className="flex items-center justify-between border-b border-gray-200 pb-4">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">{user.name}</h1>
-          <p className="text-sm text-gray-500">{user.email}</p>
+    <div className="w-full space-y-stack-md">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-outline-variant pb-4">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-full bg-primary text-on-primary text-xl font-bold flex items-center justify-center font-display shadow-xs">
+            {userInitial}
+          </div>
+          <div>
+            <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md font-bold text-on-background">{user.name}</h2>
+            <p className="text-xs text-on-surface-variant">{user.email}</p>
+          </div>
         </div>
-        <Link to="/admin/users" className="text-xs text-gray-600 hover:underline font-medium">
-          &larr; Back to Users List
+        <Link
+          to="/admin/users"
+          className="font-label-sm text-xs font-bold text-on-surface hover:text-primary flex items-center gap-1"
+        >
+          &larr; Back to Users Directory
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6 space-y-3">
-          <h2 className="text-base font-bold text-gray-900 border-b border-gray-200 pb-2">
-            Account Profile
-          </h2>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-start w-full">
+        {/* User Profile Card */}
+        <div className="bg-surface rounded border border-outline-variant shadow-xs p-stack-md space-y-5 text-sm">
+          <h3 className="text-headline-md font-headline-md font-bold text-on-background border-b border-outline-variant pb-3">
+            Account Metadata
+          </h3>
           <div>
-            <p className="text-xs font-semibold uppercase text-gray-500">User ID</p>
-            <p className="font-semibold text-gray-900">#{user.id}</p>
+            <span className="font-label-sm text-[11px] font-bold uppercase tracking-wider text-on-surface-variant block mb-1">
+              User ID
+            </span>
+            <p className="font-mono font-bold text-on-background">#{user.id}</p>
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase text-gray-500">Role</p>
-            <span className="px-2.5 py-0.5 rounded text-xs font-bold uppercase bg-purple-100 text-purple-800">
+            <span className="font-label-sm text-[11px] font-bold uppercase tracking-wider text-on-surface-variant block mb-1">
+              System Role
+            </span>
+            <span className="px-3 py-1 rounded text-xs font-bold uppercase bg-primary/10 text-primary border border-primary/20">
               {user.role}
             </span>
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase text-gray-500">Account Status</p>
+            <span className="font-label-sm text-[11px] font-bold uppercase tracking-wider text-on-surface-variant block mb-1">
+              Account Status
+            </span>
             <span
-              className={`px-2.5 py-0.5 rounded text-xs font-bold uppercase ${
-                user.disabled ? 'bg-red-100 text-red-800' : 'bg-emerald-100 text-emerald-800'
+              className={`px-3 py-1 rounded text-xs font-bold uppercase ${
+                user.disabled ? 'bg-error-container text-on-error-container' : 'bg-primary/10 text-primary'
               }`}
             >
               {user.disabled ? 'Disabled' : 'Active'}
             </span>
           </div>
+          <div className="pt-3 border-t border-outline-variant">
+            <span className="font-label-sm text-[11px] font-bold uppercase tracking-wider text-on-surface-variant block mb-1">
+              Lifetime Value
+            </span>
+            <p className="text-display-lg-mobile font-bold text-primary font-display">
+              ${totalSpent.toFixed(2)}
+            </p>
+          </div>
         </div>
 
-        <div className="md:col-span-2 bg-white rounded-lg border border-gray-200 shadow-sm p-6 space-y-4">
-          <h2 className="text-base font-bold text-gray-900 border-b border-gray-200 pb-2">
-            User Order History ({userOrders.length})
-          </h2>
+        {/* User Orders History */}
+        <div className="lg:col-span-2 bg-surface rounded border border-outline-variant shadow-xs p-stack-md space-y-4">
+          <h3 className="text-headline-md font-headline-md font-bold text-on-background border-b border-outline-variant pb-3">
+            Customer Order History ({userOrders.length})
+          </h3>
 
           {userOrders.length > 0 ? (
-            <div className="divide-y divide-gray-100 text-sm">
+            <div className="divide-y divide-outline-variant/60 text-sm">
               {userOrders.map((order) => (
-                <div key={order.id} className="py-3 flex items-center justify-between">
+                <div key={order.id} className="py-4 flex items-center justify-between">
                   <div>
-                    <span className="font-bold text-gray-900">#{order.id}</span>
-                    <span className="text-xs text-gray-500 ml-2">{order.date}</span>
-                    <p className="text-xs text-gray-600 mt-0.5">
-                      {order.items.length} items • ${Number(order.total).toFixed(2)}
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-on-background">#{order.id}</span>
+                      <span
+                        className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+                          order.status === 'Delivered'
+                            ? 'bg-primary/10 text-primary'
+                            : order.status === 'Cancelled'
+                            ? 'bg-error-container text-on-error-container'
+                            : 'bg-surface-container-high text-on-surface'
+                        }`}
+                      >
+                        {order.status}
+                      </span>
+                    </div>
+                    <p className="text-xs text-on-surface-variant mt-1">
+                      Date: {order.date} • {order.items.length} items
                     </p>
                   </div>
-                  <Link
-                    to={`/admin/orders/${order.id}`}
-                    className="text-xs font-semibold text-emerald-600 hover:underline"
-                  >
-                    View Order
-                  </Link>
+                  <div className="text-right">
+                    <span className="font-bold text-on-background block font-display">
+                      ${Number(order.total).toFixed(2)}
+                    </span>
+                    <Link
+                      to={`/admin/orders/${order.id}`}
+                      className="text-xs font-bold text-primary hover:underline mt-0.5 inline-block"
+                    >
+                      View Order &rarr;
+                    </Link>
+                  </div>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="text-sm text-gray-500 py-4">No order history for this user.</p>
+            <p className="text-sm text-on-surface-variant py-8 text-center">No orders recorded for this user account.</p>
           )}
         </div>
       </div>

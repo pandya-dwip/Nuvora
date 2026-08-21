@@ -129,8 +129,8 @@ export default function Login() {
           {/* Quick Demo Credentials Help */}
           <div className="p-3 bg-surface-container-low rounded border border-outline-variant text-xs text-on-surface-variant flex flex-col gap-1">
             <p className="font-bold text-on-surface">Demo Credentials:</p>
-            <p>Customer: <code className="text-primary font-mono font-bold">jane@example.com</code></p>
-            <p>Admin: <code className="text-primary font-mono font-bold">admin@example.com</code></p>
+            <p>Admin: <code className="text-primary font-mono font-bold">admin@example.com</code> / Pass: <code className="text-primary font-mono font-bold">admin123</code></p>
+            <p>Customer: <code className="text-primary font-mono font-bold">jane@example.com</code> / Pass: <code className="text-primary font-mono font-bold">customer123</code></p>
           </div>
 
           {/* Link to Register */}
