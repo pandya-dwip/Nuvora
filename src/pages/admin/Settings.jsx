@@ -20,7 +20,7 @@ export default function AdminSettings() {
   };
 
   return (
-    <div className="w-full space-y-stack-md">
+    <div data-testid="admin-settings-container" className="w-full space-y-stack-md">
       {/* Header */}
       <div>
         <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md font-bold text-on-background">Store Global Configuration</h2>
@@ -28,13 +28,13 @@ export default function AdminSettings() {
       </div>
 
       {saved && (
-        <div className="p-4 bg-primary/10 border border-primary text-primary rounded text-sm font-medium flex items-center gap-2">
+        <div data-testid="admin-settings-saved-message" className="p-4 bg-primary/10 border border-primary text-primary rounded text-sm font-medium flex items-center gap-2">
           <span className="material-symbols-outlined text-base">check_circle</span>
           Global store configuration saved successfully!
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-stack-md w-full">
+      <form onSubmit={handleSubmit} data-testid="admin-settings-form" className="space-y-stack-md w-full">
         {/* Card 1: Store Identity */}
         <div className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs space-y-5">
           <h3 className="text-headline-md font-headline-md font-bold text-on-background border-b border-outline-variant pb-3 flex items-center gap-2">
@@ -50,6 +50,7 @@ export default function AdminSettings() {
               <input
                 id="storeName"
                 type="text"
+                data-testid="admin-settings-store-name-input"
                 value={formData.storeName}
                 onChange={(e) => setFormData({ ...formData, storeName: e.target.value })}
                 className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary font-semibold"
@@ -63,6 +64,7 @@ export default function AdminSettings() {
               <input
                 id="supportEmail"
                 type="email"
+                data-testid="admin-settings-support-email-input"
                 value={formData.supportEmail}
                 onChange={(e) => setFormData({ ...formData, supportEmail: e.target.value })}
                 className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary font-semibold"
@@ -86,6 +88,7 @@ export default function AdminSettings() {
               <input
                 id="currency"
                 type="text"
+                data-testid="admin-settings-currency-input"
                 value={formData.currency}
                 onChange={(e) => setFormData({ ...formData, currency: e.target.value })}
                 className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary font-bold"
@@ -99,6 +102,7 @@ export default function AdminSettings() {
               <input
                 id="taxRate"
                 type="number"
+                data-testid="admin-settings-tax-rate-input"
                 value={formData.taxRate}
                 onChange={(e) => setFormData({ ...formData, taxRate: e.target.value })}
                 className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary font-bold"
@@ -112,6 +116,7 @@ export default function AdminSettings() {
               <input
                 id="freeShippingThreshold"
                 type="number"
+                data-testid="admin-settings-free-shipping-input"
                 value={formData.freeShippingThreshold}
                 onChange={(e) => setFormData({ ...formData, freeShippingThreshold: e.target.value })}
                 className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary font-bold"
@@ -123,6 +128,7 @@ export default function AdminSettings() {
         <div className="flex justify-end pt-2">
           <button
             type="submit"
+            data-testid="admin-settings-save-button"
             className="px-8 py-3 bg-primary hover:bg-primary-container text-on-primary rounded font-label-sm text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs flex items-center gap-2"
           >
             <span className="material-symbols-outlined text-sm">save</span>

@@ -9,7 +9,7 @@ export default function CustomerOrderDetails() {
 
   if (!order) {
     return (
-      <div className="px-margin-mobile md:px-margin-desktop py-16 text-center max-w-md mx-auto">
+      <div data-testid="order-details-not-found" className="px-margin-mobile md:px-margin-desktop py-16 text-center max-w-md mx-auto">
         <span className="material-symbols-outlined text-5xl text-outline mb-2">package_2</span>
         <h2 className="text-headline-md font-headline-md text-on-surface mb-2">Order Not Found</h2>
         <p className="text-body-md text-on-surface-variant mb-6">
@@ -17,6 +17,7 @@ export default function CustomerOrderDetails() {
         </p>
         <Link
           to="/orders"
+          data-testid="order-details-return-orders-button"
           className="bg-primary text-on-primary px-6 py-3 rounded font-label-sm text-label-sm inline-block"
         >
           Return to My Orders
@@ -33,7 +34,7 @@ export default function CustomerOrderDetails() {
     order.customerEmail !== currentUser.email
   ) {
     return (
-      <div className="px-margin-mobile md:px-margin-desktop py-16 text-center max-w-md mx-auto">
+      <div data-testid="order-details-access-denied" className="px-margin-mobile md:px-margin-desktop py-16 text-center max-w-md mx-auto">
         <span className="material-symbols-outlined text-5xl text-error mb-2">lock</span>
         <h2 className="text-headline-md font-headline-md text-on-surface mb-2">Access Denied</h2>
         <p className="text-body-md text-on-surface-variant mb-6">
@@ -41,6 +42,7 @@ export default function CustomerOrderDetails() {
         </p>
         <Link
           to="/orders"
+          data-testid="order-details-denied-return-button"
           className="bg-primary text-on-primary px-6 py-3 rounded font-label-sm text-label-sm inline-block"
         >
           Return to My Orders
@@ -63,21 +65,22 @@ export default function CustomerOrderDetails() {
   const canCancel = ['Placed', 'Processing'].includes(order.status);
 
   return (
-    <div className="px-margin-mobile md:px-margin-desktop py-stack-lg">
+    <div data-testid="order-details-container" className="px-margin-mobile md:px-margin-desktop py-stack-lg">
       <div className="mb-stack-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <h1 className="text-display-lg-mobile md:text-display-lg font-display-lg-mobile md:font-display-lg text-on-background">
-          Order Details (#{order.id})
+          Order Details (<span data-testid="order-details-id">#{order.id}</span>)
         </h1>
         <div className="flex items-center gap-4">
           {canCancel && (
             <button
               onClick={handleCancelOrder}
+              data-testid="order-details-cancel-button"
               className="text-label-sm font-label-sm text-error border border-error/30 px-3 py-1.5 rounded hover:bg-error-container transition-colors cursor-pointer"
             >
               Cancel Order
             </button>
           )}
-          <Link to="/orders" className="text-label-sm font-label-sm text-primary hover:underline">
+          <Link to="/orders" data-testid="order-details-back-button" className="text-label-sm font-label-sm text-primary hover:underline">
             &larr; Back to My Orders
           </Link>
         </div>
@@ -97,13 +100,13 @@ export default function CustomerOrderDetails() {
                 >
                   {step.done ? '✓' : idx + 1}
                 </div>
-                <span className="text-xs font-label-sm mt-1 text-on-background">{step.label}</span>
+                <span data-testid={`order-details-step-${step.label.toLowerCase()}`} className="text-xs font-label-sm mt-1 text-on-background">{step.label}</span>
               </div>
             ))}
           </div>
         </div>
       ) : (
-        <div className="p-4 bg-red-100 text-red-800 rounded mb-stack-md font-medium text-center">
+        <div data-testid="order-details-cancelled-alert" className="p-4 bg-red-100 text-red-800 rounded mb-stack-md font-medium text-center">
           This order has been Cancelled.
         </div>
       )}
@@ -185,19 +188,19 @@ export default function CustomerOrderDetails() {
 
             <div className="flex justify-between text-on-surface-variant">
               <span>Subtotal</span>
-              <span>${Number(order.subtotal || 0).toFixed(2)}</span>
+              <span data-testid="order-details-subtotal">${Number(order.subtotal || 0).toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-on-surface-variant">
               <span>Shipping</span>
-              <span>{order.shipping === 0 ? 'FREE' : `$${Number(order.shipping || 0).toFixed(2)}`}</span>
+              <span data-testid="order-details-shipping">{order.shipping === 0 ? 'FREE' : `$${Number(order.shipping || 0).toFixed(2)}`}</span>
             </div>
             <div className="flex justify-between text-on-surface-variant">
               <span>Tax (8%)</span>
-              <span>${Number(order.tax || 0).toFixed(2)}</span>
+              <span data-testid="order-details-tax">${Number(order.tax || 0).toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-headline-md font-headline-md text-on-background pt-2 border-t border-outline-variant">
               <span>Total</span>
-              <span className="text-primary">${Number(order.total || 0).toFixed(2)}</span>
+              <span data-testid="order-details-total" className="text-primary">${Number(order.total || 0).toFixed(2)}</span>
             </div>
           </div>
         </div>

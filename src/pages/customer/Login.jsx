@@ -28,7 +28,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row bg-background">
+    <div data-testid="login-container" className="min-h-screen w-full flex flex-col md:flex-row bg-background">
       {/* Left Side: Editorial Banner */}
       <div className="w-full md:w-1/2 relative min-h-[40vh] md:min-h-screen bg-slate-900 overflow-hidden flex flex-col justify-between p-8 md:p-12 text-white">
         <img
@@ -67,7 +67,7 @@ export default function Login() {
           </div>
 
           {errorMsg && (
-            <div className="p-3 bg-error-container text-on-error-container border border-error/20 rounded text-sm font-medium flex items-center gap-2">
+            <div data-testid="login-error-message" className="p-3 bg-error-container text-on-error-container border border-error/20 rounded text-sm font-medium flex items-center gap-2">
               <span className="material-symbols-outlined text-base">error</span>
               {errorMsg}
             </div>
@@ -83,6 +83,7 @@ export default function Login() {
               <input
                 id="email"
                 type="email"
+                data-testid="login-email-input"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
@@ -99,6 +100,7 @@ export default function Login() {
                 <input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
+                  data-testid="login-password-input"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
@@ -106,6 +108,7 @@ export default function Login() {
                 />
                 <button
                   type="button"
+                  data-testid="login-password-toggle"
                   aria-label="Toggle password visibility"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary focus:outline-none cursor-pointer"
@@ -117,9 +120,30 @@ export default function Login() {
               </div>
             </div>
 
+            {/* Remember me & Forgot Password */}
+            <div className="flex items-center justify-between text-sm">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  id="remember-me"
+                  data-testid="login-remember-me-checkbox"
+                  className="h-4 w-4 rounded border-outline-variant text-primary focus:ring-primary cursor-pointer"
+                />
+                <span className="text-on-surface-variant">Remember me</span>
+              </label>
+              <a
+                href="#"
+                data-testid="login-forgot-password-link"
+                className="font-medium text-on-surface hover:text-primary underline decoration-outline-variant"
+              >
+                Forgot password?
+              </a>
+            </div>
+
             {/* Sign In CTA */}
             <button
               type="submit"
+              data-testid="login-submit-button"
               className="w-full py-3.5 px-4 rounded bg-[#1B3B32] text-white font-label-sm text-sm uppercase tracking-wider font-semibold hover:bg-[#122A23] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1B3B32] cursor-pointer mt-2"
             >
               Sign In
@@ -139,6 +163,7 @@ export default function Login() {
               Don&apos;t have an account?
               <Link
                 to="/register"
+                data-testid="login-create-account-link"
                 className="font-semibold text-on-surface hover:text-primary underline decoration-outline-variant ml-1"
               >
                 Create account

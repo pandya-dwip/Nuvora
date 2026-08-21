@@ -8,7 +8,7 @@ export default function AdminLayout() {
 
   if (!currentUser || currentUser.role !== 'admin') {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-background text-on-background p-6 text-center">
+      <div data-testid="admin-access-denied" className="min-h-screen flex flex-col items-center justify-center bg-background text-on-background p-6 text-center">
         <div className="bg-surface p-8 rounded border border-outline-variant shadow-sm max-w-md w-full">
           <div className="w-16 h-16 bg-error-container text-error rounded-full flex items-center justify-center mx-auto mb-4">
             <span className="material-symbols-outlined text-4xl">lock</span>
@@ -21,6 +21,7 @@ export default function AdminLayout() {
           </p>
           <button
             onClick={() => navigate('/login')}
+            data-testid="admin-denied-login-button"
             className="w-full bg-primary text-on-primary py-3 rounded font-label-sm text-label-sm uppercase tracking-wider hover:bg-primary-container transition-colors cursor-pointer"
           >
             Go to Login
@@ -34,22 +35,22 @@ export default function AdminLayout() {
   const lowStockCount = products.filter((p) => p.stock < 10).length;
 
   const navItems = [
-    { label: 'Dashboard', path: '/admin/dashboard', icon: 'grid_view' },
-    { label: 'Products', path: '/admin/products', icon: 'inventory_2', badge: products.length },
-    { label: 'Inventory', path: '/admin/inventory', icon: 'warehouse', alertBadge: lowStockCount > 0 ? lowStockCount : null },
-    { label: 'Orders', path: '/admin/orders', icon: 'local_mall', badge: pendingOrdersCount > 0 ? pendingOrdersCount : null },
-    { label: 'Users', path: '/admin/users', icon: 'group' },
-    { label: 'Categories', path: '/admin/categories', icon: 'category' },
-    { label: 'Store Settings', path: '/admin/settings', icon: 'tune' },
+    { label: 'Dashboard', path: '/admin/dashboard', icon: 'grid_view', testId: 'admin-nav-dashboard' },
+    { label: 'Products', path: '/admin/products', icon: 'inventory_2', badge: products.length, testId: 'admin-nav-products' },
+    { label: 'Inventory', path: '/admin/inventory', icon: 'warehouse', alertBadge: lowStockCount > 0 ? lowStockCount : null, testId: 'admin-nav-inventory' },
+    { label: 'Orders', path: '/admin/orders', icon: 'local_mall', badge: pendingOrdersCount > 0 ? pendingOrdersCount : null, testId: 'admin-nav-orders' },
+    { label: 'Users', path: '/admin/users', icon: 'group', testId: 'admin-nav-users' },
+    { label: 'Categories', path: '/admin/categories', icon: 'category', testId: 'admin-nav-categories' },
+    { label: 'Store Settings', path: '/admin/settings', icon: 'tune', testId: 'admin-nav-settings' },
   ];
 
   const currentNav = navItems.find((item) => location.pathname.startsWith(item.path));
   const pageTitle = currentNav ? currentNav.label : 'Admin Portal';
 
   return (
-    <div className="min-h-screen flex bg-background text-on-background font-sans">
+    <div data-testid="admin-layout" className="min-h-screen flex bg-background text-on-background font-sans">
       {/* Sidebar Navigation */}
-      <aside className="w-64 bg-[#12362e] text-on-primary flex flex-col p-4 flex-shrink-0 border-r border-[#2a4d44] z-20">
+      <aside data-testid="admin-sidebar" className="w-64 bg-[#12362e] text-on-primary flex flex-col p-4 flex-shrink-0 border-r border-[#2a4d44] z-20">
         {/* Brand & Portal Badge */}
         <div className="flex items-center justify-between px-3 py-3 mb-6 border-b border-[#2a4d44] pb-5">
           <div className="flex items-center gap-2">
@@ -63,7 +64,7 @@ export default function AdminLayout() {
         </div>
 
         {/* Navigation Items */}
-        <nav className="flex flex-col gap-1 flex-1">
+        <nav aria-label="Admin Navigation" className="flex flex-col gap-1 flex-1">
           <div className="px-3 text-[11px] font-label-sm text-[#97bdb1] uppercase tracking-wider mb-2">
             Navigation
           </div>
@@ -73,6 +74,7 @@ export default function AdminLayout() {
               <Link
                 key={item.path}
                 to={item.path}
+                data-testid={item.testId}
                 className={`px-3.5 py-2.5 rounded flex items-center justify-between text-label-sm font-label-sm transition-colors ${
                   isActive
                     ? 'bg-[#2a4d44] text-white font-bold'
@@ -112,6 +114,7 @@ export default function AdminLayout() {
 
           <Link
             to="/home"
+            data-testid="admin-storefront-link"
             className="text-xs text-[#97bdb1] hover:text-white flex items-center justify-between px-3 py-2 rounded hover:bg-[#1f433b] transition-colors"
           >
             <span className="flex items-center gap-2">
@@ -126,6 +129,7 @@ export default function AdminLayout() {
               logout();
               navigate('/login');
             }}
+            data-testid="admin-signout-button"
             className="text-xs text-error-container hover:text-white text-left px-3 py-2 rounded hover:bg-[#1f433b] transition-colors cursor-pointer flex items-center gap-2"
           >
             <span className="material-symbols-outlined text-sm">logout</span>
@@ -146,6 +150,7 @@ export default function AdminLayout() {
           <div className="flex items-center gap-4">
             <Link
               to="/admin/products/new"
+              data-testid="admin-new-product-button"
               className="bg-primary hover:bg-primary-container text-on-primary px-4 py-2 rounded text-label-sm font-label-sm uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <span className="material-symbols-outlined text-sm">add</span>

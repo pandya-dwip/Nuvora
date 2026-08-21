@@ -55,7 +55,7 @@ export default function Checkout() {
 
   if (cartItems.length === 0) {
     return (
-      <div className="px-margin-mobile md:px-margin-desktop py-16 text-center max-w-md mx-auto">
+      <div data-testid="checkout-empty-state" className="px-margin-mobile md:px-margin-desktop py-16 text-center max-w-md mx-auto">
         <span className="material-symbols-outlined text-5xl text-outline mb-2">shopping_bag</span>
         <h2 className="text-headline-md font-headline-md text-on-surface mb-2">Your Cart is Empty</h2>
         <p className="text-body-md text-on-surface-variant mb-6">
@@ -63,6 +63,7 @@ export default function Checkout() {
         </p>
         <Link
           to="/shop"
+          data-testid="checkout-empty-explore-button"
           className="bg-primary text-on-primary px-6 py-3 rounded font-label-sm text-label-sm inline-block"
         >
           Explore Collection
@@ -72,7 +73,7 @@ export default function Checkout() {
   }
 
   return (
-    <div className="px-margin-mobile md:px-margin-desktop py-stack-lg">
+    <div data-testid="checkout-container" className="px-margin-mobile md:px-margin-desktop py-stack-lg">
       <div className="mb-stack-md">
         <h1 className="text-display-lg-mobile md:text-display-lg font-display-lg-mobile md:font-display-lg text-on-background">
           Checkout
@@ -96,6 +97,7 @@ export default function Checkout() {
                   id="fullName"
                   name="fullName"
                   type="text"
+                  data-testid="checkout-full-name-input"
                   value={formData.fullName}
                   onChange={handleChange}
                   className="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -109,6 +111,7 @@ export default function Checkout() {
                   id="email"
                   name="email"
                   type="email"
+                  data-testid="checkout-email-input"
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -122,6 +125,7 @@ export default function Checkout() {
                   id="address"
                   name="address"
                   type="text"
+                  data-testid="checkout-address-input"
                   value={formData.address}
                   onChange={handleChange}
                   className="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -135,6 +139,7 @@ export default function Checkout() {
                   id="city"
                   name="city"
                   type="text"
+                  data-testid="checkout-city-input"
                   value={formData.city}
                   onChange={handleChange}
                   className="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -149,6 +154,7 @@ export default function Checkout() {
                     id="state"
                     name="state"
                     type="text"
+                    data-testid="checkout-state-input"
                     value={formData.state}
                     onChange={handleChange}
                     className="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -162,6 +168,7 @@ export default function Checkout() {
                     id="zip"
                     name="zip"
                     type="text"
+                    data-testid="checkout-zip-input"
                     value={formData.zip}
                     onChange={handleChange}
                     className="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -179,6 +186,7 @@ export default function Checkout() {
 
             <div className="flex gap-4 mb-4">
               <label
+                data-testid="checkout-payment-card-option"
                 className={`flex-1 flex items-center gap-2 p-3 border rounded cursor-pointer ${
                   paymentMethod === 'Credit Card'
                     ? 'border-primary bg-surface-container-low font-medium'
@@ -188,6 +196,7 @@ export default function Checkout() {
                 <input
                   type="radio"
                   name="payment"
+                  data-testid="checkout-payment-card-radio"
                   value="Credit Card"
                   checked={paymentMethod === 'Credit Card'}
                   onChange={() => setPaymentMethod('Credit Card')}
@@ -197,6 +206,7 @@ export default function Checkout() {
                 <span className="font-label-sm text-sm">Credit / Debit Card</span>
               </label>
               <label
+                data-testid="checkout-payment-paypal-option"
                 className={`flex-1 flex items-center gap-2 p-3 border rounded cursor-pointer ${
                   paymentMethod === 'PayPal'
                     ? 'border-primary bg-surface-container-low font-medium'
@@ -206,6 +216,7 @@ export default function Checkout() {
                 <input
                   type="radio"
                   name="payment"
+                  data-testid="checkout-payment-paypal-radio"
                   value="PayPal"
                   checked={paymentMethod === 'PayPal'}
                   onChange={() => setPaymentMethod('PayPal')}
@@ -226,6 +237,7 @@ export default function Checkout() {
                     id="cardNumber"
                     name="cardNumber"
                     type="text"
+                    data-testid="checkout-card-number-input"
                     value={formData.cardNumber}
                     onChange={handleChange}
                     className="w-full px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -240,6 +252,7 @@ export default function Checkout() {
                     name="expiry"
                     type="text"
                     placeholder="MM/YY"
+                    data-testid="checkout-expiry-input"
                     value={formData.expiry}
                     onChange={handleChange}
                     className="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -254,6 +267,7 @@ export default function Checkout() {
                     name="cvc"
                     type="text"
                     placeholder="123"
+                    data-testid="checkout-cvc-input"
                     value={formData.cvc}
                     onChange={handleChange}
                     className="w-full px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md"
@@ -302,25 +316,26 @@ export default function Checkout() {
           <div className="flex flex-col gap-2 text-body-md text-on-surface-variant text-sm">
             <div className="flex justify-between">
               <span>Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span data-testid="checkout-subtotal">${subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
               <span>Estimated Shipping</span>
-              <span>{shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</span>
+              <span data-testid="checkout-shipping">{shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</span>
             </div>
             <div className="flex justify-between">
               <span>Estimated Tax (8%)</span>
-              <span>${tax.toFixed(2)}</span>
+              <span data-testid="checkout-tax">${tax.toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-headline-md font-headline-md text-on-background pt-2 border-t border-outline-variant">
               <span>Total</span>
-              <span className="text-primary">${grandTotal.toFixed(2)}</span>
+              <span data-testid="checkout-total" className="text-primary">${grandTotal.toFixed(2)}</span>
             </div>
           </div>
 
           {/* Place Order CTA */}
           <button
             type="submit"
+            data-testid="checkout-place-order-button"
             className="w-full py-4 rounded bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-widest hover:bg-primary-container transition-colors duration-200 cursor-pointer mt-2"
           >
             Place Order

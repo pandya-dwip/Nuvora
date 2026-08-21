@@ -34,10 +34,11 @@ export default function ProductCard({ product }) {
     'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop';
 
   return (
-    <div className="group flex flex-col bg-surface-container-lowest border border-outline-variant rounded overflow-hidden hover:shadow-lg transition-shadow duration-300 relative">
+    <div data-testid={`product-card-${product.id}`} className="group flex flex-col bg-surface-container-lowest border border-outline-variant rounded overflow-hidden hover:shadow-lg transition-shadow duration-300 relative">
       {/* Wishlist Button */}
       <button
         aria-label="Add to wishlist"
+        data-testid={`product-wishlist-${product.id}`}
         onClick={handleWishlistClick}
         className="absolute top-2 right-2 z-10 p-2 text-on-surface-variant hover:text-primary focus:outline-none bg-surface-container-lowest/80 rounded-full backdrop-blur-sm cursor-pointer"
       >
@@ -53,6 +54,7 @@ export default function ProductCard({ product }) {
       {/* Product Link & Image */}
       <Link
         to={`/product/${product.id}`}
+        data-testid={`product-image-link-${product.id}`}
         className="block relative aspect-square overflow-hidden bg-surface-container"
       >
         <img
@@ -61,7 +63,7 @@ export default function ProductCard({ product }) {
           src={defaultImage}
         />
         {isOutOfStock && (
-          <div className="absolute inset-0 bg-background/75 backdrop-blur-[1px] flex items-center justify-center">
+          <div data-testid={`product-out-of-stock-${product.id}`} className="absolute inset-0 bg-background/75 backdrop-blur-[1px] flex items-center justify-center">
             <span className="bg-error text-on-error text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">
               Out of Stock
             </span>
@@ -75,6 +77,7 @@ export default function ProductCard({ product }) {
         </span>
         <Link
           to={`/product/${product.id}`}
+          data-testid={`product-name-${product.id}`}
           className="text-body-md font-body-md font-medium text-on-background hover:text-primary mb-2 line-clamp-1"
         >
           {product.name}
@@ -84,7 +87,7 @@ export default function ProductCard({ product }) {
           <span className="text-xs text-on-surface-variant ml-1">({product.stock} in stock)</span>
         </div>
         <div className="flex items-center gap-2 mb-stack-md mt-auto">
-          <span className="text-headline-md font-headline-md text-on-background">
+          <span data-testid={`product-price-${product.id}`} className="text-headline-md font-headline-md text-on-background">
             ${Number(product.price).toFixed(2)}
           </span>
           {product.originalPrice && (
@@ -98,6 +101,7 @@ export default function ProductCard({ product }) {
         <button
           onClick={handleAddToCart}
           disabled={isOutOfStock}
+          data-testid={`product-add-to-cart-${product.id}`}
           className={`w-full h-10 rounded transition-colors duration-200 text-label-sm font-label-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 flex items-center justify-center gap-2 ${
             isOutOfStock
               ? 'bg-surface-container text-on-surface-variant cursor-not-allowed opacity-60'

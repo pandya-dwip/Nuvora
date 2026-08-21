@@ -52,7 +52,7 @@ export default function AdminProductForm() {
   };
 
   return (
-    <div className="w-full space-y-stack-md">
+    <div data-testid="admin-product-form-container" className="w-full space-y-stack-md">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-outline-variant pb-4">
         <div>
@@ -65,13 +65,14 @@ export default function AdminProductForm() {
         </div>
         <Link
           to="/admin/products"
+          data-testid="admin-product-form-back-button"
           className="font-label-sm text-xs font-bold text-on-surface hover:text-primary flex items-center gap-1"
         >
           &larr; Back to Products Catalog
         </Link>
       </div>
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-start w-full">
+      <form onSubmit={handleSubmit} data-testid="admin-product-form" className="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-start w-full">
         {/* Left 2 Columns: Form Fields */}
         <div className="lg:col-span-2 bg-surface p-stack-md rounded border border-outline-variant shadow-xs space-y-5">
           <div>
@@ -82,6 +83,7 @@ export default function AdminProductForm() {
               id="name"
               name="name"
               type="text"
+              data-testid="admin-product-title-input"
               value={formData.name}
               onChange={handleChange}
               placeholder="e.g. Minimalist Noise-Cancelling Headphones"
@@ -97,6 +99,7 @@ export default function AdminProductForm() {
               <select
                 id="category"
                 name="category"
+                data-testid="admin-product-category-select"
                 value={formData.category}
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer font-medium"
@@ -116,6 +119,7 @@ export default function AdminProductForm() {
               <select
                 id="status"
                 name="status"
+                data-testid="admin-product-status-select"
                 value={formData.status}
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer font-medium"
@@ -136,6 +140,7 @@ export default function AdminProductForm() {
                 name="price"
                 type="number"
                 step="0.01"
+                data-testid="admin-product-price-input"
                 value={formData.price}
                 onChange={handleChange}
                 placeholder="129.00"
@@ -152,6 +157,7 @@ export default function AdminProductForm() {
                 name="originalPrice"
                 type="number"
                 step="0.01"
+                data-testid="admin-product-original-price-input"
                 value={formData.originalPrice}
                 onChange={handleChange}
                 placeholder="159.00"
@@ -167,6 +173,7 @@ export default function AdminProductForm() {
                 id="stock"
                 name="stock"
                 type="number"
+                data-testid="admin-product-stock-input"
                 value={formData.stock}
                 onChange={handleChange}
                 placeholder="25"
@@ -183,6 +190,7 @@ export default function AdminProductForm() {
               id="image"
               name="image"
               type="url"
+              data-testid="admin-product-image-input"
               value={formData.image}
               onChange={handleChange}
               placeholder="https://images.unsplash.com/photo-..."
@@ -198,6 +206,7 @@ export default function AdminProductForm() {
               id="description"
               name="description"
               rows="5"
+              data-testid="admin-product-description-input"
               value={formData.description}
               onChange={handleChange}
               placeholder="Enter product description, material composition, or key features..."
@@ -208,12 +217,14 @@ export default function AdminProductForm() {
           <div className="flex justify-end gap-3 pt-4 border-t border-outline-variant">
             <Link
               to="/admin/products"
+              data-testid="admin-product-cancel-button"
               className="px-5 py-2.5 border border-outline-variant text-on-surface rounded font-label-sm text-xs font-bold uppercase tracking-wider hover:bg-surface-container-low"
             >
               Cancel
             </Link>
             <button
               type="submit"
+              data-testid="admin-product-save-button"
               className="px-6 py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded font-label-sm text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs"
             >
               {isEditing ? 'Save Changes' : 'Create Product'}

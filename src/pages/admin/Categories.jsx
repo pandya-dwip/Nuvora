@@ -49,7 +49,7 @@ export default function AdminCategories() {
   };
 
   return (
-    <div className="w-full space-y-stack-md">
+    <div data-testid="admin-categories-container" className="w-full space-y-stack-md">
       {/* Header */}
       <div>
         <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md font-bold text-on-background">
@@ -61,14 +61,14 @@ export default function AdminCategories() {
       </div>
 
       {message && (
-        <div className="p-4 bg-primary/10 border border-primary text-primary rounded text-sm font-medium flex items-center gap-2">
+        <div data-testid="admin-category-success-message" className="p-4 bg-primary/10 border border-primary text-primary rounded text-sm font-medium flex items-center gap-2">
           <span className="material-symbols-outlined text-base">check_circle</span>
           {message}
         </div>
       )}
 
       {errorMsg && (
-        <div className="p-4 bg-error-container border border-error/20 text-on-error-container rounded text-sm font-medium flex items-center gap-2">
+        <div data-testid="admin-category-error-message" className="p-4 bg-error-container border border-error/20 text-on-error-container rounded text-sm font-medium flex items-center gap-2">
           <span className="material-symbols-outlined text-base">error</span>
           {errorMsg}
         </div>
@@ -86,6 +86,7 @@ export default function AdminCategories() {
           <input
             id="categoryName"
             type="text"
+            data-testid="admin-category-name-input"
             value={newCatName}
             onChange={(e) => setNewCatName(e.target.value)}
             placeholder="e.g. Footwear, Outdoor Essentials..."
@@ -94,6 +95,7 @@ export default function AdminCategories() {
         </div>
         <button
           type="submit"
+          data-testid="admin-category-submit-button"
           className="bg-primary hover:bg-primary-container text-on-primary px-6 py-2.5 rounded font-label-sm text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer whitespace-nowrap"
         >
           + Create Category
@@ -103,7 +105,7 @@ export default function AdminCategories() {
       {/* Categories Table Card */}
       <div className="bg-surface rounded border border-outline-variant shadow-xs overflow-hidden w-full">
         <div className="overflow-x-auto w-full">
-          <table className="w-full text-left text-sm">
+          <table data-testid="admin-categories-table" className="w-full text-left text-sm">
             <thead className="bg-surface-container-low border-b border-outline-variant text-on-surface-variant font-label-sm text-xs uppercase tracking-wider">
               <tr>
                 <th className="p-4">Department Name</th>
@@ -119,11 +121,12 @@ export default function AdminCategories() {
                 ).length;
 
                 return (
-                  <tr key={cat.id || cat.name} className="hover:bg-surface-container-lowest transition-colors">
+                  <tr key={cat.id || cat.name} data-testid={`admin-category-row-${cat.id || cat.name}`} className="hover:bg-surface-container-lowest transition-colors">
                     <td className="p-4 font-bold text-on-background">
                       {editingId === cat.id ? (
                         <input
                           type="text"
+                          data-testid={`admin-category-edit-input-${cat.id}`}
                           value={editName}
                           onChange={(e) => setEditName(e.target.value)}
                           className="px-3 py-1 border border-outline-variant rounded text-sm focus:outline-none focus:ring-1 focus:ring-primary"
@@ -148,12 +151,14 @@ export default function AdminCategories() {
                         <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleSaveEdit(cat.id)}
+                            data-testid={`admin-category-save-button-${cat.id}`}
                             className="px-3 py-1 bg-primary text-on-primary rounded text-xs font-bold cursor-pointer"
                           >
                             Save
                           </button>
                           <button
                             onClick={() => setEditingId(null)}
+                            data-testid={`admin-category-cancel-button-${cat.id}`}
                             className="px-3 py-1 bg-surface-container-high text-on-surface rounded text-xs font-bold cursor-pointer"
                           >
                             Cancel
@@ -163,6 +168,7 @@ export default function AdminCategories() {
                         <div className="flex items-center justify-end gap-2">
                           <button
                             onClick={() => handleStartEdit(cat)}
+                            data-testid={`admin-category-edit-button-${cat.id}`}
                             className="p-1.5 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container-low cursor-pointer"
                             title="Edit Category Name"
                           >
@@ -170,6 +176,7 @@ export default function AdminCategories() {
                           </button>
                           <button
                             onClick={() => handleDelete(cat.id)}
+                            data-testid={`admin-category-delete-button-${cat.id}`}
                             className="p-1.5 text-on-surface-variant hover:text-error rounded hover:bg-surface-container-low cursor-pointer"
                             title="Delete Category"
                           >

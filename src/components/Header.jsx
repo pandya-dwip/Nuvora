@@ -30,6 +30,7 @@ export default function Header() {
       <div className="flex items-center gap-stack-md flex-1">
         <Link
           to="/home"
+          data-testid="header-logo"
           className="text-headline-md font-headline-md font-bold tracking-tight text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
         >
           LUXE
@@ -37,18 +38,21 @@ export default function Header() {
         <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-stack-md">
           <Link
             to="/shop"
+            data-testid="header-shop-link"
             className="text-label-sm font-label-sm text-primary border-b-2 border-primary pb-1 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
           >
             Shop
           </Link>
           <Link
             to="/shop"
+            data-testid="header-collections-link"
             className="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
           >
             Collections
           </Link>
           <Link
             to="/shop"
+            data-testid="header-editorial-link"
             className="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
           >
             Editorial
@@ -67,6 +71,7 @@ export default function Header() {
           </span>
           <input
             type="search"
+            data-testid="header-search-input"
             aria-label="Search products"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -81,6 +86,7 @@ export default function Header() {
         <button
           aria-label="Search"
           onClick={() => navigate('/shop')}
+          data-testid="header-mobile-search-button"
           className="p-2 text-on-surface-variant hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary rounded-full md:hidden cursor-pointer"
         >
           <span className="material-symbols-outlined">search</span>
@@ -89,6 +95,7 @@ export default function Header() {
         {currentUser ? (
           <Link
             to="/profile"
+            data-testid="header-account-link"
             aria-label="Account"
             className="p-2 text-on-surface-variant hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary rounded-full hidden sm:flex items-center gap-1 cursor-pointer"
           >
@@ -98,6 +105,7 @@ export default function Header() {
         ) : (
           <Link
             to="/login"
+            data-testid="header-login-link"
             aria-label="Sign In"
             className="p-2 text-on-surface-variant hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary rounded-full hidden sm:block cursor-pointer"
           >
@@ -107,12 +115,13 @@ export default function Header() {
 
         <Link
           to="/wishlist"
+          data-testid="header-wishlist-link"
           aria-label="Wishlist"
           className="p-2 text-on-surface-variant hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary rounded-full hidden sm:block relative cursor-pointer"
         >
           <span className="material-symbols-outlined">favorite</span>
           {wishlist.length > 0 && (
-            <span className="absolute top-1 right-1 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center pointer-events-none">
+            <span data-testid="header-wishlist-count" className="absolute top-1 right-1 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center pointer-events-none">
               {wishlist.length}
             </span>
           )}
@@ -120,12 +129,13 @@ export default function Header() {
 
         <Link
           to="/cart"
+          data-testid="header-cart-link"
           aria-label="Cart"
           className="p-2 text-on-surface-variant hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary rounded-full relative cursor-pointer"
         >
           <span className="material-symbols-outlined">shopping_cart</span>
           {totalCartCount > 0 && (
-            <span className="absolute top-1 right-1 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center pointer-events-none">
+            <span data-testid="header-cart-count" className="absolute top-1 right-1 bg-primary text-on-primary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center pointer-events-none">
               {totalCartCount}
             </span>
           )}
@@ -134,6 +144,7 @@ export default function Header() {
         {currentUser && currentUser.role === 'admin' && (
           <Link
             to="/admin"
+            data-testid="header-admin-portal-link"
             className="hidden lg:inline-flex text-xs bg-slate-900 text-white px-2.5 py-1 rounded font-medium hover:bg-slate-800 transition-colors ml-2"
           >
             Admin Portal
@@ -143,6 +154,7 @@ export default function Header() {
         {currentUser && (
           <button
             onClick={handleLogout}
+            data-testid="header-logout-button"
             title="Logout"
             aria-label="Logout"
             className="hidden sm:inline-flex p-2 text-on-surface-variant hover:text-error transition-colors duration-200 cursor-pointer"
@@ -153,6 +165,7 @@ export default function Header() {
 
         <button
           aria-label="Menu"
+          data-testid="header-mobile-menu-button"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="p-2 text-on-surface-variant hover:text-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary rounded-full md:hidden cursor-pointer"
         >
@@ -164,9 +177,10 @@ export default function Header() {
 
       {/* Mobile Drawer */}
       {isMobileMenuOpen && (
-        <div className="absolute top-20 left-0 w-full bg-surface border-b border-outline-variant p-margin-mobile flex flex-col gap-4 md:hidden shadow-lg z-50">
+        <div data-testid="header-mobile-drawer" className="absolute top-20 left-0 w-full bg-surface border-b border-outline-variant p-margin-mobile flex flex-col gap-4 md:hidden shadow-lg z-50">
           <Link
             to="/shop"
+            data-testid="mobile-shop-link"
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-label-sm font-label-sm text-on-surface py-2 border-b border-outline-variant"
           >
@@ -174,24 +188,27 @@ export default function Header() {
           </Link>
           <Link
             to="/cart"
+            data-testid="mobile-cart-link"
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-label-sm font-label-sm text-on-surface py-2 border-b border-outline-variant flex justify-between"
           >
             <span>Shopping Cart</span>
-            <span className="font-bold">({totalCartCount})</span>
+            <span data-testid="mobile-cart-count" className="font-bold">({totalCartCount})</span>
           </Link>
           <Link
             to="/wishlist"
+            data-testid="mobile-wishlist-link"
             onClick={() => setIsMobileMenuOpen(false)}
             className="text-label-sm font-label-sm text-on-surface py-2 border-b border-outline-variant flex justify-between"
           >
             <span>Wishlist</span>
-            <span className="font-bold">({wishlist.length})</span>
+            <span data-testid="mobile-wishlist-count" className="font-bold">({wishlist.length})</span>
           </Link>
           {currentUser ? (
             <>
               <Link
                 to="/profile"
+                data-testid="mobile-profile-link"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-label-sm font-label-sm text-on-surface py-2 border-b border-outline-variant"
               >
@@ -199,6 +216,7 @@ export default function Header() {
               </Link>
               <Link
                 to="/orders"
+                data-testid="mobile-orders-link"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="text-label-sm font-label-sm text-on-surface py-2 border-b border-outline-variant"
               >
@@ -207,6 +225,7 @@ export default function Header() {
               {currentUser.role === 'admin' && (
                 <Link
                   to="/admin"
+                  data-testid="mobile-admin-link"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-label-sm font-label-sm text-primary font-bold py-2 border-b border-outline-variant"
                 >
@@ -214,6 +233,7 @@ export default function Header() {
                 </Link>
               )}
               <button
+                data-testid="mobile-logout-button"
                 onClick={() => {
                   handleLogout();
                   setIsMobileMenuOpen(false);
@@ -226,6 +246,7 @@ export default function Header() {
           ) : (
             <Link
               to="/login"
+              data-testid="mobile-login-link"
               onClick={() => setIsMobileMenuOpen(false)}
               className="text-label-sm font-label-sm text-primary font-bold py-2"
             >

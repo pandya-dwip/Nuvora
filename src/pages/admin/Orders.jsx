@@ -31,7 +31,7 @@ export default function AdminOrders() {
   };
 
   return (
-    <div className="w-full space-y-stack-md">
+    <div data-testid="admin-orders-container" className="w-full space-y-stack-md">
       {/* Header */}
       <div>
         <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md font-bold text-on-background">Order Fulfillment Management</h2>
@@ -46,6 +46,7 @@ export default function AdminOrders() {
             return (
               <button
                 key={tab}
+                data-testid={`admin-orders-tab-${tab.toLowerCase()}`}
                 onClick={() => setActiveTab(tab)}
                 className={`px-3.5 py-2 rounded font-label-sm text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-colors cursor-pointer ${
                   activeTab === tab
@@ -65,6 +66,7 @@ export default function AdminOrders() {
           </span>
           <input
             type="text"
+            data-testid="admin-orders-search-input"
             placeholder="Search ID or Customer..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -76,7 +78,7 @@ export default function AdminOrders() {
       {/* Orders Data Table */}
       <div className="bg-surface rounded border border-outline-variant shadow-xs overflow-hidden w-full">
         <div className="overflow-x-auto w-full">
-          <table className="w-full text-left text-sm">
+          <table data-testid="admin-orders-table" className="w-full text-left text-sm">
             <thead className="bg-surface-container-low border-b border-outline-variant text-on-surface-variant font-label-sm text-xs uppercase tracking-wider">
               <tr>
                 <th className="p-4">Order ID</th>
@@ -90,7 +92,7 @@ export default function AdminOrders() {
             <tbody className="divide-y divide-outline-variant/60">
               {filtered.length > 0 ? (
                 filtered.map((order) => (
-                  <tr key={order.id} className="hover:bg-surface-container-lowest transition-colors">
+                  <tr key={order.id} data-testid={`admin-order-row-${order.id}`} className="hover:bg-surface-container-lowest transition-colors">
                     <td className="p-4 font-bold text-on-background">
                       <Link to={`/admin/orders/${order.id}`} className="hover:text-primary">
                         #{order.id}
@@ -108,6 +110,7 @@ export default function AdminOrders() {
                       <div className="flex items-center gap-2">
                         <select
                           value={order.status}
+                          data-testid={`admin-order-status-select-${order.id}`}
                           onChange={(e) => updateOrderStatus(order.id, e.target.value)}
                           className={`px-3 py-1 rounded border text-xs font-bold uppercase tracking-wider focus:outline-none cursor-pointer ${getStatusBadge(
                             order.status
@@ -124,6 +127,7 @@ export default function AdminOrders() {
                     <td className="p-4 text-right">
                       <Link
                         to={`/admin/orders/${order.id}`}
+                        data-testid={`admin-order-view-button-${order.id}`}
                         className="px-3 py-1.5 bg-surface-container-low hover:bg-surface-container text-on-surface rounded text-xs font-bold uppercase tracking-wider inline-flex items-center gap-1 transition-colors"
                       >
                         <span>View</span>
@@ -134,7 +138,7 @@ export default function AdminOrders() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6" className="text-center py-12 text-on-surface-variant">
+                  <td colSpan="6" data-testid="admin-orders-no-results" className="text-center py-12 text-on-surface-variant">
                     <span className="material-symbols-outlined text-4xl text-outline block mb-2">shopping_bag</span>
                     No orders found matching filter.
                   </td>

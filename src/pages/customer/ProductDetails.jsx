@@ -17,7 +17,7 @@ export default function ProductDetails() {
 
   if (!product) {
     return (
-      <div className="px-margin-mobile md:px-margin-desktop py-16 text-center max-w-md mx-auto">
+      <div data-testid="product-details-not-found" className="px-margin-mobile md:px-margin-desktop py-16 text-center max-w-md mx-auto">
         <span className="material-symbols-outlined text-5xl text-outline mb-2">search_off</span>
         <h2 className="text-headline-md font-headline-md text-on-surface mb-2">Product Not Found</h2>
         <p className="text-body-md text-on-surface-variant mb-6">
@@ -25,6 +25,7 @@ export default function ProductDetails() {
         </p>
         <Link
           to="/shop"
+          data-testid="product-details-explore-button"
           className="bg-primary text-on-primary px-6 py-3 rounded font-label-sm text-label-sm inline-block"
         >
           Explore Collection
@@ -61,7 +62,7 @@ export default function ProductDetails() {
   };
 
   return (
-    <div className="px-margin-mobile md:px-margin-desktop py-stack-lg">
+    <div data-testid="product-details-container" className="px-margin-mobile md:px-margin-desktop py-stack-lg">
       {/* Breadcrumbs */}
       <nav aria-label="Breadcrumb" className="mb-stack-md">
         <ol className="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant">
@@ -88,6 +89,7 @@ export default function ProductDetails() {
           <div className="aspect-square w-full rounded-lg bg-surface-container overflow-hidden border border-outline-variant relative group">
             <img
               alt={product.name}
+              data-testid="product-details-main-image"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               src={galleryImages[activeImageIndex] || product.image}
               onError={(e) => {
@@ -96,7 +98,7 @@ export default function ProductDetails() {
               }}
             />
             {isOutOfStock && (
-              <div className="absolute inset-0 bg-background/75 backdrop-blur-[1px] flex items-center justify-center">
+              <div data-testid="product-details-out-of-stock" className="absolute inset-0 bg-background/75 backdrop-blur-[1px] flex items-center justify-center">
                 <span className="bg-error text-on-error font-bold px-4 py-2 rounded uppercase tracking-wider text-sm">
                   Out of Stock
                 </span>
@@ -107,6 +109,7 @@ export default function ProductDetails() {
             {galleryImages.map((img, idx) => (
               <button
                 key={idx}
+                data-testid={`product-details-thumbnail-${idx}`}
                 onClick={() => setActiveImageIndex(idx)}
                 className={`aspect-square rounded border overflow-hidden transition-opacity cursor-pointer ${activeImageIndex === idx
                   ? 'border-2 border-primary'
@@ -132,7 +135,7 @@ export default function ProductDetails() {
           <p className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-2">
             {product.category}
           </p>
-          <h1 className="font-headline-md text-headline-md text-on-background mb-4">
+          <h1 data-testid="product-details-name" className="font-headline-md text-headline-md text-on-background mb-4">
             {product.name}
           </h1>
           <div className="flex items-center gap-2 mb-6">
@@ -149,7 +152,7 @@ export default function ProductDetails() {
           </div>
 
           <div className="flex items-end gap-4 mb-8">
-            <span className="font-headline-md text-headline-md text-primary">
+            <span data-testid="product-details-price" className="font-headline-md text-headline-md text-primary">
               ${Number(product.price).toFixed(2)}
             </span>
             {product.originalPrice && (
@@ -176,6 +179,7 @@ export default function ProductDetails() {
                 <button
                   key={color}
                   aria-label={`Select ${color}`}
+                  data-testid={`product-details-color-${color.toLowerCase().replace(/\s+/g, '-')}`}
                   onClick={() => setSelectedColor(color)}
                   className={`w-10 h-10 rounded-full border-2 transition-all cursor-pointer ${color === 'Matte Black'
                     ? 'bg-[#1A1A1A]'
@@ -196,14 +200,16 @@ export default function ProductDetails() {
               <div className="flex items-center border border-outline-variant rounded w-32 h-12">
                 <button
                   disabled={isOutOfStock || quantity <= 1}
+                  data-testid="product-details-quantity-decrease"
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   className="w-10 h-full flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer disabled:opacity-40"
                 >
                   <span className="material-symbols-outlined text-sm">remove</span>
                 </button>
-                <span className="flex-grow text-center font-body-md text-body-md">{quantity}</span>
+                <span data-testid="product-details-quantity-input" className="flex-grow text-center font-body-md text-body-md">{quantity}</span>
                 <button
                   disabled={isOutOfStock || quantity >= product.stock}
+                  data-testid="product-details-quantity-increase"
                   onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
                   className="w-10 h-full flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer disabled:opacity-40"
                 >
@@ -213,14 +219,14 @@ export default function ProductDetails() {
             </div>
             <div className="flex items-center mt-6">
               {!isOutOfStock ? (
-                <div className="flex items-center text-primary">
+                <div data-testid="product-details-stock" className="flex items-center text-primary">
                   <span className="material-symbols-outlined text-sm mr-1">check_circle</span>
                   <span className="font-label-sm text-label-sm">
                     In Stock ({product.stock} available)
                   </span>
                 </div>
               ) : (
-                <div className="flex items-center text-error">
+                <div data-testid="product-details-stock" className="flex items-center text-error">
                   <span className="material-symbols-outlined text-sm mr-1">cancel</span>
                   <span className="font-label-sm text-label-sm">Out of Stock</span>
                 </div>
@@ -234,6 +240,7 @@ export default function ProductDetails() {
               <button
                 onClick={handleAddToCart}
                 disabled={isOutOfStock}
+                data-testid="product-details-add-to-cart-button"
                 className={`flex-grow h-14 rounded font-label-sm text-label-sm uppercase tracking-widest transition-colors flex items-center justify-center gap-2 ${isOutOfStock
                   ? 'bg-surface-container text-on-surface-variant cursor-not-allowed opacity-60'
                   : isAdded
@@ -245,6 +252,7 @@ export default function ProductDetails() {
               </button>
               <button
                 onClick={() => toggleWishlist(product.id)}
+                data-testid="product-details-wishlist-button"
                 className="w-14 h-14 border border-outline-variant rounded flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all cursor-pointer"
               >
                 <span
@@ -258,6 +266,7 @@ export default function ProductDetails() {
             <button
               onClick={handleBuyNow}
               disabled={isOutOfStock}
+              data-testid="product-details-buy-now-button"
               className={`w-full h-14 border border-on-background text-on-background rounded font-label-sm text-label-sm uppercase tracking-widest transition-colors ${isOutOfStock
                 ? 'opacity-40 cursor-not-allowed'
                 : 'hover:bg-surface-container-low cursor-pointer'

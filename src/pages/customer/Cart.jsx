@@ -38,7 +38,7 @@ export default function Cart() {
   const total = subtotal - discountAmount + shipping + tax;
 
   return (
-    <div className="px-margin-mobile md:px-margin-desktop py-stack-lg">
+    <div data-testid="cart-container" className="px-margin-mobile md:px-margin-desktop py-stack-lg">
       <div className="mb-stack-md flex items-center justify-between">
         <h1 className="text-display-lg-mobile md:text-display-lg font-display-lg-mobile md:font-display-lg text-on-background">
           Shopping Cart ({cartItems.length})
@@ -46,6 +46,7 @@ export default function Cart() {
         {cartItems.length > 0 && (
           <button
             onClick={clearCart}
+            data-testid="cart-clear-button"
             className="text-label-sm font-label-sm text-error hover:underline cursor-pointer"
           >
             Clear Cart
@@ -61,6 +62,7 @@ export default function Cart() {
               {cartItems.map((item) => (
                 <div
                   key={item.productId}
+                  data-testid={`cart-item-${item.product.id}`}
                   className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-outline-variant last:border-0 last:pb-0 gap-4"
                 >
                   <div className="flex items-center gap-4">
@@ -80,11 +82,12 @@ export default function Cart() {
                       </span>
                       <Link
                         to={`/product/${item.product.id}`}
+                        data-testid={`cart-item-name-${item.product.id}`}
                         className="text-body-md font-medium text-on-background hover:text-primary transition-colors"
                       >
                         {item.product.name}
                       </Link>
-                      <p className="text-body-md font-semibold text-primary mt-1">
+                      <p data-testid={`cart-item-price-${item.product.id}`} className="text-body-md font-semibold text-primary mt-1">
                         ${Number(item.product.price).toFixed(2)}
                       </p>
                       <span className="text-xs text-on-surface-variant">
@@ -99,15 +102,17 @@ export default function Cart() {
                       <button
                         onClick={() => updateCartQty(item.productId, item.quantity - 1)}
                         disabled={item.quantity <= 1}
+                        data-testid={`cart-item-${item.product.id}-decrease`}
                         className="w-8 h-full flex items-center justify-center text-on-surface-variant hover:text-primary cursor-pointer disabled:opacity-40"
                         aria-label="Decrease quantity"
                       >
                         <span className="material-symbols-outlined text-sm">remove</span>
                       </button>
-                      <span className="flex-1 text-center font-body-md text-sm">{item.quantity}</span>
+                      <span data-testid={`cart-item-${item.product.id}-quantity`} className="flex-1 text-center font-body-md text-sm">{item.quantity}</span>
                       <button
                         onClick={() => updateCartQty(item.productId, item.quantity + 1)}
                         disabled={item.quantity >= item.product.stock}
+                        data-testid={`cart-item-${item.product.id}-increase`}
                         className="w-8 h-full flex items-center justify-center text-on-surface-variant hover:text-primary cursor-pointer disabled:opacity-40"
                         aria-label="Increase quantity"
                       >
@@ -115,12 +120,13 @@ export default function Cart() {
                       </button>
                     </div>
 
-                    <p className="font-semibold text-on-background w-20 text-right">
+                    <p data-testid={`cart-item-${item.product.id}-total`} className="font-semibold text-on-background w-20 text-right">
                       ${(item.product.price * item.quantity).toFixed(2)}
                     </p>
 
                     <button
                       onClick={() => removeFromCart(item.productId)}
+                      data-testid={`cart-item-${item.product.id}-remove`}
                       className="text-on-surface-variant hover:text-error transition-colors p-1 cursor-pointer"
                       aria-label="Remove item"
                     >
@@ -134,6 +140,7 @@ export default function Cart() {
             <div className="flex justify-between items-center pt-2">
               <Link
                 to="/shop"
+                data-testid="cart-continue-shopping-link"
                 className="text-label-sm font-label-sm text-primary hover:underline inline-flex items-center gap-1"
               >
                 <span className="material-symbols-outlined text-[16px]">arrow_back</span>
@@ -152,6 +159,7 @@ export default function Cart() {
               <div className="flex gap-2">
                 <input
                   type="text"
+                  data-testid="cart-promo-input"
                   placeholder="Promo Code (LUXE10)"
                   value={promoCode}
                   onChange={(e) => setPromoCode(e.target.value)}
@@ -159,13 +167,14 @@ export default function Cart() {
                 />
                 <button
                   type="submit"
+                  data-testid="cart-promo-submit"
                   className="bg-secondary-container text-on-secondary-container px-4 py-2 rounded font-label-sm text-xs hover:bg-outline-variant transition-colors cursor-pointer"
                 >
                   Apply
                 </button>
               </div>
               {promoMessage && (
-                <p className={`text-xs ${discount > 0 ? 'text-primary' : 'text-error'}`}>
+                <p data-testid="cart-promo-message" className={`text-xs ${discount > 0 ? 'text-primary' : 'text-error'}`}>
                   {promoMessage}
                 </p>
               )}
@@ -174,31 +183,32 @@ export default function Cart() {
             <div className="flex flex-col gap-2 text-body-md text-on-surface-variant text-sm border-b border-outline-variant pb-4">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span className="font-medium text-on-surface">${subtotal.toFixed(2)}</span>
+                <span data-testid="cart-subtotal" className="font-medium text-on-surface">${subtotal.toFixed(2)}</span>
               </div>
               {discount > 0 && (
                 <div className="flex justify-between text-primary font-medium">
                   <span>Discount (10%)</span>
-                  <span>-${discountAmount.toFixed(2)}</span>
+                  <span data-testid="cart-discount">-${discountAmount.toFixed(2)}</span>
                 </div>
               )}
               <div className="flex justify-between">
                 <span>Shipping</span>
-                <span>{shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</span>
+                <span data-testid="cart-shipping">{shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`}</span>
               </div>
               <div className="flex justify-between">
                 <span>Estimated Tax (8%)</span>
-                <span>${tax.toFixed(2)}</span>
+                <span data-testid="cart-tax">${tax.toFixed(2)}</span>
               </div>
             </div>
 
             <div className="flex justify-between text-headline-md font-headline-md text-on-background">
               <span>Total</span>
-              <span className="text-primary">${total.toFixed(2)}</span>
+              <span data-testid="cart-total" className="text-primary">${total.toFixed(2)}</span>
             </div>
 
             <button
               onClick={() => navigate('/checkout')}
+              data-testid="cart-checkout-button"
               className="w-full bg-primary text-on-primary py-3 rounded font-label-sm text-label-sm uppercase tracking-widest text-center hover:bg-primary-container transition-colors cursor-pointer"
             >
               Proceed to Checkout
@@ -206,7 +216,7 @@ export default function Cart() {
           </div>
         </div>
       ) : (
-        <div className="text-center py-16 bg-surface-container-low rounded border border-outline-variant max-w-md mx-auto">
+        <div data-testid="cart-empty-state" className="text-center py-16 bg-surface-container-low rounded border border-outline-variant max-w-md mx-auto">
           <span className="material-symbols-outlined text-5xl text-outline mb-2">shopping_bag</span>
           <h2 className="text-headline-md font-headline-md text-on-surface mb-2">Your Cart is Empty</h2>
           <p className="text-body-md text-on-surface-variant mb-6">
@@ -214,6 +224,7 @@ export default function Cart() {
           </p>
           <Link
             to="/shop"
+            data-testid="cart-empty-explore-button"
             className="bg-primary text-on-primary px-6 py-3 rounded font-label-sm text-label-sm inline-block hover:bg-primary-container transition-colors"
           >
             Explore Collection

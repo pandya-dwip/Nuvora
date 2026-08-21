@@ -43,7 +43,7 @@ export default function Collection() {
     });
 
   return (
-    <div className="px-margin-mobile md:px-margin-desktop py-stack-lg">
+    <div data-testid="collection-container" className="px-margin-mobile md:px-margin-desktop py-stack-lg">
       {/* Header Title */}
       <div className="mb-stack-lg">
         <h1 className="text-display-lg-mobile md:text-display-lg font-display-lg-mobile md:font-display-lg text-on-background mb-stack-sm">
@@ -60,6 +60,7 @@ export default function Collection() {
           <button
             aria-controls="filter-sidebar"
             aria-expanded={isFilterSidebarOpen}
+            data-testid="collection-filter-toggle-button"
             onClick={() => setIsFilterSidebarOpen(!isFilterSidebarOpen)}
             className="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-md text-on-surface font-label-sm text-label-sm hover:bg-surface-container-low transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 cursor-pointer"
           >
@@ -72,6 +73,7 @@ export default function Collection() {
             </span>
             <input
               type="text"
+              data-testid="collection-search-input"
               aria-label="Search within results"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -90,6 +92,7 @@ export default function Collection() {
           </label>
           <select
             id="sort-by"
+            data-testid="collection-sort-select"
             value={selectedSort}
             onChange={(e) => setSelectedSort(e.target.value)}
             className="bg-surface-container-lowest border border-outline-variant rounded-md px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary pr-8 cursor-pointer"
@@ -108,6 +111,7 @@ export default function Collection() {
         {isFilterSidebarOpen && (
           <aside
             id="filter-sidebar"
+            data-testid="collection-filter-sidebar"
             aria-label="Product Filters"
             className="w-full lg:w-64 flex-shrink-0 space-y-stack-md"
           >
@@ -119,10 +123,12 @@ export default function Collection() {
               <div className="space-y-2">
                 {displayCategoryNames.map((catName) => {
                   const isChecked = selectedCategory.toLowerCase() === catName.toLowerCase();
+                  const catSlug = catName.toLowerCase().replace(/[^a-z0-9]/g, '-');
                   return (
                     <label key={catName} className="flex items-center gap-2 cursor-pointer group">
                       <input
                         type="checkbox"
+                        data-testid={`collection-category-checkbox-${catSlug}`}
                         checked={isChecked}
                         onChange={() => setSelectedCategory(isChecked ? '' : catName)}
                         className="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4 cursor-pointer"
@@ -144,6 +150,7 @@ export default function Collection() {
               <div className="px-2 mb-4">
                 <input
                   type="range"
+                  data-testid="collection-price-range"
                   aria-label="Max price"
                   min="20"
                   max="500"
@@ -166,6 +173,7 @@ export default function Collection() {
               <label className="flex items-center gap-2 cursor-pointer group">
                 <input
                   type="checkbox"
+                  data-testid="collection-instock-checkbox"
                   checked={inStockOnly}
                   onChange={(e) => setInStockOnly(e.target.checked)}
                   className="rounded border-outline-variant text-primary focus:ring-primary w-4 h-4 cursor-pointer"
@@ -178,6 +186,7 @@ export default function Collection() {
 
             <div className="flex flex-col gap-2 pt-2">
               <button
+                data-testid="collection-clear-filters-button"
                 onClick={() => {
                   setSelectedCategory('');
                   setSearchQuery('');
@@ -249,13 +258,13 @@ export default function Collection() {
 
           {/* Product Grid */}
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-gutter mb-stack-lg">
+            <div data-testid="collection-product-grid" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-gutter mb-stack-lg">
               {filteredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 bg-surface-container-low rounded border border-outline-variant">
+            <div data-testid="collection-no-results" className="text-center py-16 bg-surface-container-low rounded border border-outline-variant">
               <span className="material-symbols-outlined text-4xl text-outline mb-2">search_off</span>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-2">No products match your criteria</h3>
               <p className="text-body-md text-on-surface-variant">Try adjusting your filters or search terms.</p>

@@ -18,7 +18,7 @@ export default function AdminDashboard() {
   const lowStockProducts = products.filter((p) => p.stock < 10).slice(0, 5);
 
   return (
-    <div className="w-full space-y-stack-md">
+    <div data-testid="admin-dashboard-container" className="w-full space-y-stack-md">
       {/* Welcome Hero Banner */}
       <div className="bg-[#12362e] text-on-primary p-stack-md rounded border border-[#2a4d44] shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -35,12 +35,14 @@ export default function AdminDashboard() {
         <div className="flex items-center gap-3">
           <Link
             to="/admin/products/new"
+            data-testid="admin-dashboard-add-product-button"
             className="bg-[#2a4d44] hover:bg-[#1f433b] text-white px-4 py-2.5 rounded font-label-sm text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer whitespace-nowrap"
           >
             + Add Product
           </Link>
           <Link
             to="/admin/inventory"
+            data-testid="admin-dashboard-audit-stock-button"
             className="bg-white/10 hover:bg-white/20 text-white px-4 py-2.5 rounded font-label-sm text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer whitespace-nowrap"
           >
             Audit Stock
@@ -51,7 +53,7 @@ export default function AdminDashboard() {
       {/* KPI Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter w-full">
         {/* Card 1: Revenue */}
-        <div className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs flex flex-col justify-between">
+        <div data-testid="admin-dashboard-revenue-kpi" className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="font-label-sm text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
               Total Revenue
@@ -61,7 +63,7 @@ export default function AdminDashboard() {
             </div>
           </div>
           <div className="mt-4">
-            <h3 className="text-display-lg-mobile font-bold text-on-background font-display">
+            <h3 data-testid="admin-dashboard-revenue-amount" className="text-display-lg-mobile font-bold text-on-background font-display">
               ${totalRevenue.toFixed(2)}
             </h3>
             <span className="text-xs text-primary font-medium flex items-center gap-1 mt-1">
@@ -71,7 +73,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Card 2: Orders */}
-        <div className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs flex flex-col justify-between">
+        <div data-testid="admin-dashboard-orders-kpi" className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="font-label-sm text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
               Total Orders
@@ -81,7 +83,7 @@ export default function AdminDashboard() {
             </div>
           </div>
           <div className="mt-4">
-            <h3 className="text-display-lg-mobile font-bold text-on-background font-display">
+            <h3 data-testid="admin-dashboard-orders-count" className="text-display-lg-mobile font-bold text-on-background font-display">
               {totalOrders}
             </h3>
             <span className="text-xs text-on-surface-variant font-medium flex items-center gap-1 mt-1">
@@ -91,7 +93,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Card 3: Catalog Products */}
-        <div className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs flex flex-col justify-between">
+        <div data-testid="admin-dashboard-products-kpi" className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="font-label-sm text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
               Catalog Items
@@ -101,7 +103,7 @@ export default function AdminDashboard() {
             </div>
           </div>
           <div className="mt-4">
-            <h3 className="text-display-lg-mobile font-bold text-on-background font-display">
+            <h3 data-testid="admin-dashboard-products-count" className="text-display-lg-mobile font-bold text-on-background font-display">
               {totalProducts}
             </h3>
             <span className="text-xs text-error font-medium flex items-center gap-1 mt-1">
@@ -111,7 +113,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Card 4: Registered Users */}
-        <div className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs flex flex-col justify-between">
+        <div data-testid="admin-dashboard-users-kpi" className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs flex flex-col justify-between">
           <div className="flex items-center justify-between">
             <span className="font-label-sm text-xs font-semibold uppercase tracking-wider text-on-surface-variant">
               Active Accounts
@@ -121,7 +123,7 @@ export default function AdminDashboard() {
             </div>
           </div>
           <div className="mt-4">
-            <h3 className="text-display-lg-mobile font-bold text-on-background font-display">
+            <h3 data-testid="admin-dashboard-users-count" className="text-display-lg-mobile font-bold text-on-background font-display">
               {totalUsers}
             </h3>
             <span className="text-xs text-on-surface-variant font-medium flex items-center gap-1 mt-1">
@@ -134,20 +136,20 @@ export default function AdminDashboard() {
       {/* Main Grid: Orders Table & Low Stock Alerts */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-gutter w-full">
         {/* Recent Orders (2 Columns) */}
-        <div className="lg:col-span-2 bg-surface rounded border border-outline-variant shadow-xs p-stack-md">
+        <div data-testid="admin-dashboard-recent-orders-card" className="lg:col-span-2 bg-surface rounded border border-outline-variant shadow-xs p-stack-md">
           <div className="flex items-center justify-between mb-4 pb-3 border-b border-outline-variant">
             <div>
               <h3 className="text-headline-md font-headline-md font-bold text-on-background">Recent Customer Orders</h3>
               <p className="text-xs text-on-surface-variant mt-0.5">Latest purchase transactions across the store</p>
             </div>
-            <Link to="/admin/orders" className="text-xs text-primary font-bold hover:underline">
+            <Link to="/admin/orders" data-testid="admin-dashboard-view-orders-link" className="text-xs text-primary font-bold hover:underline">
               View All Orders &rarr;
             </Link>
           </div>
 
           {recentOrders.length > 0 ? (
             <div className="overflow-x-auto w-full">
-              <table className="w-full text-left text-sm">
+              <table data-testid="admin-dashboard-recent-orders-table" className="w-full text-left text-sm">
                 <thead className="bg-surface-container-low text-on-surface-variant font-label-sm text-xs uppercase tracking-wider">
                   <tr>
                     <th className="p-3.5">Order ID</th>
@@ -159,7 +161,7 @@ export default function AdminDashboard() {
                 </thead>
                 <tbody className="divide-y divide-outline-variant/60">
                   {recentOrders.map((order) => (
-                    <tr key={order.id} className="hover:bg-surface-container-lowest transition-colors">
+                    <tr key={order.id} data-testid={`admin-dashboard-order-row-${order.id}`} className="hover:bg-surface-container-lowest transition-colors">
                       <td className="p-3.5 font-bold text-on-background">
                         <Link to={`/admin/orders/${order.id}`} className="hover:text-primary">
                           #{order.id}
@@ -192,22 +194,23 @@ export default function AdminDashboard() {
         </div>
 
         {/* Low Stock Alerts (1 Column) */}
-        <div className="bg-surface rounded border border-outline-variant shadow-xs p-stack-md">
+        <div data-testid="admin-dashboard-inventory-alerts-card" className="bg-surface rounded border border-outline-variant shadow-xs p-stack-md">
           <div className="flex items-center justify-between mb-4 pb-3 border-b border-outline-variant">
             <div>
               <h3 className="text-headline-md font-headline-md font-bold text-on-background">Inventory Alerts</h3>
               <p className="text-xs text-on-surface-variant mt-0.5">Products requiring stock replenishment</p>
             </div>
-            <Link to="/admin/inventory" className="text-xs text-primary font-bold hover:underline">
+            <Link to="/admin/inventory" data-testid="admin-dashboard-view-inventory-link" className="text-xs text-primary font-bold hover:underline">
               Inventory &rarr;
             </Link>
           </div>
 
           {lowStockProducts.length > 0 ? (
-            <div className="flex flex-col gap-3">
+            <div data-testid="admin-dashboard-low-stock-list" className="flex flex-col gap-3">
               {lowStockProducts.map((prod) => (
                 <div
                   key={prod.id}
+                  data-testid={`admin-dashboard-low-stock-item-${prod.id}`}
                   className="flex items-center justify-between p-3 rounded border border-outline-variant bg-surface-container-lowest"
                 >
                   <div className="flex items-center gap-3">

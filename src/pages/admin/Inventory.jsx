@@ -14,7 +14,7 @@ export default function AdminInventory() {
   });
 
   return (
-    <div className="w-full space-y-stack-md">
+    <div data-testid="admin-inventory-container" className="w-full space-y-stack-md">
       {/* Page Header */}
       <div>
         <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md font-bold text-on-background">Inventory Control & Stock Adjustments</h2>
@@ -25,12 +25,13 @@ export default function AdminInventory() {
       <div className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs flex flex-col sm:flex-row gap-stack-sm items-center justify-between">
         <div className="flex items-center gap-2">
           {[
-            { id: 'All', label: `All Items (${products.length})` },
-            { id: 'Low', label: `Low Stock (${products.filter((p) => p.stock > 0 && p.stock < 10).length})` },
-            { id: 'Out', label: `Out of Stock (${products.filter((p) => p.stock === 0).length})` },
+            { id: 'All', label: `All Items (${products.length})`, testId: 'admin-inventory-filter-all' },
+            { id: 'Low', label: `Low Stock (${products.filter((p) => p.stock > 0 && p.stock < 10).length})`, testId: 'admin-inventory-filter-low' },
+            { id: 'Out', label: `Out of Stock (${products.filter((p) => p.stock === 0).length})`, testId: 'admin-inventory-filter-out' },
           ].map((f) => (
             <button
               key={f.id}
+              data-testid={f.testId}
               onClick={() => setFilter(f.id)}
               className={`px-4 py-2 rounded font-label-sm text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer ${
                 filter === f.id
@@ -49,6 +50,7 @@ export default function AdminInventory() {
           </span>
           <input
             type="text"
+            data-testid="admin-inventory-search-input"
             placeholder="Search inventory title..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -60,7 +62,7 @@ export default function AdminInventory() {
       {/* Inventory Table */}
       <div className="bg-surface rounded border border-outline-variant shadow-xs overflow-hidden w-full">
         <div className="overflow-x-auto w-full">
-          <table className="w-full text-left text-sm">
+          <table data-testid="admin-inventory-table" className="w-full text-left text-sm">
             <thead className="bg-surface-container-low border-b border-outline-variant text-on-surface-variant font-label-sm text-xs uppercase tracking-wider">
               <tr>
                 <th className="p-4">Product</th>
@@ -73,7 +75,7 @@ export default function AdminInventory() {
             <tbody className="divide-y divide-outline-variant/60">
               {filtered.length > 0 ? (
                 filtered.map((product) => (
-                  <tr key={product.id} className="hover:bg-surface-container-lowest transition-colors">
+                  <tr key={product.id} data-testid={`admin-inventory-row-${product.id}`} className="hover:bg-surface-container-lowest transition-colors">
                     <td className="p-4">
                       <div className="flex items-center gap-3.5">
                         <img
@@ -130,6 +132,7 @@ export default function AdminInventory() {
                       <div className="inline-flex items-center gap-2 p-1 bg-surface-container-low border border-outline-variant rounded">
                         <button
                           onClick={() => updateStock(product.id, Math.max(0, product.stock - 1))}
+                          data-testid={`admin-inventory-decrease-${product.id}`}
                           className="w-8 h-8 bg-surface hover:bg-surface-container border border-outline-variant rounded font-bold text-on-surface flex items-center justify-center transition-colors cursor-pointer shadow-xs"
                           title="Decrease 1"
                         >
@@ -138,12 +141,14 @@ export default function AdminInventory() {
                         <input
                           type="number"
                           min="0"
+                          data-testid={`admin-inventory-stock-input-${product.id}`}
                           value={product.stock}
                           onChange={(e) => updateStock(product.id, e.target.value)}
                           className="w-16 py-1 bg-surface border border-outline-variant rounded text-center font-bold text-on-background focus:outline-none focus:ring-1 focus:ring-primary"
                         />
                         <button
                           onClick={() => updateStock(product.id, product.stock + 1)}
+                          data-testid={`admin-inventory-increase-${product.id}`}
                           className="w-8 h-8 bg-surface hover:bg-surface-container border border-outline-variant rounded font-bold text-on-surface flex items-center justify-center transition-colors cursor-pointer shadow-xs"
                           title="Increase 1"
                         >
@@ -151,6 +156,7 @@ export default function AdminInventory() {
                         </button>
                         <button
                           onClick={() => updateStock(product.id, product.stock + 10)}
+                          data-testid={`admin-inventory-add10-${product.id}`}
                           className="px-2 py-1 bg-primary hover:bg-primary-container text-on-primary rounded font-label-sm text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-xs"
                           title="Add 10 Batch"
                         >
@@ -162,7 +168,7 @@ export default function AdminInventory() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5" className="text-center py-12 text-on-surface-variant">
+                  <td colSpan="5" data-testid="admin-inventory-no-results" className="text-center py-12 text-on-surface-variant">
                     <span className="material-symbols-outlined text-4xl text-outline block mb-2">search_off</span>
                     No inventory records matching current filter.
                   </td>

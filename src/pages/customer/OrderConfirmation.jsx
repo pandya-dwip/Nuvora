@@ -13,7 +13,7 @@ export default function OrderConfirmation() {
 
   if (!order) {
     return (
-      <div className="px-margin-mobile md:px-margin-desktop py-16 text-center max-w-md mx-auto">
+      <div data-testid="order-confirmation-empty" className="px-margin-mobile md:px-margin-desktop py-16 text-center max-w-md mx-auto">
         <span className="material-symbols-outlined text-5xl text-outline mb-2">inventory</span>
         <h2 className="text-headline-md font-headline-md text-on-surface mb-2">No Recent Order Found</h2>
         <p className="text-body-md text-on-surface-variant mb-6">
@@ -21,6 +21,7 @@ export default function OrderConfirmation() {
         </p>
         <Link
           to="/shop"
+          data-testid="order-confirmation-explore-button"
           className="bg-primary text-on-primary px-6 py-3 rounded font-label-sm text-label-sm inline-block"
         >
           Explore Collection
@@ -30,18 +31,18 @@ export default function OrderConfirmation() {
   }
 
   return (
-    <div className="px-margin-mobile md:px-margin-desktop py-stack-lg flex flex-col items-center">
+    <div data-testid="order-confirmation-container" className="px-margin-mobile md:px-margin-desktop py-stack-lg flex flex-col items-center">
       <div className="w-full max-w-3xl bg-surface border border-outline-variant rounded p-stack-lg flex flex-col gap-stack-md text-left">
         {/* Success Header */}
         <div className="flex flex-col items-center text-center pb-stack-md border-b border-outline-variant">
           <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-4">
             <span className="material-symbols-outlined text-4xl">check_circle</span>
           </div>
-          <h1 className="text-display-lg-mobile font-display-lg-mobile text-on-background mb-2">
+          <h1 data-testid="order-success-message" className="text-display-lg-mobile font-display-lg-mobile text-on-background mb-2">
             Thank you for your order!
           </h1>
           <p className="text-body-md text-on-surface-variant max-w-md">
-            Order <span className="font-semibold text-primary">#{order.id}</span> has been successfully placed. A confirmation email has been sent.
+            Order <span data-testid="order-id" className="font-semibold text-primary">#{order.id}</span> has been successfully placed. A confirmation email has been sent.
           </p>
         </div>
 
@@ -63,7 +64,7 @@ export default function OrderConfirmation() {
             </h3>
             <p className="text-body-md text-on-surface-variant text-sm">
               Standard Shipping (3-5 business days)<br />
-              <span className="text-primary font-medium">Status: {order.status || 'Placed'}</span>
+              <span data-testid="order-status" className="text-primary font-medium">Status: {order.status || 'Placed'}</span>
             </p>
           </div>
         </div>
@@ -109,7 +110,7 @@ export default function OrderConfirmation() {
           </div>
           <div className="flex justify-between text-headline-md font-headline-md text-on-background pt-2 border-t border-outline-variant">
             <span>Total Paid</span>
-            <span className="text-primary">${Number(order.total || 0).toFixed(2)}</span>
+            <span data-testid="order-total" className="text-primary">${Number(order.total || 0).toFixed(2)}</span>
           </div>
         </div>
 
@@ -117,12 +118,14 @@ export default function OrderConfirmation() {
         <div className="flex flex-col sm:flex-row gap-4 pt-2">
           <Link
             to="/orders"
+            data-testid="order-view-orders-button"
             className="flex-1 bg-primary text-on-primary py-3 rounded font-label-sm text-label-sm text-center uppercase tracking-widest hover:bg-primary-container transition-colors cursor-pointer"
           >
             View My Orders
           </Link>
           <Link
             to="/shop"
+            data-testid="order-continue-shopping-button"
             className="flex-1 border border-outline-variant text-on-surface py-3 rounded font-label-sm text-label-sm text-center uppercase tracking-widest hover:bg-surface-container-low transition-colors cursor-pointer"
           >
             Continue Shopping

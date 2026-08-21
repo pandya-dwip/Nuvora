@@ -22,7 +22,7 @@ export default function AdminUsers() {
   };
 
   return (
-    <div className="w-full space-y-stack-md">
+    <div data-testid="admin-users-container" className="w-full space-y-stack-md">
       {/* Header */}
       <div>
         <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md font-bold text-on-background">User Account Directory</h2>
@@ -30,7 +30,7 @@ export default function AdminUsers() {
       </div>
 
       {errorMessage && (
-        <div className="p-4 bg-error-container border border-error/20 text-on-error-container rounded text-sm font-medium flex items-center gap-2">
+        <div data-testid="admin-users-error-message" className="p-4 bg-error-container border border-error/20 text-on-error-container rounded text-sm font-medium flex items-center gap-2">
           <span className="material-symbols-outlined text-base">error</span>
           {errorMessage}
         </div>
@@ -44,6 +44,7 @@ export default function AdminUsers() {
           </span>
           <input
             type="text"
+            data-testid="admin-users-search-input"
             placeholder="Search name or email address..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -51,14 +52,14 @@ export default function AdminUsers() {
           />
         </div>
         <div className="text-xs text-on-surface-variant font-medium">
-          Total Registered Accounts: <strong className="text-on-background font-bold">{users.length}</strong>
+          Total Registered Accounts: <strong data-testid="admin-users-total-count" className="text-on-background font-bold">{users.length}</strong>
         </div>
       </div>
 
       {/* Users Data Table */}
       <div className="bg-surface rounded border border-outline-variant shadow-xs overflow-hidden w-full">
         <div className="overflow-x-auto w-full">
-          <table className="w-full text-left text-sm">
+          <table data-testid="admin-users-table" className="w-full text-left text-sm">
             <thead className="bg-surface-container-low border-b border-outline-variant text-on-surface-variant font-label-sm text-xs uppercase tracking-wider">
               <tr>
                 <th className="p-4">User Account</th>
@@ -73,14 +74,14 @@ export default function AdminUsers() {
                 const userInitial = user.name ? user.name.charAt(0).toUpperCase() : 'U';
 
                 return (
-                  <tr key={user.id} className="hover:bg-surface-container-lowest transition-colors">
+                  <tr key={user.id} data-testid={`admin-user-row-${user.id}`} className="hover:bg-surface-container-lowest transition-colors">
                     <td className="p-4">
                       <div className="flex items-center gap-3.5">
                         <div className="w-10 h-10 rounded-full bg-primary text-on-primary font-bold flex items-center justify-center text-sm font-display shadow-xs">
                           {userInitial}
                         </div>
                         <div>
-                          <p className="font-bold text-on-background flex items-center gap-2">
+                          <p data-testid={`admin-user-name-${user.id}`} className="font-bold text-on-background flex items-center gap-2">
                             {user.name}
                             {isSelf && (
                               <span className="text-[10px] bg-primary/10 text-primary font-bold px-2 py-0.5 rounded-full uppercase border border-primary/20">
@@ -88,12 +89,13 @@ export default function AdminUsers() {
                               </span>
                             )}
                           </p>
-                          <p className="text-xs text-on-surface-variant">{user.email}</p>
+                          <p data-testid={`admin-user-email-${user.id}`} className="text-xs text-on-surface-variant">{user.email}</p>
                         </div>
                       </div>
                     </td>
                     <td className="p-4">
                       <span
+                        data-testid={`admin-user-role-${user.id}`}
                         className={`px-3 py-1 rounded text-xs font-bold uppercase tracking-wider ${
                           user.role === 'admin'
                             ? 'bg-primary/10 text-primary border border-primary/20'
@@ -107,6 +109,7 @@ export default function AdminUsers() {
                       <button
                         onClick={() => toggleUserStatus(user.id)}
                         disabled={isSelf}
+                        data-testid={`admin-user-status-toggle-${user.id}`}
                         className={`px-3 py-1 rounded text-xs font-bold uppercase tracking-wider transition-colors ${
                           user.disabled
                             ? 'bg-error-container text-on-error-container hover:bg-error-container/80'
@@ -120,6 +123,7 @@ export default function AdminUsers() {
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           to={`/admin/users/${user.id}`}
+                          data-testid={`admin-user-details-link-${user.id}`}
                           className="px-3 py-1.5 bg-surface-container-low hover:bg-surface-container text-on-surface rounded text-xs font-bold uppercase tracking-wider transition-colors inline-flex items-center gap-1"
                         >
                           Details
@@ -127,6 +131,7 @@ export default function AdminUsers() {
                         {!isSelf && (
                           <button
                             onClick={() => handleDelete(user.id)}
+                            data-testid={`admin-user-delete-button-${user.id}`}
                             className="p-1.5 text-on-surface-variant hover:text-error rounded hover:bg-surface-container-low cursor-pointer transition-colors"
                             title="Delete User"
                           >

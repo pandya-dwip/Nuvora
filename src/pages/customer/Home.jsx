@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative w-full h-[70vh] md:h-[80vh] bg-surface-container flex items-center justify-center overflow-hidden mb-stack-lg">
+      <section data-testid="home-hero-section" className="relative w-full h-[70vh] md:h-[80vh] bg-surface-container flex items-center justify-center overflow-hidden mb-stack-lg">
         <div className="absolute inset-0 z-0">
           <img
             alt="Editorial hero image showcasing modern essentials in a minimalist setting"
@@ -53,12 +53,14 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-stack-sm">
               <Link
                 to="/shop"
+                data-testid="home-hero-shop-button"
                 className="bg-primary-container text-on-primary h-12 px-6 rounded hover:bg-primary transition-colors duration-200 text-label-sm font-label-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 flex items-center justify-center"
               >
                 Shop Collection
               </Link>
               <Link
                 to="/shop"
+                data-testid="home-hero-explore-button"
                 className="bg-transparent border border-on-background text-on-background h-12 px-6 rounded hover:bg-surface-container transition-colors duration-200 text-label-sm font-label-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 flex items-center justify-center"
               >
                 Explore New Arrivals
@@ -69,7 +71,7 @@ export default function Home() {
       </section>
 
       {/* Shop by Category */}
-      <section className="px-margin-mobile md:px-margin-desktop py-stack-lg mb-stack-lg">
+      <section data-testid="home-shop-category-section" className="px-margin-mobile md:px-margin-desktop py-stack-lg mb-stack-lg">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-stack-lg gap-stack-md">
           <div>
             <h2 className="text-display-lg-mobile font-display-lg-mobile text-on-background mb-stack-sm">
@@ -85,6 +87,7 @@ export default function Home() {
             <Link
               key={cat.id || cat.name}
               to={`/shop?category=${encodeURIComponent(cat.name)}`}
+              data-testid={`home-category-${cat.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
               className="group relative block w-full aspect-[4/3] rounded overflow-hidden bg-surface-container focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
               <img
@@ -115,7 +118,7 @@ export default function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="px-margin-mobile md:px-margin-desktop py-stack-lg mb-stack-lg bg-surface">
+      <section data-testid="home-featured-products" className="px-margin-mobile md:px-margin-desktop py-stack-lg mb-stack-lg bg-surface">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-stack-lg gap-stack-md">
           <div>
             <h2 className="text-display-lg-mobile font-display-lg-mobile text-on-background mb-stack-sm">
@@ -127,6 +130,7 @@ export default function Home() {
           </div>
           <Link
             to="/shop"
+            data-testid="home-featured-view-all-link"
             className="text-label-sm font-label-sm text-primary hover:underline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
           >
             View all products &rarr;
@@ -140,7 +144,7 @@ export default function Home() {
       </section>
 
       {/* Collections for Every Moment */}
-      <section className="px-margin-mobile md:px-margin-desktop py-stack-lg mb-stack-lg bg-surface">
+      <section data-testid="home-collections-section" className="px-margin-mobile md:px-margin-desktop py-stack-lg mb-stack-lg bg-surface">
         <div className="mb-stack-lg text-center">
           <h2 className="text-display-lg-mobile font-display-lg-mobile text-on-background mb-stack-sm">
             Collections for Every Moment
@@ -152,6 +156,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
           <Link
             to="/shop"
+            data-testid="home-collection-work"
             className="group relative block aspect-[3/4] md:aspect-auto md:h-[600px] overflow-hidden rounded bg-surface-container focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
             <img
@@ -177,6 +182,7 @@ export default function Home() {
           </Link>
           <Link
             to="/shop"
+            data-testid="home-collection-weekend"
             className="group relative block aspect-[3/4] md:aspect-auto md:h-[600px] overflow-hidden rounded bg-surface-container focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
             <img
@@ -202,6 +208,7 @@ export default function Home() {
           </Link>
           <Link
             to="/shop"
+            data-testid="home-collection-travel"
             className="group relative block aspect-[3/4] md:aspect-auto md:h-[600px] overflow-hidden rounded bg-surface-container focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
             <img
@@ -245,12 +252,14 @@ export default function Home() {
               Email address
             </label>
             <input
+              data-testid="home-newsletter-email"
               className="flex-1 bg-surface-container-lowest border border-outline-variant px-4 py-3 rounded text-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary placeholder-outline"
               id="newsletter-email"
               placeholder="Enter your email"
               type="email"
             />
             <button
+              data-testid="home-newsletter-submit"
               className="bg-primary-container text-on-primary h-[50px] px-6 rounded hover:bg-primary transition-colors duration-200 text-label-sm font-label-sm focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 whitespace-nowrap cursor-pointer"
               type="submit"
             >

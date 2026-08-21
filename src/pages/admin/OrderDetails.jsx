@@ -9,11 +9,11 @@ export default function AdminOrderDetails() {
 
   if (!order) {
     return (
-      <div className="p-12 text-center bg-surface rounded border border-outline-variant max-w-md mx-auto">
+      <div data-testid="admin-order-details-not-found" className="p-12 text-center bg-surface rounded border border-outline-variant max-w-md mx-auto">
         <span className="material-symbols-outlined text-5xl text-outline mb-2">shopping_bag</span>
         <h2 className="text-headline-md font-headline-md font-bold text-on-surface mb-2">Order Record Not Found</h2>
         <p className="text-body-md text-on-surface-variant text-sm mb-6">No order matching ID #{orderId} exists in store memory.</p>
-        <Link to="/admin/orders" className="bg-primary text-on-primary px-5 py-2.5 rounded font-label-sm text-xs font-bold uppercase tracking-wider inline-block">
+        <Link to="/admin/orders" data-testid="admin-order-details-return-button" className="bg-primary text-on-primary px-5 py-2.5 rounded font-label-sm text-xs font-bold uppercase tracking-wider inline-block">
           Return to Orders
         </Link>
       </div>
@@ -24,13 +24,14 @@ export default function AdminOrderDetails() {
   const currentStepIndex = steps.indexOf(order.status);
 
   return (
-    <div className="w-full space-y-stack-md">
+    <div data-testid="admin-order-details-container" className="w-full space-y-stack-md">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-outline-variant pb-4">
         <div>
           <div className="flex items-center gap-3">
             <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md font-bold text-on-background">Order #{order.id}</h2>
             <span
+              data-testid="admin-order-details-status-badge"
               className={`px-3 py-1 rounded text-xs font-bold uppercase tracking-wider ${
                 order.status === 'Delivered'
                   ? 'bg-primary/10 text-primary'
@@ -48,6 +49,7 @@ export default function AdminOrderDetails() {
         </div>
         <Link
           to="/admin/orders"
+          data-testid="admin-order-details-back-link"
           className="font-label-sm text-xs font-bold text-on-surface hover:text-primary flex items-center gap-1"
         >
           &larr; Back to Orders
@@ -94,6 +96,7 @@ export default function AdminOrderDetails() {
           <label className="font-label-sm text-xs font-bold text-on-surface uppercase">Status:</label>
           <select
             value={order.status}
+            data-testid="admin-order-details-status-select"
             onChange={(e) => updateOrderStatus(order.id, e.target.value)}
             className="bg-surface-container-lowest border border-outline-variant rounded px-4 py-2 text-xs font-bold uppercase tracking-wider focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer"
           >
@@ -152,7 +155,7 @@ export default function AdminOrderDetails() {
             </div>
             <div className="flex justify-between text-base font-bold text-on-background pt-3 border-t border-outline-variant">
               <span>Grand Total</span>
-              <span className="text-primary font-display">${Number(order.total || 0).toFixed(2)}</span>
+              <span data-testid="admin-order-details-grand-total" className="text-primary font-display">${Number(order.total || 0).toFixed(2)}</span>
             </div>
           </div>
         </div>

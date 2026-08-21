@@ -12,11 +12,11 @@ export default function AdminUserDetails() {
 
   if (!user) {
     return (
-      <div className="p-12 text-center bg-surface rounded border border-outline-variant max-w-md mx-auto">
+      <div data-testid="admin-user-details-not-found" className="p-12 text-center bg-surface rounded border border-outline-variant max-w-md mx-auto">
         <span className="material-symbols-outlined text-5xl text-outline mb-2">person_off</span>
         <h2 className="text-headline-md font-headline-md font-bold text-on-surface mb-2">User Record Not Found</h2>
         <p className="text-body-md text-on-surface-variant text-sm mb-6">No user account matching ID #{userId} exists.</p>
-        <Link to="/admin/users" className="bg-primary text-on-primary px-5 py-2.5 rounded font-label-sm text-xs font-bold uppercase tracking-wider inline-block">
+        <Link to="/admin/users" data-testid="admin-user-details-return-button" className="bg-primary text-on-primary px-5 py-2.5 rounded font-label-sm text-xs font-bold uppercase tracking-wider inline-block">
           Return to Users
         </Link>
       </div>
@@ -30,7 +30,7 @@ export default function AdminUserDetails() {
   const userInitial = user.name ? user.name.charAt(0).toUpperCase() : 'U';
 
   return (
-    <div className="w-full space-y-stack-md">
+    <div data-testid="admin-user-details-container" className="w-full space-y-stack-md">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-outline-variant pb-4">
         <div className="flex items-center gap-4">
@@ -38,12 +38,13 @@ export default function AdminUserDetails() {
             {userInitial}
           </div>
           <div>
-            <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md font-bold text-on-background">{user.name}</h2>
-            <p className="text-xs text-on-surface-variant">{user.email}</p>
+            <h2 data-testid="admin-user-details-name" className="text-display-lg-mobile md:text-headline-md font-headline-md font-bold text-on-background">{user.name}</h2>
+            <p data-testid="admin-user-details-email" className="text-xs text-on-surface-variant">{user.email}</p>
           </div>
         </div>
         <Link
           to="/admin/users"
+          data-testid="admin-user-details-back-link"
           className="font-label-sm text-xs font-bold text-on-surface hover:text-primary flex items-center gap-1"
         >
           &larr; Back to Users Directory
@@ -60,13 +61,13 @@ export default function AdminUserDetails() {
             <span className="font-label-sm text-[11px] font-bold uppercase tracking-wider text-on-surface-variant block mb-1">
               User ID
             </span>
-            <p className="font-mono font-bold text-on-background">#{user.id}</p>
+            <p data-testid="admin-user-details-id" className="font-mono font-bold text-on-background">#{user.id}</p>
           </div>
           <div>
             <span className="font-label-sm text-[11px] font-bold uppercase tracking-wider text-on-surface-variant block mb-1">
               System Role
             </span>
-            <span className="px-3 py-1 rounded text-xs font-bold uppercase bg-primary/10 text-primary border border-primary/20">
+            <span data-testid="admin-user-details-role" className="px-3 py-1 rounded text-xs font-bold uppercase bg-primary/10 text-primary border border-primary/20">
               {user.role}
             </span>
           </div>
@@ -75,6 +76,7 @@ export default function AdminUserDetails() {
               Account Status
             </span>
             <span
+              data-testid="admin-user-details-status"
               className={`px-3 py-1 rounded text-xs font-bold uppercase ${
                 user.disabled ? 'bg-error-container text-on-error-container' : 'bg-primary/10 text-primary'
               }`}
@@ -86,7 +88,7 @@ export default function AdminUserDetails() {
             <span className="font-label-sm text-[11px] font-bold uppercase tracking-wider text-on-surface-variant block mb-1">
               Lifetime Value
             </span>
-            <p className="text-display-lg-mobile font-bold text-primary font-display">
+            <p data-testid="admin-user-details-lifetime-value" className="text-display-lg-mobile font-bold text-primary font-display">
               ${totalSpent.toFixed(2)}
             </p>
           </div>
@@ -99,9 +101,9 @@ export default function AdminUserDetails() {
           </h3>
 
           {userOrders.length > 0 ? (
-            <div className="divide-y divide-outline-variant/60 text-sm">
+            <div data-testid="admin-user-details-orders-list" className="divide-y divide-outline-variant/60 text-sm">
               {userOrders.map((order) => (
-                <div key={order.id} className="py-4 flex items-center justify-between">
+                <div key={order.id} data-testid={`admin-user-order-${order.id}`} className="py-4 flex items-center justify-between">
                   <div>
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-on-background">#{order.id}</span>
@@ -127,6 +129,7 @@ export default function AdminUserDetails() {
                     </span>
                     <Link
                       to={`/admin/orders/${order.id}`}
+                      data-testid={`admin-user-order-link-${order.id}`}
                       className="text-xs font-bold text-primary hover:underline mt-0.5 inline-block"
                     >
                       View Order &rarr;
@@ -136,7 +139,7 @@ export default function AdminUserDetails() {
               ))}
             </div>
           ) : (
-            <p className="text-sm text-on-surface-variant py-8 text-center">No orders recorded for this user account.</p>
+            <p data-testid="admin-user-details-no-orders" className="text-sm text-on-surface-variant py-8 text-center">No orders recorded for this user account.</p>
           )}
         </div>
       </div>

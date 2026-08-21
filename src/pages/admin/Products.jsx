@@ -27,7 +27,7 @@ export default function AdminProducts() {
   };
 
   return (
-    <div className="w-full space-y-stack-md">
+    <div data-testid="admin-products-container" className="w-full space-y-stack-md">
       {/* Header & Title */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -36,6 +36,7 @@ export default function AdminProducts() {
         </div>
         <Link
           to="/admin/products/new"
+          data-testid="admin-products-add-button"
           className="bg-primary hover:bg-primary-container text-on-primary px-5 py-2.5 rounded font-label-sm text-xs font-semibold uppercase tracking-wider transition-colors inline-flex items-center gap-2 cursor-pointer shadow-xs"
         >
           <span className="material-symbols-outlined text-sm">add</span>
@@ -51,6 +52,7 @@ export default function AdminProducts() {
           </span>
           <input
             type="text"
+            data-testid="admin-products-search-input"
             placeholder="Search by title or ID..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -62,6 +64,7 @@ export default function AdminProducts() {
           <label className="font-label-sm text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Category:</label>
           <select
             value={selectedCat}
+            data-testid="admin-products-category-select"
             onChange={(e) => setSelectedCat(e.target.value)}
             className="bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer font-medium"
           >
@@ -78,7 +81,7 @@ export default function AdminProducts() {
       {/* Product Table Card */}
       <div className="bg-surface rounded border border-outline-variant shadow-xs overflow-hidden w-full">
         <div className="overflow-x-auto w-full">
-          <table className="w-full text-left text-sm">
+          <table data-testid="admin-products-table" className="w-full text-left text-sm">
             <thead className="bg-surface-container-low border-b border-outline-variant text-on-surface-variant font-label-sm text-xs uppercase tracking-wider">
               <tr>
                 <th className="p-4">Product Details</th>
@@ -92,7 +95,7 @@ export default function AdminProducts() {
             <tbody className="divide-y divide-outline-variant/60">
               {filtered.length > 0 ? (
                 filtered.map((product) => (
-                  <tr key={product.id} className="hover:bg-surface-container-lowest transition-colors">
+                  <tr key={product.id} data-testid={`admin-product-row-${product.id}`} className="hover:bg-surface-container-lowest transition-colors">
                     <td className="p-4">
                       <div className="flex items-center gap-3.5">
                         <img
@@ -101,7 +104,7 @@ export default function AdminProducts() {
                           src={product.image}
                         />
                         <div>
-                          <span className="font-bold text-on-background block max-w-xs truncate">
+                          <span data-testid={`admin-product-title-${product.id}`} className="font-bold text-on-background block max-w-xs truncate">
                             {product.name}
                           </span>
                           <span className="text-xs text-on-surface-variant font-mono">ID: #{product.id}</span>
@@ -109,11 +112,12 @@ export default function AdminProducts() {
                       </div>
                     </td>
                     <td className="p-4 text-on-surface font-semibold">{product.category}</td>
-                    <td className="p-4 font-bold text-on-background font-display">
+                    <td data-testid={`admin-product-price-${product.id}`} className="p-4 font-bold text-on-background font-display">
                       ${Number(product.price).toFixed(2)}
                     </td>
                     <td className="p-4">
                       <span
+                        data-testid={`admin-product-stock-${product.id}`}
                         className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-bold ${
                           product.stock === 0
                             ? 'bg-error-container text-on-error-container'
@@ -129,6 +133,7 @@ export default function AdminProducts() {
                     <td className="p-4">
                       <button
                         onClick={() => toggleStatus(product)}
+                        data-testid={`admin-product-status-toggle-${product.id}`}
                         className={`px-3 py-1 rounded text-xs font-bold uppercase tracking-wider cursor-pointer transition-colors ${
                           product.status === 'Inactive'
                             ? 'bg-surface-container-high text-on-surface-variant'
@@ -142,6 +147,7 @@ export default function AdminProducts() {
                       <div className="flex items-center justify-end gap-1">
                         <Link
                           to={`/admin/products/${product.id}/edit`}
+                          data-testid={`admin-product-edit-button-${product.id}`}
                           className="p-2 text-on-surface-variant hover:text-primary rounded hover:bg-surface-container-low transition-colors"
                           title="Edit Product"
                         >
@@ -149,6 +155,7 @@ export default function AdminProducts() {
                         </Link>
                         <button
                           onClick={() => setDeletingId(product.id)}
+                          data-testid={`admin-product-delete-button-${product.id}`}
                           className="p-2 text-on-surface-variant hover:text-error rounded hover:bg-surface-container-low transition-colors cursor-pointer"
                           title="Delete Product"
                         >
@@ -160,7 +167,7 @@ export default function AdminProducts() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="6" className="text-center py-12 text-on-surface-variant">
+                  <td colSpan="6" data-testid="admin-products-no-results" className="text-center py-12 text-on-surface-variant">
                     <span className="material-symbols-outlined text-4xl text-outline block mb-2">search_off</span>
                     No products matching your search criteria.
                   </td>
@@ -173,7 +180,7 @@ export default function AdminProducts() {
 
       {/* Delete Confirmation Modal */}
       {deletingId && (
-        <div className="fixed inset-0 bg-inverse-surface/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div data-testid="admin-delete-product-modal" className="fixed inset-0 bg-inverse-surface/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
           <div className="bg-surface rounded p-6 max-w-md w-full shadow-lg border border-outline-variant">
             <div className="w-12 h-12 bg-error-container text-error rounded-full flex items-center justify-center mb-4">
               <span className="material-symbols-outlined text-2xl">warning</span>
@@ -185,12 +192,14 @@ export default function AdminProducts() {
             <div className="flex justify-end gap-3">
               <button
                 onClick={() => setDeletingId(null)}
+                data-testid="admin-delete-product-cancel"
                 className="px-5 py-2.5 bg-surface-container-high text-on-surface rounded font-label-sm text-xs font-bold uppercase tracking-wider hover:bg-surface-container cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={handleDeleteConfirm}
+                data-testid="admin-delete-product-confirm"
                 className="px-5 py-2.5 bg-error text-on-error rounded font-label-sm text-xs font-bold uppercase tracking-wider hover:bg-error/90 cursor-pointer shadow-xs"
               >
                 Delete Product

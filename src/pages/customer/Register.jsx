@@ -36,7 +36,7 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row bg-background">
+    <div data-testid="register-container" className="min-h-screen w-full flex flex-col md:flex-row bg-background">
       {/* Left Side: Editorial Banner */}
       <div className="w-full md:w-1/2 relative min-h-[40vh] md:min-h-screen bg-slate-900 overflow-hidden flex flex-col justify-between p-8 md:p-12 text-white">
         <img
@@ -75,7 +75,7 @@ export default function Register() {
           </div>
 
           {errorMsg && (
-            <div className="p-3 bg-error-container text-on-error-container border border-error/20 rounded text-sm font-medium flex items-center gap-2">
+            <div data-testid="register-error-message" className="p-3 bg-error-container text-on-error-container border border-error/20 rounded text-sm font-medium flex items-center gap-2">
               <span className="material-symbols-outlined text-base">error</span>
               {errorMsg}
             </div>
@@ -91,6 +91,7 @@ export default function Register() {
               <input
                 id="fullName"
                 type="text"
+                data-testid="register-name-input"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="Jane Doe"
@@ -106,6 +107,7 @@ export default function Register() {
               <input
                 id="email"
                 type="email"
+                data-testid="register-email-input"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
@@ -122,6 +124,7 @@ export default function Register() {
                 <input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
+                  data-testid="register-password-input"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
@@ -129,6 +132,7 @@ export default function Register() {
                 />
                 <button
                   type="button"
+                  data-testid="register-password-toggle"
                   aria-label="Toggle password visibility"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary focus:outline-none cursor-pointer"
@@ -148,6 +152,7 @@ export default function Register() {
               <input
                 id="confirmPassword"
                 type={showPassword ? 'text' : 'password'}
+                data-testid="register-confirm-password-input"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="••••••••"
@@ -160,6 +165,7 @@ export default function Register() {
               <input
                 id="terms"
                 type="checkbox"
+                data-testid="register-terms-checkbox"
                 className="h-4 w-4 mt-0.5 rounded border-outline-variant text-primary focus:ring-primary cursor-pointer"
               />
               <label htmlFor="terms" className="ml-2 block text-xs text-on-surface-variant cursor-pointer">
@@ -177,6 +183,7 @@ export default function Register() {
             {/* Create Account CTA */}
             <button
               type="submit"
+              data-testid="register-submit-button"
               className="w-full py-3.5 px-4 rounded bg-[#1B3B32] text-white font-label-sm text-sm uppercase tracking-wider font-semibold hover:bg-[#122A23] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1B3B32] cursor-pointer mt-2"
             >
               Create Account
@@ -189,6 +196,7 @@ export default function Register() {
               Already have an account?
               <Link
                 to="/login"
+                data-testid="register-login-link"
                 className="font-semibold text-on-surface hover:text-primary underline decoration-outline-variant ml-1"
               >
                 Sign in

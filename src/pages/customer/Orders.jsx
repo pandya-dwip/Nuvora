@@ -16,7 +16,7 @@ export default function CustomerOrders() {
     : userOrders.filter((o) => o.status === activeTab);
 
   return (
-    <div className="px-margin-mobile md:px-margin-desktop py-stack-lg">
+    <div data-testid="orders-container" className="px-margin-mobile md:px-margin-desktop py-stack-lg">
       <h1 className="text-display-lg-mobile md:text-display-lg font-display-lg-mobile md:font-display-lg text-on-background mb-stack-md">
         My Orders ({userOrders.length})
       </h1>
@@ -26,6 +26,7 @@ export default function CustomerOrders() {
         {['All', 'Placed', 'Processing', 'Shipped', 'Delivered', 'Cancelled'].map((tab) => (
           <button
             key={tab}
+            data-testid={`orders-tab-${tab.toLowerCase()}`}
             onClick={() => setActiveTab(tab)}
             className={`pb-3 font-label-sm text-label-sm border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
               activeTab === tab
@@ -44,16 +45,18 @@ export default function CustomerOrders() {
           filteredOrders.map((order) => (
             <div
               key={order.id}
+              data-testid={`order-card-${order.id}`}
               className="bg-surface border border-outline-variant rounded p-stack-md flex flex-col gap-4 hover:shadow-sm transition-shadow"
             >
               {/* Order Header Bar */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-outline-variant text-sm">
                 <div className="flex items-center gap-4">
-                  <span className="font-bold text-on-background">#{order.id}</span>
+                  <span data-testid={`order-card-${order.id}-id`} className="font-bold text-on-background">#{order.id}</span>
                   <span className="text-on-surface-variant">{order.date}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <span
+                    data-testid={`order-card-${order.id}-status`}
                     className={`px-2.5 py-1 rounded text-xs font-semibold uppercase tracking-wider ${
                       order.status === 'Delivered'
                         ? 'bg-primary/10 text-primary'
@@ -64,7 +67,7 @@ export default function CustomerOrders() {
                   >
                     {order.status}
                   </span>
-                  <span className="font-bold text-on-background">${Number(order.total).toFixed(2)}</span>
+                  <span data-testid={`order-card-${order.id}-total`} className="font-bold text-on-background">${Number(order.total).toFixed(2)}</span>
                 </div>
               </div>
 
@@ -94,6 +97,7 @@ export default function CustomerOrders() {
 
                 <Link
                   to={`/orders/${order.id}`}
+                  data-testid={`order-card-${order.id}-view-button`}
                   className="bg-surface-container-low border border-outline-variant text-on-surface hover:bg-surface-container-high px-4 py-2 rounded text-label-sm font-label-sm text-center transition-colors cursor-pointer"
                 >
                   View Details
@@ -102,7 +106,7 @@ export default function CustomerOrders() {
             </div>
           ))
         ) : (
-          <div className="text-center py-12 bg-surface-container-low rounded border border-outline-variant">
+          <div data-testid="orders-empty-state" className="text-center py-12 bg-surface-container-low rounded border border-outline-variant">
             <span className="material-symbols-outlined text-4xl text-outline mb-2">package_2</span>
             <p className="text-body-md text-on-surface-variant">No orders found in this status.</p>
           </div>
