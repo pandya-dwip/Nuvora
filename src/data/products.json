@@ -1,0 +1,274 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Noise Cancelling Headphones",
+    "category": "Electronics",
+    "price": 129.0,
+    "originalPrice": 159.0,
+    "rating": 4.8,
+    "stock": 24,
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1484704849700-f032a568e944?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1583394838336-acd977736f90?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Experience pure sound with our flagship Wireless Noise Cancelling Headphones engineered for adaptive sound quality."
+  },
+  {
+    "id": 2,
+    "name": "Ergonomic Mechanical Keyboard",
+    "category": "Electronics",
+    "price": 89.0,
+    "originalPrice": 110.0,
+    "rating": 4.7,
+    "stock": 15,
+    "image": "https://images.unsplash.com/photo-1587829741301-dc798b83add3?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1587829741301-dc798b83add3?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1595225476474-87563907a212?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1541140590914-579f21e66c73?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Tactile mechanical keys designed for comfortable long-duration typing and productivity."
+  },
+  {
+    "id": 3,
+    "name": "Minimalist Watch",
+    "category": "Accessories",
+    "price": 129.0,
+    "originalPrice": 159.0,
+    "rating": 4.8,
+    "stock": 18,
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1539185441755-769473a23570?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Sleek architectural timepiece crafted with premium stainless steel and genuine leather strap."
+  },
+  {
+    "id": 4,
+    "name": "Leather Tote Bag",
+    "category": "Fashion",
+    "price": 245.0,
+    "originalPrice": 280.0,
+    "rating": 4.9,
+    "stock": 12,
+    "image": "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Handcrafted full-grain leather tote bag with spacious interior compartment."
+  },
+  {
+    "id": 5,
+    "name": "Ceramic Mug Set",
+    "category": "Home & Living",
+    "price": 45.0,
+    "originalPrice": 55.0,
+    "rating": 4.6,
+    "stock": 30,
+    "image": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1577937927133-66ef06acdf18?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Set of 4 artisan ceramic mugs with smooth matte finish for your daily coffee ritual."
+  },
+  {
+    "id": 6,
+    "name": "Portable Bluetooth Speaker",
+    "category": "Electronics",
+    "price": 149.0,
+    "originalPrice": 179.0,
+    "rating": 4.9,
+    "stock": 20,
+    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "360-degree immersive acoustic sound in a compact water-resistant casing."
+  },
+  {
+    "id": 7,
+    "name": "Minimalist Leather Wallet",
+    "category": "Accessories",
+    "price": 65.0,
+    "originalPrice": 80.0,
+    "rating": 4.7,
+    "stock": 22,
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1606503153255-59d8b8b82176?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1614315517650-3771cf72d18a?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Slim RFID-blocking leather cardholder designed for effortless pocket storage."
+  },
+  {
+    "id": 8,
+    "name": "Designer Sunglasses",
+    "category": "Fashion",
+    "price": 185.0,
+    "originalPrice": 210.0,
+    "rating": 4.8,
+    "stock": 16,
+    "image": "https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1508296695146-257a814070b4?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1577803645773-f96470509666?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "UV400 polarized lenses with lightweight acetate frames for effortless style."
+  },
+  {
+    "id": 9,
+    "name": "Tailored Linen Blazer",
+    "category": "Fashion",
+    "price": 210.0,
+    "originalPrice": 250.0,
+    "rating": 4.9,
+    "stock": 10,
+    "image": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Breathable Italian linen blazer tailored for modern casual and formal styling."
+  },
+  {
+    "id": 10,
+    "name": "Minimalist Desk Lamp",
+    "category": "Home & Living",
+    "price": 95.0,
+    "originalPrice": 120.0,
+    "rating": 4.8,
+    "stock": 14,
+    "image": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1534105771160-3a216032e3d7?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1540932239986-30128078f3c5?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Dimmable warm LED desk lamp with matte aluminum arm and touch controls."
+  },
+  {
+    "id": 11,
+    "name": "Hydrating Facial Serum",
+    "category": "Beauty",
+    "price": 58.0,
+    "originalPrice": 72.0,
+    "rating": 4.7,
+    "stock": 40,
+    "image": "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1608248597261-833258657640?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Nourishing botanical hyaluronic acid serum for deep hydration and natural glow."
+  },
+  {
+    "id": 12,
+    "name": "Organic Botanical Cleanser",
+    "category": "Beauty",
+    "price": 38.0,
+    "originalPrice": 48.0,
+    "rating": 4.6,
+    "stock": 35,
+    "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1608248545293-4c93d5847240?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Gentle daily foaming cleanser infused with chamomile and green tea extracts."
+  },
+  {
+    "id": 13,
+    "name": "Pro Performance Yoga Mat",
+    "category": "Sports",
+    "price": 78.0,
+    "originalPrice": 95.0,
+    "rating": 4.9,
+    "stock": 25,
+    "image": "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1592432678016-e910b452f9a2?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Non-slip eco-friendly natural rubber yoga mat engineered for maximum cushioning."
+  },
+  {
+    "id": 14,
+    "name": "Insulated Stainless Bottle",
+    "category": "Sports",
+    "price": 42.0,
+    "originalPrice": 52.0,
+    "rating": 4.8,
+    "stock": 50,
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1589365278144-c9e705f843ba?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1556817411-31ae72fa3ea0?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Double-wall vacuum insulated water bottle keeping drinks cold for up to 24 hours."
+  },
+  {
+    "id": 15,
+    "name": "Sterling Silver Cuff",
+    "category": "Accessories",
+    "price": 115.0,
+    "originalPrice": 140.0,
+    "rating": 4.7,
+    "stock": 15,
+    "image": "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Architectural 925 sterling silver cuff bracelet with hand-polished satin finish."
+  },
+  {
+    "id": 16,
+    "name": "Aromatherapy Diffuser",
+    "category": "Home & Living",
+    "price": 68.0,
+    "originalPrice": 85.0,
+    "rating": 4.8,
+    "stock": 19,
+    "image": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?q=80&w=1200&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "description": "Ultrasonic ceramic essential oil diffuser with ambient warm light mood settings."
+  }
+]
