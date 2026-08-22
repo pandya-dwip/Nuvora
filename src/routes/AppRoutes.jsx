@@ -182,6 +182,7 @@ export default function AppRoutes() {
         <Route path="users" element={<AdminUsers />} />
         <Route path="users/:userId" element={<AdminUserDetails />} />
         <Route path="categories" element={<AdminCategories />} />
+        <Route path="categories/new" element={<AdminCategories openModal={true} />} />
         <Route path="settings" element={<AdminSettings />} />
       </Route>
 

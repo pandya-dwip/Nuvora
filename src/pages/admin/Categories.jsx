@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useStore } from '../../context/StoreContext';
 
-export default function AdminCategories() {
+export default function AdminCategories({ openModal = false }) {
   const { categories, products, addCategory, updateCategory, deleteCategory } = useStore();
   const [newCatName, setNewCatName] = useState('');
   const [editingId, setEditingId] = useState(null);
   const [editName, setEditName] = useState('');
   const [message, setMessage] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(openModal);
 
   const handleAddCategory = (e) => {
     e.preventDefault();
@@ -19,6 +20,7 @@ export default function AdminCategories() {
     addCategory({ name: newCatName.trim() });
     setMessage(`Category "${newCatName.trim()}" created successfully!`);
     setNewCatName('');
+    setIsModalOpen(false);
     setTimeout(() => setMessage(''), 3000);
   };
 
@@ -60,6 +62,15 @@ export default function AdminCategories() {
             Organize store items into department collections matching the storefront design system.
           </p>
         </div>
+        <button
+          type="button"
+          onClick={() => setIsModalOpen(true)}
+          data-testid="admin-categories-add-button"
+          className="bg-primary hover:bg-primary-container text-on-primary px-5 py-2.5 rounded font-label-sm text-xs font-bold uppercase tracking-wider transition-colors inline-flex items-center gap-2 cursor-pointer shadow-xs whitespace-nowrap self-start sm:self-auto"
+        >
+          <span className="material-symbols-outlined text-sm">add</span>
+          Create New Category
+        </button>
       </div>
 
       {message && (
@@ -73,6 +84,74 @@ export default function AdminCategories() {
         <div data-testid="admin-category-error-message" className="p-4 bg-error-container border border-error/20 text-on-error-container rounded text-sm font-medium flex items-center gap-2">
           <span className="material-symbols-outlined text-base">error</span>
           {errorMsg}
+        </div>
+      )}
+
+      {/* Create Category Modal Overlay */}
+      {isModalOpen && (
+        <div data-testid="admin-create-category-modal" className="fixed inset-0 bg-inverse-surface/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+          <div className="bg-surface rounded-lg p-6 max-w-lg w-full shadow-xl border border-outline-variant space-y-5">
+            <div className="flex items-center justify-between border-b border-outline-variant pb-3">
+              <h3 className="text-headline-md font-headline-md font-bold text-on-background flex items-center gap-2">
+                <span className="material-symbols-outlined text-primary text-xl">add_circle</span>
+                Create New Category Department
+              </h3>
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                data-testid="admin-create-category-modal-close"
+                className="text-on-surface-variant hover:text-on-background p-1 rounded hover:bg-surface-container-low cursor-pointer"
+              >
+                <span className="material-symbols-outlined text-xl">close</span>
+              </button>
+            </div>
+
+            <form onSubmit={handleAddCategory} data-testid="admin-create-category-form" className="space-y-4">
+              <div>
+                <label htmlFor="modalCategoryName" className="block font-label-sm text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1.5">
+                  Category Department Name *
+                </label>
+                <input
+                  id="modalCategoryName"
+                  type="text"
+                  autoFocus
+                  data-testid="admin-category-name-input"
+                  value={newCatName}
+                  onChange={(e) => setNewCatName(e.target.value)}
+                  placeholder="e.g. Home Office, Activewear, Footwear..."
+                  className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary font-medium"
+                />
+              </div>
+
+              <div>
+                <label className="block font-label-sm text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1.5">
+                  URL Slug Preview
+                </label>
+                <div className="px-4 py-2 bg-surface-container-low border border-outline-variant rounded text-xs font-mono text-on-surface-variant">
+                  /shop?category={encodeURIComponent(newCatName.trim() || 'category-name')}
+                </div>
+              </div>
+
+              <div className="flex justify-end gap-3 pt-3 border-t border-outline-variant">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  data-testid="admin-create-category-cancel"
+                  className="px-5 py-2.5 border border-outline-variant text-on-surface rounded font-label-sm text-xs font-bold uppercase tracking-wider hover:bg-surface-container-low cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  data-testid="admin-category-submit-button"
+                  className="px-6 py-2.5 bg-primary hover:bg-primary-container text-on-primary rounded font-label-sm text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs flex items-center gap-1.5"
+                >
+                  <span className="material-symbols-outlined text-sm">add</span>
+                  Create Category
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
 
@@ -90,7 +169,7 @@ export default function AdminCategories() {
 
         <form
           onSubmit={handleAddCategory}
-          data-testid="admin-create-category-form"
+          data-testid="admin-inline-create-category-form"
           className="flex flex-col sm:flex-row gap-stack-sm items-end"
         >
           <div className="flex-1 w-full">
@@ -100,7 +179,7 @@ export default function AdminCategories() {
             <input
               id="categoryName"
               type="text"
-              data-testid="admin-category-name-input"
+              data-testid="admin-inline-category-name-input"
               value={newCatName}
               onChange={(e) => setNewCatName(e.target.value)}
               placeholder="e.g. Home Office, Activewear, Footwear..."
@@ -110,7 +189,7 @@ export default function AdminCategories() {
 
           <button
             type="submit"
-            data-testid="admin-category-submit-button"
+            data-testid="admin-inline-category-submit-button"
             className="bg-primary hover:bg-primary-container text-on-primary px-6 py-2.5 rounded font-label-sm text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer whitespace-nowrap shadow-xs flex items-center gap-1.5"
           >
             <span className="material-symbols-outlined text-sm">add</span>
