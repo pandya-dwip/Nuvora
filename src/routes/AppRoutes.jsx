@@ -81,13 +81,11 @@ export default function AppRoutes() {
 
   return (
     <Routes>
-      {/* Root Path: Redirects to Login if unauthenticated */}
+      {/* Root Path: Redirects Admin to /admin/dashboard, otherwise to /home */}
       <Route
         path="/"
         element={
-          !currentUser ? (
-            <Navigate to="/login" replace />
-          ) : currentUser.role === 'admin' ? (
+          currentUser?.role === 'admin' ? (
             <Navigate to="/admin/dashboard" replace />
           ) : (
             <Navigate to="/home" replace />
@@ -113,24 +111,55 @@ export default function AppRoutes() {
         }
       />
 
-      {/* Protected Customer Routes (Requires Login) */}
-      <Route
-        element={
-          <ProtectedCustomerRoute>
-            <CustomerLayout />
-          </ProtectedCustomerRoute>
-        }
-      >
+      {/* Public Customer Routes (Browsing & Cart) */}
+      <Route element={<CustomerLayout />}>
         <Route path="/home" element={<Home />} />
         <Route path="/shop" element={<Collection />} />
         <Route path="/product/:productId" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/order-confirmation" element={<OrderConfirmation />} />
-        <Route path="/orders" element={<CustomerOrders />} />
-        <Route path="/orders/:orderId" element={<CustomerOrderDetails />} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="/wishlist" element={<Wishlist />} />
+
+        {/* Protected Customer Routes (Requires Login) */}
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedCustomerRoute>
+              <Checkout />
+            </ProtectedCustomerRoute>
+          }
+        />
+        <Route
+          path="/order-confirmation"
+          element={
+            <ProtectedCustomerRoute>
+              <OrderConfirmation />
+            </ProtectedCustomerRoute>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <ProtectedCustomerRoute>
+              <CustomerOrders />
+            </ProtectedCustomerRoute>
+          }
+        />
+        <Route
+          path="/orders/:orderId"
+          element={
+            <ProtectedCustomerRoute>
+              <CustomerOrderDetails />
+            </ProtectedCustomerRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedCustomerRoute>
+              <Profile />
+            </ProtectedCustomerRoute>
+          }
+        />
       </Route>
 
       {/* Protected Admin Routes (Requires Admin Role) */}

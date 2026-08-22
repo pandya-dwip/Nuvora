@@ -167,7 +167,7 @@ export default function AdminDashboard() {
                           #{order.id}
                         </Link>
                       </td>
-                      <td className="p-3.5 font-medium text-on-surface">{order.customerName}</td>
+                      <td className="p-3.5 font-medium text-on-surface">{order.customerName || 'Customer'}</td>
                       <td className="p-3.5 text-on-surface-variant text-xs">{order.date}</td>
                       <td className="p-3.5 font-bold text-on-background">${Number(order.total).toFixed(2)}</td>
                       <td className="p-3.5">

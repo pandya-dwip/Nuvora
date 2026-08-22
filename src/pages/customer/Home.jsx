@@ -12,6 +12,9 @@ export default function Home() {
     Beauty: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200&auto=format&fit=crop',
     Sports: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop',
     Accessories: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop',
+    'Books & Stationery': 'https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200&auto=format&fit=crop',
+    Footwear: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop',
+    'Travel & Outdoor': 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1200&auto=format&fit=crop',
   };
 
   const categories = storeCategories.map((cat) => {
@@ -105,12 +108,11 @@ export default function Home() {
                     {cat.count}
                   </p>
                 </div>
-                <span
-                  aria-hidden="true"
-                  className="material-symbols-outlined text-on-background bg-surface-container-lowest/80 p-2 rounded-full group-hover:bg-primary group-hover:text-on-primary transition-colors duration-300"
-                >
-                  chevron_right
-                </span>
+                <div className="w-9 h-9 rounded-full bg-surface-container-lowest/80 text-on-background group-hover:bg-primary group-hover:text-on-primary transition-colors duration-300 flex items-center justify-center shrink-0">
+                  <span aria-hidden="true" className="material-symbols-outlined text-[20px]">
+                    chevron_right
+                  </span>
+                </div>
               </div>
             </Link>
           ))}
@@ -136,7 +138,7 @@ export default function Home() {
             View all products &rarr;
           </Link>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-gutter">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-gutter">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -155,7 +157,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
           <Link
-            to="/shop"
+            to={`/shop?category=${encodeURIComponent('Books & Stationery')}`}
             data-testid="home-collection-work"
             className="group relative block aspect-[3/4] md:aspect-auto md:h-[600px] overflow-hidden rounded bg-surface-container focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
@@ -181,7 +183,7 @@ export default function Home() {
             </div>
           </Link>
           <Link
-            to="/shop"
+            to={`/shop?category=${encodeURIComponent('Fashion')}`}
             data-testid="home-collection-weekend"
             className="group relative block aspect-[3/4] md:aspect-auto md:h-[600px] overflow-hidden rounded bg-surface-container focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
@@ -207,7 +209,7 @@ export default function Home() {
             </div>
           </Link>
           <Link
-            to="/shop"
+            to={`/shop?category=${encodeURIComponent('Travel & Outdoor')}`}
             data-testid="home-collection-travel"
             className="group relative block aspect-[3/4] md:aspect-auto md:h-[600px] overflow-hidden rounded bg-surface-container focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >

@@ -8,9 +8,12 @@ export default function AdminOrders() {
   const [searchQuery, setSearchQuery] = useState('');
 
   const filtered = orders.filter((o) => {
+    const name = o.customerName || '';
+    const email = o.customerEmail || '';
     const matchesSearch =
-      o.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      o.customerName.toLowerCase().includes(searchQuery.toLowerCase());
+      (o.id || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      email.toLowerCase().includes(searchQuery.toLowerCase());
     if (activeTab === 'All') return matchesSearch;
     return matchesSearch && o.status === activeTab;
   });
@@ -99,8 +102,8 @@ export default function AdminOrders() {
                       </Link>
                     </td>
                     <td className="p-4">
-                      <p className="font-bold text-on-background">{order.customerName}</p>
-                      <p className="text-xs text-on-surface-variant">{order.customerEmail}</p>
+                      <p className="font-bold text-on-background">{order.customerName || 'Customer'}</p>
+                      <p className="text-xs text-on-surface-variant">{order.customerEmail || 'N/A'}</p>
                     </td>
                     <td className="p-4 text-on-surface-variant text-xs font-medium">{order.date}</td>
                     <td className="p-4 font-bold text-on-background font-display">

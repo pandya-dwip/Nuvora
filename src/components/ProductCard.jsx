@@ -86,12 +86,12 @@ export default function ProductCard({ product }) {
           <span className="text-label-sm text-secondary">★ {product.rating || '4.8'}</span>
           <span className="text-xs text-on-surface-variant ml-1">({product.stock} in stock)</span>
         </div>
-        <div className="flex items-center gap-2 mb-stack-md mt-auto">
+        <div className="flex items-baseline gap-2 mb-stack-md mt-auto flex-wrap">
           <span data-testid={`product-price-${product.id}`} className="text-headline-md font-headline-md text-on-background">
             ${Number(product.price).toFixed(2)}
           </span>
           {product.originalPrice && (
-            <span className="text-body-md text-on-surface-variant line-through">
+            <span className="text-xs font-medium text-on-surface-variant line-through">
               ${Number(product.originalPrice).toFixed(2)}
             </span>
           )}

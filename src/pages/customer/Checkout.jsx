@@ -19,6 +19,8 @@ export default function Checkout() {
     cvc: '889',
   });
 
+  const [stockError, setStockError] = useState('');
+
   const cartItems = cart
     .map((item) => {
       const prod = products.find((p) => String(p.id) === String(item.productId));
@@ -41,15 +43,21 @@ export default function Checkout() {
 
   const handlePlaceOrder = (e) => {
     e.preventDefault();
+    setStockError('');
 
     if (cartItems.length === 0) {
-      alert('Your cart is empty. Please add items before checking out.');
+      setStockError('Your cart is empty. Please add items before checking out.');
       return;
     }
 
-    const newOrder = placeOrder(formData, paymentMethod);
-    if (newOrder) {
-      navigate('/order-confirmation', { state: { order: newOrder } });
+    const res = placeOrder(formData, paymentMethod);
+    if (!res.success) {
+      setStockError(res.message);
+      return;
+    }
+
+    if (res.order) {
+      navigate('/order-confirmation', { state: { order: res.order } });
     }
   };
 
@@ -79,6 +87,13 @@ export default function Checkout() {
           Checkout
         </h1>
       </div>
+
+      {stockError && (
+        <div data-testid="checkout-stock-error" className="mb-stack-md p-4 bg-error-container text-on-error-container border border-error/20 rounded font-medium flex items-center gap-2">
+          <span className="material-symbols-outlined text-base">error</span>
+          {stockError}
+        </div>
+      )}
 
       <form onSubmit={handlePlaceOrder} className="grid grid-cols-1 lg:grid-cols-3 gap-gutter items-start">
         {/* Left Column: Form Details */}

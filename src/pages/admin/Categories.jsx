@@ -51,13 +51,15 @@ export default function AdminCategories() {
   return (
     <div data-testid="admin-categories-container" className="w-full space-y-stack-md">
       {/* Header */}
-      <div>
-        <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md font-bold text-on-background">
-          Category & Department Taxonomy
-        </h2>
-        <p className="text-body-md text-on-surface-variant text-sm mt-1">
-          Organize store items into department collections matching the storefront design system.
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md font-bold text-on-background">
+            Category & Department Taxonomy
+          </h2>
+          <p className="text-body-md text-on-surface-variant text-sm mt-1">
+            Organize store items into department collections matching the storefront design system.
+          </p>
+        </div>
       </div>
 
       {message && (
@@ -75,32 +77,47 @@ export default function AdminCategories() {
       )}
 
       {/* Add New Category Form Card */}
-      <form
-        onSubmit={handleAddCategory}
-        className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs flex flex-col sm:flex-row gap-stack-sm items-end"
-      >
-        <div className="flex-1 w-full">
-          <label htmlFor="categoryName" className="block font-label-sm text-xs font-semibold uppercase tracking-wider text-on-surface mb-1.5">
-            New Category Department Name
-          </label>
-          <input
-            id="categoryName"
-            type="text"
-            data-testid="admin-category-name-input"
-            value={newCatName}
-            onChange={(e) => setNewCatName(e.target.value)}
-            placeholder="e.g. Footwear, Outdoor Essentials..."
-            className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary placeholder-outline"
-          />
+      <div data-testid="admin-create-category-card" className="bg-surface p-stack-md rounded border border-outline-variant shadow-xs space-y-4">
+        <div className="border-b border-outline-variant pb-3">
+          <h3 className="text-headline-md font-headline-md font-bold text-on-background flex items-center gap-2">
+            <span className="material-symbols-outlined text-primary text-xl">add_circle</span>
+            Create New Category Department
+          </h3>
+          <p className="text-xs text-on-surface-variant mt-0.5">
+            Add a new department category to organize products across the customer storefront and admin catalog.
+          </p>
         </div>
-        <button
-          type="submit"
-          data-testid="admin-category-submit-button"
-          className="bg-primary hover:bg-primary-container text-on-primary px-6 py-2.5 rounded font-label-sm text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer whitespace-nowrap"
+
+        <form
+          onSubmit={handleAddCategory}
+          data-testid="admin-create-category-form"
+          className="flex flex-col sm:flex-row gap-stack-sm items-end"
         >
-          + Create Category
-        </button>
-      </form>
+          <div className="flex-1 w-full">
+            <label htmlFor="categoryName" className="block font-label-sm text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1.5">
+              Category Department Name *
+            </label>
+            <input
+              id="categoryName"
+              type="text"
+              data-testid="admin-category-name-input"
+              value={newCatName}
+              onChange={(e) => setNewCatName(e.target.value)}
+              placeholder="e.g. Home Office, Activewear, Footwear..."
+              className="w-full px-4 py-2.5 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary placeholder-outline font-medium"
+            />
+          </div>
+
+          <button
+            type="submit"
+            data-testid="admin-category-submit-button"
+            className="bg-primary hover:bg-primary-container text-on-primary px-6 py-2.5 rounded font-label-sm text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer whitespace-nowrap shadow-xs flex items-center gap-1.5"
+          >
+            <span className="material-symbols-outlined text-sm">add</span>
+            Create Category
+          </button>
+        </form>
+      </div>
 
       {/* Categories Table Card */}
       <div className="bg-surface rounded border border-outline-variant shadow-xs overflow-hidden w-full">

@@ -50,9 +50,9 @@ export default function AdminLayout() {
   return (
     <div data-testid="admin-layout" className="min-h-screen flex bg-background text-on-background font-sans">
       {/* Sidebar Navigation */}
-      <aside data-testid="admin-sidebar" className="w-64 bg-[#12362e] text-on-primary flex flex-col p-4 flex-shrink-0 border-r border-[#2a4d44] z-20">
+      <aside data-testid="admin-sidebar" className="w-64 bg-[#12362e] text-on-primary flex flex-col p-4 flex-shrink-0 border-r border-[#2a4d44] h-screen sticky top-0 overflow-y-auto z-20">
         {/* Brand & Portal Badge */}
-        <div className="flex items-center justify-between px-3 py-3 mb-6 border-b border-[#2a4d44] pb-5">
+        <div className="flex items-center justify-between px-3 py-3 mb-6 border-b border-[#2a4d44] pb-5 flex-shrink-0">
           <div className="flex items-center gap-2">
             <span className="text-xl font-bold tracking-widest text-white uppercase font-display">
               LUXE
@@ -101,10 +101,10 @@ export default function AdminLayout() {
         </nav>
 
         {/* Footer User Info & Actions */}
-        <div className="mt-auto pt-4 border-t border-[#2a4d44] flex flex-col gap-2">
+        <div className="mt-auto pt-4 border-t border-[#2a4d44] flex flex-col gap-2 flex-shrink-0">
           <div className="px-3 py-2 bg-[#1f433b] rounded flex items-center gap-3">
             <div className="w-8 h-8 rounded bg-[#2a4d44] text-white font-bold flex items-center justify-center text-sm font-display border border-[#a9cec2]/20">
-              {currentUser.name.charAt(0)}
+              {currentUser.name ? currentUser.name.charAt(0).toUpperCase() : 'A'}
             </div>
             <div className="overflow-hidden text-xs">
               <span className="text-white font-semibold block truncate">{currentUser.name}</span>
@@ -141,21 +141,52 @@ export default function AdminLayout() {
       {/* Main Content Area with Header Bar */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Header Bar */}
-        <header className="h-16 bg-surface border-b border-outline-variant px-margin-mobile md:px-margin-desktop flex items-center justify-between flex-shrink-0">
+        <header className="h-16 bg-surface border-b border-outline-variant px-margin-mobile md:px-margin-desktop flex items-center justify-between flex-shrink-0 z-10">
           <div className="flex items-center gap-3">
             <h1 className="text-headline-md font-headline-md text-on-background font-bold">{pageTitle}</h1>
             <span className="text-body-md text-on-surface-variant text-sm">/ Overview</span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <Link
               to="/admin/products/new"
-              data-testid="admin-new-product-button"
-              className="bg-primary hover:bg-primary-container text-on-primary px-4 py-2 rounded text-label-sm font-label-sm uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer"
+              data-testid="admin-header-new-product-button"
+              className="bg-primary hover:bg-primary-container text-on-primary px-3.5 py-2 rounded text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <span className="material-symbols-outlined text-sm">add</span>
-              New Product
+              Product
             </Link>
+            <Link
+              to="/home"
+              data-testid="admin-header-storefront-link"
+              className="px-3.5 py-2 bg-surface-container-low hover:bg-surface-container text-on-surface rounded text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-colors"
+            >
+              <span className="material-symbols-outlined text-sm">storefront</span>
+              Customer Store
+            </Link>
+
+            {/* Admin User Details & Sign Out Button */}
+            <div className="flex items-center gap-2.5 pl-3 border-l border-outline-variant">
+              <div className="w-8 h-8 rounded-full bg-primary text-on-primary font-bold flex items-center justify-center text-xs font-display">
+                {currentUser.name ? currentUser.name.charAt(0).toUpperCase() : 'A'}
+              </div>
+              <div className="hidden sm:block text-left text-xs">
+                <span className="font-bold text-on-background block leading-tight">{currentUser.name}</span>
+                <span className="text-[10px] text-on-surface-variant uppercase tracking-wider font-semibold">Admin</span>
+              </div>
+              <button
+                onClick={() => {
+                  logout();
+                  navigate('/login');
+                }}
+                data-testid="admin-header-signout-button"
+                className="p-2 text-on-surface-variant hover:text-error rounded hover:bg-surface-container-low transition-colors ml-1 cursor-pointer flex items-center gap-1"
+                title="Sign Out"
+              >
+                <span className="material-symbols-outlined text-[18px]">logout</span>
+                <span className="hidden md:inline text-xs font-bold uppercase tracking-wider">Sign Out</span>
+              </button>
+            </div>
           </div>
         </header>
 

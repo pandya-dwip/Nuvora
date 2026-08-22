@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard';
 import { useStore } from '../../context/StoreContext';
@@ -13,6 +13,11 @@ export default function Collection() {
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || '');
   const [maxPrice, setMaxPrice] = useState(500);
   const [inStockOnly, setInStockOnly] = useState(false);
+
+  useEffect(() => {
+    setSelectedCategory(searchParams.get('category') || '');
+    setSearchQuery(searchParams.get('search') || '');
+  }, [searchParams]);
 
   const displayCategoryNames = Array.from(
     new Set([
@@ -258,7 +263,7 @@ export default function Collection() {
 
           {/* Product Grid */}
           {filteredProducts.length > 0 ? (
-            <div data-testid="collection-product-grid" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-gutter mb-stack-lg">
+            <div data-testid="collection-product-grid" className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-gutter mb-stack-lg">
               {filteredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

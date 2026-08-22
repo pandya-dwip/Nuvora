@@ -28,5 +28,20 @@
     "id": 6,
     "name": "Accessories",
     "slug": "accessories"
+  },
+  {
+    "id": 7,
+    "name": "Books & Stationery",
+    "slug": "books-stationery"
+  },
+  {
+    "id": 8,
+    "name": "Footwear",
+    "slug": "footwear"
+  },
+  {
+    "id": 9,
+    "name": "Travel & Outdoor",
+    "slug": "travel-outdoor"
   }
 ]

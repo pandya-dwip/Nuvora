@@ -50,10 +50,62 @@ export function StoreProvider({ children }) {
     }
     return loaded;
   });
-  const [orders, setOrders] = useState(() => loadInitial('nuvora_orders', initialOrders));
-  const [cart, setCart] = useState(() => loadInitial('nuvora_cart', []));
-  const [wishlist, setWishlist] = useState(() => loadInitial('nuvora_wishlist', [1, 3]));
+  const [orders, setOrders] = useState(() => {
+    const loaded = loadInitial('nuvora_orders', initialOrders);
+    const orderList = Array.isArray(loaded) && loaded.length > 0 ? loaded : initialOrders;
+    return orderList.map((o) => {
+      const user = initialUsers.find((u) => u.id === o.userId) || { name: 'Jane Doe', email: 'jane@example.com' };
+      const defaultItems = [
+        {
+          productId: 1,
+          name: 'Wireless Noise Cancelling Headphones',
+          category: 'Electronics',
+          price: 129.0,
+          quantity: 1,
+          image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop',
+        },
+      ];
+      return {
+        ...o,
+        customerName: o.customerName || user.name,
+        customerEmail: o.customerEmail || user.email,
+        items: Array.isArray(o.items) && o.items.length > 0 ? o.items : defaultItems,
+        subtotal: o.subtotal ?? (o.total || 129),
+        shipping: o.shipping ?? 0,
+        tax: o.tax ?? 0,
+        shippingAddress: o.shippingAddress || {
+          fullName: o.customerName || user.name,
+          address: '123 Luxury Lane',
+          city: 'New York',
+          state: 'NY',
+          zip: '10001',
+        },
+        paymentMethod: o.paymentMethod || 'Credit Card',
+      };
+    });
+  });
+  const [carts, setCarts] = useState(() => {
+    const loaded = loadInitial('nuvora_carts', null);
+    if (loaded && typeof loaded === 'object' && !Array.isArray(loaded)) return loaded;
+    // Migration fallback from single cart key
+    const oldCart = loadInitial('nuvora_cart', []);
+    return { guest: oldCart };
+  });
+
+  const [wishlists, setWishlists] = useState(() => {
+    const loaded = loadInitial('nuvora_wishlists', null);
+    if (loaded && typeof loaded === 'object' && !Array.isArray(loaded)) return loaded;
+    // Migration fallback from single wishlist key
+    const oldWishlist = loadInitial('nuvora_wishlist', [1, 3]);
+    return { guest: oldWishlist };
+  });
+
   const [settings, setSettings] = useState(() => loadInitial('nuvora_settings', initialSettings));
+
+  // Helper key for active user's bucket
+  const userKey = currentUser ? String(currentUser.id) : 'guest';
+  const cart = carts[userKey] || [];
+  const wishlist = wishlists[userKey] || (userKey === 'guest' ? [1, 3] : []);
 
   // Sync state to localStorage
   useEffect(() => {
@@ -77,12 +129,12 @@ export function StoreProvider({ children }) {
   }, [orders]);
 
   useEffect(() => {
-    localStorage.setItem('nuvora_cart', JSON.stringify(cart));
-  }, [cart]);
+    localStorage.setItem('nuvora_carts', JSON.stringify(carts));
+  }, [carts]);
 
   useEffect(() => {
-    localStorage.setItem('nuvora_wishlist', JSON.stringify(wishlist));
-  }, [wishlist]);
+    localStorage.setItem('nuvora_wishlists', JSON.stringify(wishlists));
+  }, [wishlists]);
 
   useEffect(() => {
     localStorage.setItem('nuvora_settings', JSON.stringify(settings));
@@ -185,8 +237,6 @@ export function StoreProvider({ children }) {
 
   const deleteProduct = (id) => {
     setProducts((prev) => prev.filter((p) => String(p.id) !== String(id)));
-    setCart((prev) => prev.filter((item) => String(item.productId) !== String(id)));
-    setWishlist((prev) => prev.filter((pId) => String(pId) !== String(id)));
   };
 
   const updateStock = (id, newStock) => {
@@ -228,21 +278,25 @@ export function StoreProvider({ children }) {
     return { success: true };
   };
 
-  // Cart Methods
+  // Cart Methods (Per Active User)
   const addToCart = (productId, qty = 1, color = 'Matte Black') => {
     const product = products.find((p) => String(p.id) === String(productId));
     if (!product) return { success: false, message: 'Product not found.' };
     if (product.stock <= 0) return { success: false, message: 'Product is out of stock.' };
 
-    setCart((prev) => {
-      const existing = prev.find((item) => String(item.productId) === String(productId));
+    setCarts((prev) => {
+      const activeUserCart = prev[userKey] || [];
+      const existing = activeUserCart.find((item) => String(item.productId) === String(productId));
+      let updatedUserCart;
       if (existing) {
         const newQty = Math.min(product.stock, existing.quantity + qty);
-        return prev.map((item) =>
+        updatedUserCart = activeUserCart.map((item) =>
           String(item.productId) === String(productId) ? { ...item, quantity: newQty } : item
         );
+      } else {
+        updatedUserCart = [...activeUserCart, { productId: product.id, quantity: Math.min(product.stock, qty), color }];
       }
-      return [...prev, { productId: product.id, quantity: Math.min(product.stock, qty), color }];
+      return { ...prev, [userKey]: updatedUserCart };
     });
 
     return { success: true };
@@ -253,27 +307,38 @@ export function StoreProvider({ children }) {
     const maxStock = product ? product.stock : 99;
     const validQty = Math.max(1, Math.min(maxStock, qty));
 
-    setCart((prev) =>
-      prev.map((item) => (String(item.productId) === String(productId) ? { ...item, quantity: validQty } : item))
-    );
+    setCarts((prev) => {
+      const activeUserCart = prev[userKey] || [];
+      const updatedUserCart = activeUserCart.map((item) =>
+        String(item.productId) === String(productId) ? { ...item, quantity: validQty } : item
+      );
+      return { ...prev, [userKey]: updatedUserCart };
+    });
   };
 
   const removeFromCart = (productId) => {
-    setCart((prev) => prev.filter((item) => String(item.productId) !== String(productId)));
+    setCarts((prev) => {
+      const activeUserCart = prev[userKey] || [];
+      const updatedUserCart = activeUserCart.filter((item) => String(item.productId) !== String(productId));
+      return { ...prev, [userKey]: updatedUserCart };
+    });
   };
 
   const clearCart = () => {
-    setCart([]);
+    setCarts((prev) => ({ ...prev, [userKey]: [] }));
   };
 
-  // Wishlist Methods
+  // Wishlist Methods (Per Active User)
   const toggleWishlist = (productId) => {
     const targetId = productId;
-    setWishlist((prev) =>
-      prev.some((id) => String(id) === String(targetId))
-        ? prev.filter((id) => String(id) !== String(targetId))
-        : [...prev, targetId]
-    );
+    setWishlists((prev) => {
+      const activeUserWishlist = prev[userKey] || (userKey === 'guest' ? [1, 3] : []);
+      const exists = activeUserWishlist.some((id) => String(id) === String(targetId));
+      const updatedWishlist = exists
+        ? activeUserWishlist.filter((id) => String(id) !== String(targetId))
+        : [...activeUserWishlist, targetId];
+      return { ...prev, [userKey]: updatedWishlist };
+    });
   };
 
   const isInWishlist = (productId) => {
@@ -282,7 +347,21 @@ export function StoreProvider({ children }) {
 
   // Order Methods
   const placeOrder = (shippingInfo, paymentMethod = 'Credit Card') => {
-    if (cart.length === 0) return null;
+    if (cart.length === 0) return { success: false, message: 'Your cart is empty.' };
+
+    // Final Stock Validation
+    for (const item of cart) {
+      const prod = products.find((p) => String(p.id) === String(item.productId));
+      if (!prod) {
+        return { success: false, message: `Product #${item.productId} no longer exists.` };
+      }
+      if (prod.stock < item.quantity) {
+        return {
+          success: false,
+          message: `Insufficient stock for "${prod.name}". Available: ${prod.stock}, requested: ${item.quantity}.`,
+        };
+      }
+    }
 
     const orderItems = cart
       .map((item) => {
@@ -337,10 +416,10 @@ export function StoreProvider({ children }) {
       })
     );
 
-    // Save order & clear cart
+    // Save order & clear user's cart
     setOrders((prev) => [newOrder, ...prev]);
     clearCart();
-    return newOrder;
+    return { success: true, order: newOrder };
   };
 
   const updateOrderStatus = (orderId, newStatus) => {

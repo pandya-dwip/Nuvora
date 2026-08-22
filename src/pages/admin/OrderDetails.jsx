@@ -44,7 +44,7 @@ export default function AdminOrderDetails() {
             </span>
           </div>
           <p className="text-body-md text-on-surface-variant text-xs mt-1">
-            Placed on {order.date} by {order.customerName} ({order.customerEmail})
+            Placed on {order.date} by {order.customerName || 'Customer'} ({order.customerEmail || 'N/A'})
           </p>
         </div>
         <Link
@@ -114,11 +114,11 @@ export default function AdminOrderDetails() {
         {/* Line Items Card */}
         <div className="lg:col-span-2 bg-surface rounded border border-outline-variant shadow-xs p-stack-md space-y-4">
           <h3 className="text-headline-md font-headline-md font-bold text-on-background border-b border-outline-variant pb-3">
-            Purchased Line Items ({order.items.length})
+            Purchased Line Items ({(order.items || []).length})
           </h3>
 
           <div className="divide-y divide-outline-variant/60">
-            {order.items.map((item, idx) => (
+            {(order.items || []).map((item, idx) => (
               <div key={idx} className="py-3.5 flex items-center justify-between text-sm">
                 <div className="flex items-center gap-3.5">
                   <img
@@ -169,8 +169,8 @@ export default function AdminOrderDetails() {
             <span className="font-label-sm text-[11px] font-bold uppercase tracking-wider text-on-surface-variant block mb-1">
               Customer Name
             </span>
-            <p className="font-bold text-on-background">{order.customerName}</p>
-            <p className="text-on-surface-variant text-xs mt-0.5">{order.customerEmail}</p>
+            <p className="font-bold text-on-background">{order.customerName || 'Customer'}</p>
+            <p className="text-on-surface-variant text-xs mt-0.5">{order.customerEmail || 'N/A'}</p>
           </div>
           <div>
             <span className="font-label-sm text-[11px] font-bold uppercase tracking-wider text-on-surface-variant block mb-1">
