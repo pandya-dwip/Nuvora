@@ -26,7 +26,7 @@ export default function AdminDashboard() {
             Store Performance Overview
           </span>
           <h2 className="text-headline-md font-headline-md font-bold">
-            LUXE Executive Dashboard
+            Nuvora Executive Dashboard
           </h2>
           <p className="text-[#97bdb1] text-body-md text-sm mt-1">
             Real-time catalog analytics, order fulfillment status, and customer metrics.

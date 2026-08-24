@@ -4,8 +4,8 @@ import { useStore } from '../../context/StoreContext';
 export default function AdminSettings() {
   const { settings, setSettings } = useStore();
   const [formData, setFormData] = useState({
-    storeName: settings?.storeName || 'LUXE Marketplace',
-    supportEmail: settings?.supportEmail || 'support@luxe.com',
+    storeName: settings?.storeName || 'Nuvora Marketplace',
+    supportEmail: settings?.supportEmail || 'support@nuvora.com',
     currency: settings?.currency || '$',
     taxRate: settings?.taxRate ?? '8',
     freeShippingThreshold: settings?.freeShippingThreshold ?? '200',

@@ -19,7 +19,8 @@ export default function Cart() {
 
   const applyPromo = (e) => {
     e.preventDefault();
-    if (promoCode.trim().toUpperCase() === 'LUXE10') {
+    const code = promoCode.trim().toUpperCase();
+    if (code === 'NUVORA10' || code === 'LUXE10') {
       setDiscount(0.1); // 10% off
       setPromoMessage('10% promo discount applied!');
     } else {
@@ -160,7 +161,7 @@ export default function Cart() {
                 <input
                   type="text"
                   data-testid="cart-promo-input"
-                  placeholder="Promo Code (LUXE10)"
+                  placeholder="Promo Code (NUVORA10)"
                   value={promoCode}
                   onChange={(e) => setPromoCode(e.target.value)}
                   className="flex-1 px-3 py-2 bg-surface-container-lowest border border-outline-variant rounded text-body-md text-sm focus:outline-none focus:border-primary"

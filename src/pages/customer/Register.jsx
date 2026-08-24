@@ -49,7 +49,7 @@ export default function Register() {
         {/* Top Branding */}
         <div className="relative z-10">
           <Link to="/login" className="text-2xl font-bold tracking-widest text-white uppercase font-display">
-            LUXE
+            NUVORA
           </Link>
         </div>
 

@@ -33,7 +33,7 @@
 ## 🛠️ Technology Stack & Architecture
 
 - **Frontend Core**: React 19, Vite 8, React Router 7, JavaScript (ES6+).
-- **Styling & UI System**: Tailwind CSS v4, Geist Typography, Material Symbols Outlined, adhering strictly to the **LUXE Design System** ([`DESIGN.md`](file:///d:/Nuvora/DESIGN.md)):
+- **Styling & UI System**: Tailwind CSS v4, Geist Typography, Material Symbols Outlined, adhering strictly to the **Nuvora Design System** ([`DESIGN.md`](file:///d:/Nuvora/DESIGN.md)):
   - Deep Forest Green (`#12362e` / `#2a4d44`) CTAs and active states.
   - Warm Off-White (`#faf9f7`) background and crisp white cards (`#ffffff`).
   - Architectural 4px rounded corners (`rounded`).

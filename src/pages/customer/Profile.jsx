@@ -251,7 +251,7 @@ export default function Profile() {
           <div className="mt-6 pt-4 border-t border-outline-variant px-3 text-xs text-on-surface-variant flex flex-col gap-1">
             <p className="font-semibold text-on-surface">Member Status</p>
             <p className="flex items-center gap-1 text-primary">
-              <span className="material-symbols-outlined text-xs">verified</span> LUXE Insider
+              <span className="material-symbols-outlined text-xs">verified</span> Nuvora Insider
             </p>
           </div>
         </div>

@@ -55,7 +55,7 @@ export default function AdminLayout() {
         <div className="flex items-center justify-between px-3 py-3 mb-6 border-b border-[#2a4d44] pb-5 flex-shrink-0">
           <div className="flex items-center gap-2">
             <span className="text-xl font-bold tracking-widest text-white uppercase font-display">
-              LUXE
+              NUVORA
             </span>
           </div>
           <span className="text-[10px] bg-[#2a4d44] text-[#a9cec2] font-semibold px-2 py-0.5 rounded border border-[#a9cec2]/30 uppercase tracking-widest">

@@ -33,7 +33,7 @@ export default function Header() {
           data-testid="header-logo"
           className="text-headline-md font-headline-md font-bold tracking-tight text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
         >
-          LUXE
+          NUVORA
         </Link>
         <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-stack-md">
           <Link

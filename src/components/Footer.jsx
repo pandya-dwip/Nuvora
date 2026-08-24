@@ -8,10 +8,10 @@ export default function Footer() {
           to="/"
           className="text-headline-md font-headline-md font-bold text-primary focus:outline-none ring-2 ring-transparent focus:ring-primary focus:ring-offset-2 rounded"
         >
-          LUXE
+          Nuvora
         </Link>
         <p className="mt-stack-sm text-label-sm font-label-sm text-secondary">
-          &copy; {new Date().getFullYear()} LUXE. All rights reserved.
+          &copy; {new Date().getFullYear()} Nuvora. All rights reserved.
         </p>
       </div>
       <div className="col-span-1 md:col-span-3 flex flex-wrap gap-x-gutter gap-y-stack-sm md:justify-end">

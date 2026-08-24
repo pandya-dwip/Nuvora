@@ -41,7 +41,7 @@ export default function Login() {
         {/* Top Branding */}
         <div className="relative z-10">
           <span className="text-2xl font-bold tracking-widest text-white uppercase font-display">
-            LUXE
+            NUVORA
           </span>
         </div>
 
