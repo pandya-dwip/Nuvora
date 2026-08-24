@@ -3,11 +3,11 @@ import { HomePage } from '../pages/HomePage';
 import { Header } from '../pages/components/Header';
 import { ProductCardComponent } from '../pages/components/ProductCardComponent';
 import { testProducts } from '../test-data/products';
-import { resetAppState } from '../utils/test-helpers';
+import { loginAsCustomer } from '../utils/test-helpers';
 
 test.describe('Smoke - Home Page @smoke', () => {
   test.beforeEach(async ({ page }) => {
-    await resetAppState(page);
+    await loginAsCustomer(page);
   });
 
   test('should load home page, header, and render featured products grid', async ({ page }) => {

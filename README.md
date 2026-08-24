@@ -124,6 +124,42 @@ npm run lint
 
 ---
 
+## 🌐 Vercel Deployment
+
+Nuvora is configured for zero-config Vercel deployment with single-page app (SPA) rewrite rules included in [`vercel.json`](file:///d:/Nuvora/vercel.json).
+
+### Method A: Connect via Vercel Dashboard (Recommended)
+
+1. Push your latest code to GitHub:
+   ```bash
+   git add .
+   git commit -m "feat: add vercel configuration"
+   git push origin main
+   ```
+2. Go to [Vercel Dashboard](https://vercel.com/new) and click **"Add New..."** &rarr; **"Project"**.
+3. Import your GitHub repository: `pandya-dwip/Nuvora`.
+4. Configure Project Settings:
+   - **Framework Preset**: `Vite`
+   - **Root Directory**: `./`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+5. Click **"Deploy"**. Vercel will automatically build and assign your production URL (e.g., `https://nuvora.vercel.app`).
+
+### Method B: Deploy via Vercel CLI
+
+```bash
+# Install Vercel CLI globally
+npm i -g vercel
+
+# Deploy to preview
+vercel
+
+# Deploy to production
+vercel --prod
+```
+
+---
+
 ## 🧪 Playwright QA Test Automation
 
 Nuvora includes a comprehensive **53-test E2E automation suite** written in TypeScript using Playwright.

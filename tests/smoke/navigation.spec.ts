@@ -3,11 +3,11 @@ import { HomePage } from '../pages/HomePage';
 import { CartPage } from '../pages/CartPage';
 import { WishlistPage } from '../pages/WishlistPage';
 import { LoginPage } from '../pages/LoginPage';
-import { resetAppState } from '../utils/test-helpers';
+import { loginAsCustomer } from '../utils/test-helpers';
 
 test.describe('Smoke - Navigation @smoke', () => {
   test.beforeEach(async ({ page }) => {
-    await resetAppState(page);
+    await loginAsCustomer(page);
   });
 
   test('should navigate between public header links', async ({ page }) => {
@@ -24,6 +24,6 @@ test.describe('Smoke - Navigation @smoke', () => {
     await expect(wishlistPage.container).toBeVisible();
 
     await loginPage.goto();
-    await expect(loginPage.container).toBeVisible();
+    await expect(homePage.heroSection).toBeVisible();
   });
 });

@@ -8,7 +8,7 @@ import { resetAppState, loginAsCustomer, logoutUser } from '../utils/test-helper
 
 test.describe('Customer Wishlist Page @customer', () => {
   test.beforeEach(async ({ page }) => {
-    await resetAppState(page);
+    await loginAsCustomer(page);
   });
 
   test('should toggle product wishlist state and display in Wishlist page', async ({ page }) => {

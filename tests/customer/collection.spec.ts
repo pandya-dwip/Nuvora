@@ -2,11 +2,11 @@ import { test, expect } from '@playwright/test';
 import { testProducts } from '../test-data/products';
 import { CollectionPage } from '../pages/CollectionPage';
 import { ProductCardComponent } from '../pages/components/ProductCardComponent';
-import { resetAppState } from '../utils/test-helpers';
+import { loginAsCustomer } from '../utils/test-helpers';
 
 test.describe('Customer Collection / Shop Page @customer', () => {
   test.beforeEach(async ({ page }) => {
-    await resetAppState(page);
+    await loginAsCustomer(page);
   });
 
   test('should display product list on shop page', async ({ page }) => {

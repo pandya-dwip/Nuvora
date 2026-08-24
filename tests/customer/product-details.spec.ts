@@ -4,11 +4,11 @@ import { ProductDetailsPage } from '../pages/ProductDetailsPage';
 import { CollectionPage } from '../pages/CollectionPage';
 import { ProductCardComponent } from '../pages/components/ProductCardComponent';
 import { Header } from '../pages/components/Header';
-import { resetAppState } from '../utils/test-helpers';
+import { loginAsCustomer } from '../utils/test-helpers';
 
 test.describe('Customer Product Details Page @customer', () => {
   test.beforeEach(async ({ page }) => {
-    await resetAppState(page);
+    await loginAsCustomer(page);
   });
 
   test('should load correct product details by product ID in URL', async ({ page }) => {

@@ -4,11 +4,11 @@ import { HomePage } from '../pages/HomePage';
 import { ProductDetailsPage } from '../pages/ProductDetailsPage';
 import { ProductCardComponent } from '../pages/components/ProductCardComponent';
 import { Header } from '../pages/components/Header';
-import { resetAppState } from '../utils/test-helpers';
+import { loginAsCustomer } from '../utils/test-helpers';
 
 test.describe('Customer Home Page @customer', () => {
   test.beforeEach(async ({ page }) => {
-    await resetAppState(page);
+    await loginAsCustomer(page);
   });
 
   test('should display categories and navigate on category card click', async ({ page }) => {
