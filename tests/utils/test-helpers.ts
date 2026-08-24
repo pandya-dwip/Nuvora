@@ -17,6 +17,7 @@ export async function resetAppState(page: Page): Promise<void> {
     localStorage.clear();
     sessionStorage.clear();
   });
+  await page.reload();
   await loginPage.goto();
   await expect(loginPage.container).toBeVisible();
 }
@@ -32,6 +33,7 @@ export async function switchUserSession(page: Page): Promise<void> {
   await page.evaluate(() => {
     localStorage.removeItem('nuvora_current_user');
   });
+  await page.reload();
   await loginPage.goto();
   await expect(loginPage.container).toBeVisible();
 }
@@ -89,6 +91,7 @@ export async function logoutUser(page: Page): Promise<void> {
   await page.evaluate(() => {
     localStorage.removeItem('nuvora_current_user');
   });
+  await page.reload();
   await loginPage.goto();
   await expect(loginPage.container).toBeVisible();
 }

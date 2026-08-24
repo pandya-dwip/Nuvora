@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard';
 import { useStore } from '../../context/StoreContext';
@@ -7,17 +7,22 @@ export default function Collection() {
   const { products, categories } = useStore();
   const [searchParams] = useSearchParams();
 
-  const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
+  const urlCategory = searchParams.get('category') || '';
+  const urlSearch = searchParams.get('search') || '';
+
+  const [searchQuery, setSearchQuery] = useState(urlSearch);
   const [selectedSort, setSelectedSort] = useState('recommended');
   const [isFilterSidebarOpen, setIsFilterSidebarOpen] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || '');
+  const [selectedCategory, setSelectedCategory] = useState(urlCategory);
   const [maxPrice, setMaxPrice] = useState(500);
   const [inStockOnly, setInStockOnly] = useState(false);
 
-  useEffect(() => {
-    setSelectedCategory(searchParams.get('category') || '');
-    setSearchQuery(searchParams.get('search') || '');
-  }, [searchParams]);
+  const [prevUrlState, setPrevUrlState] = useState({ urlCategory, urlSearch });
+  if (prevUrlState.urlCategory !== urlCategory || prevUrlState.urlSearch !== urlSearch) {
+    setPrevUrlState({ urlCategory, urlSearch });
+    setSelectedCategory(urlCategory);
+    setSearchQuery(urlSearch);
+  }
 
   const displayCategoryNames = Array.from(
     new Set([
@@ -30,7 +35,7 @@ export default function Collection() {
     .filter((item) => {
       const matchesSearch = searchQuery
         ? item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          item.category.toLowerCase().includes(searchQuery.toLowerCase())
+        item.category.toLowerCase().includes(searchQuery.toLowerCase())
         : true;
       const matchesCategory = selectedCategory
         ? item.category.toLowerCase() === selectedCategory.toLowerCase()

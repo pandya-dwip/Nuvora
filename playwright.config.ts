@@ -32,8 +32,8 @@ export default defineConfig({
 
   /* Shared test execution options */
   use: {
-    /* Configurable Base URL (defaults to Vite local server http://localhost:5173) */
-    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:5173',
+    /* Configurable Base URL (defaults to Vite local server http://localhost:5180) */
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:5180',
 
     /* Action & Navigation Timeouts */
     actionTimeout: 10000,
@@ -59,8 +59,8 @@ export default defineConfig({
 
   /* Automatically start Vite development server before running tests */
   webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:5173',
+    command: 'npm run dev -- --port 5180 --strictPort',
+    url: 'http://localhost:5180',
     reuseExistingServer: !process.env.CI,
     timeout: 60000,
   },
