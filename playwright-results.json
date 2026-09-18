@@ -3,8 +3,7 @@
     "argv": [
       "C:\\Program Files\\nodejs\\node.exe",
       "D:\\Nuvora\\node_modules\\@playwright\\test\\cli.js",
-      "test",
-      "tests/smoke/home.spec.ts"
+      "test"
     ],
     "configFile": "D:\\Nuvora\\playwright.config.ts",
     "rootDir": "D:/Nuvora/tests",
@@ -18,7 +17,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 1
+      "actualWorkers": 8
     },
     "preserveOutput": "always",
     "projects": [
@@ -27,7 +26,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 8
         },
         "id": "chromium",
         "name": "chromium",
@@ -73,6 +72,2818 @@
   },
   "suites": [
     {
+      "title": "admin\\authentication.spec.ts",
+      "file": "admin/authentication.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Admin Authentication & Authorization @admin",
+          "file": "admin/authentication.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should log in successfully as Admin and display Admin Dashboard",
+              "ok": true,
+              "tags": [
+                "admin"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4063,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:32.275Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1ebdcd38cdc33c10ed6b-ab861e7aa6b59f0a9807",
+              "file": "admin/authentication.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "should redirect non-admin customer accounts attempting to access Admin routes",
+              "ok": true,
+              "tags": [
+                "admin"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4362,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:32.165Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1ebdcd38cdc33c10ed6b-db7f99a516e1393ef7d3",
+              "file": "admin/authentication.spec.ts",
+              "line": 24,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "admin\\categories.spec.ts",
+      "file": "admin/categories.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Admin Department Categories Management CRUD @admin",
+          "file": "admin/categories.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display categories table and open create category modal",
+              "ok": true,
+              "tags": [
+                "admin"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 4353,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:32.185Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1f9aca256a11feed8f70-6f124f254508fadde628",
+              "file": "admin/categories.spec.ts",
+              "line": 11,
+              "column": 3
+            },
+            {
+              "title": "should create and delete an unassigned department category",
+              "ok": false,
+              "tags": [
+                "admin"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 8996,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('admin-categories-table').getByText('Unassigned Cat 1789726356100')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-categories-table').getByText('Unassigned Cat 1789726356100')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('admin-categories-table').getByText('Unassigned Cat 1789726356100')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-categories-table').getByText('Unassigned Cat 1789726356100')\u001b[22m\n\n    at D:\\Nuvora\\tests\\admin\\categories.spec.ts:29:79",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\admin\\categories.spec.ts",
+                          "column": 79,
+                          "line": 29
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 27 |\u001b[39m     \u001b[90m// 1. CREATE\u001b[39m\n \u001b[90m 28 |\u001b[39m     \u001b[36mawait\u001b[39m adminCategoriesPage\u001b[33m.\u001b[39mcreateCategory(categoryName)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 |\u001b[39m     \u001b[36mawait\u001b[39m expect(adminCategoriesPage\u001b[33m.\u001b[39mcategoriesTable\u001b[33m.\u001b[39mgetByText(categoryName))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                               \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 30 |\u001b[39m\n \u001b[90m 31 |\u001b[39m     \u001b[90m// 2. DELETE\u001b[39m\n \u001b[90m 32 |\u001b[39m     \u001b[36mconst\u001b[39m catRow \u001b[33m=\u001b[39m adminCategoriesPage\u001b[33m.\u001b[39mcategoriesTable\u001b[33m.\u001b[39mlocator(\u001b[32m'tr'\u001b[39m)\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m categoryName })\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\admin\\categories.spec.ts",
+                            "column": 79,
+                            "line": 29
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('admin-categories-table').getByText('Unassigned Cat 1789726356100')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-categories-table').getByText('Unassigned Cat 1789726356100')\u001b[22m\n\n\n  27 |     // 1. CREATE\n  28 |     await adminCategoriesPage.createCategory(categoryName);\n> 29 |     await expect(adminCategoriesPage.categoriesTable.getByText(categoryName)).toBeVisible();\n     |                                                                               ^\n  30 |\n  31 |     // 2. DELETE\n  32 |     const catRow = adminCategoriesPage.categoriesTable.locator('tr').filter({ hasText: categoryName });\n    at D:\\Nuvora\\tests\\admin\\categories.spec.ts:29:79"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:32.200Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\admin-categories-Admin-Dep-a400e-ssigned-department-category-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\admin-categories-Admin-Dep-a400e-ssigned-department-category-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\admin-categories-Admin-Dep-a400e-ssigned-department-category-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\admin\\categories.spec.ts",
+                        "column": 79,
+                        "line": 29
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "1f9aca256a11feed8f70-c0ae30fce92c68166e31",
+              "file": "admin/categories.spec.ts",
+              "line": 21,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "admin\\dashboard.spec.ts",
+      "file": "admin/dashboard.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Admin Dashboard Metrics @admin",
+          "file": "admin/dashboard.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display dynamic KPI cards and recent orders table",
+              "ok": true,
+              "tags": [
+                "admin"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 4428,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:32.249Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5e497f1b476ae4801891-8d823101a8f9989d3b75",
+              "file": "admin/dashboard.spec.ts",
+              "line": 11,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "admin\\inventory.spec.ts",
+      "file": "admin/inventory.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Admin Inventory Control @admin",
+          "file": "admin/inventory.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display stock inventory table and adjust stock levels",
+              "ok": false,
+              "tags": [
+                "admin"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
+                      "status": "failed",
+                      "duration": 8657,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('admin-inventory-stock-input-1')\nExpected: \u001b[32m\"2\u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"2\u001b[7m4\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-inventory-stock-input-1')\u001b[22m\n\u001b[2m    14 × locator resolved to <input min=\"0\" value=\"24\" type=\"number\" data-testid=\"admin-inventory-stock-input-1\" class=\"w-16 py-1 bg-surface border border-outline-variant rounded text-center font-bold text-on-background focus:outline-none focus:ring-1 focus:ring-primary\"/>\u001b[22m\n\u001b[2m       - unexpected value \"24\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('admin-inventory-stock-input-1')\nExpected: \u001b[32m\"2\u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"2\u001b[7m4\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-inventory-stock-input-1')\u001b[22m\n\u001b[2m    14 × locator resolved to <input min=\"0\" value=\"24\" type=\"number\" data-testid=\"admin-inventory-stock-input-1\" class=\"w-16 py-1 bg-surface border border-outline-variant rounded text-center font-bold text-on-background focus:outline-none focus:ring-1 focus:ring-primary\"/>\u001b[22m\n\u001b[2m       - unexpected value \"24\"\u001b[22m\n\n    at D:\\Nuvora\\tests\\admin\\inventory.spec.ts:23:30",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\admin\\inventory.spec.ts",
+                          "column": 30,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m\n \u001b[90m 22 |\u001b[39m     \u001b[36mawait\u001b[39m adminInventoryPage\u001b[33m.\u001b[39mincreaseStock(testProducts\u001b[33m.\u001b[39mheadphones\u001b[33m.\u001b[39mid)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(stockInput)\u001b[33m.\u001b[39mtoHaveValue(\u001b[33mString\u001b[39m(\u001b[33mNumber\u001b[39m(initialVal) \u001b[33m+\u001b[39m \u001b[35m1\u001b[39m))\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\admin\\inventory.spec.ts",
+                            "column": 30,
+                            "line": 23
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('admin-inventory-stock-input-1')\nExpected: \u001b[32m\"2\u001b[7m5\u001b[27m\"\u001b[39m\nReceived: \u001b[31m\"2\u001b[7m4\u001b[27m\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-inventory-stock-input-1')\u001b[22m\n\u001b[2m    14 × locator resolved to <input min=\"0\" value=\"24\" type=\"number\" data-testid=\"admin-inventory-stock-input-1\" class=\"w-16 py-1 bg-surface border border-outline-variant rounded text-center font-bold text-on-background focus:outline-none focus:ring-1 focus:ring-primary\"/>\u001b[22m\n\u001b[2m       - unexpected value \"24\"\u001b[22m\n\n\n  21 |\n  22 |     await adminInventoryPage.increaseStock(testProducts.headphones.id);\n> 23 |     await expect(stockInput).toHaveValue(String(Number(initialVal) + 1));\n     |                              ^\n  24 |   });\n  25 | });\n  26 |\n    at D:\\Nuvora\\tests\\admin\\inventory.spec.ts:23:30"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:32.200Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\admin-inventory-Admin-Inve-130c7-ble-and-adjust-stock-levels-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\admin-inventory-Admin-Inve-130c7-ble-and-adjust-stock-levels-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\admin-inventory-Admin-Inve-130c7-ble-and-adjust-stock-levels-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\admin\\inventory.spec.ts",
+                        "column": 30,
+                        "line": 23
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d70c6fd3979468c5b972-b33ae569c4f807f9733d",
+              "file": "admin/inventory.spec.ts",
+              "line": 12,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "admin\\orders.spec.ts",
+      "file": "admin/orders.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Admin Orders Directory & Status Management @admin",
+          "file": "admin/orders.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display admin orders table and view dynamically created order details",
+              "ok": true,
+              "tags": [
+                "admin"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 5355,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:32.266Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9216327811c2a1ea79fc-d8080c557954f52128a1",
+              "file": "admin/orders.spec.ts",
+              "line": 16,
+              "column": 3
+            },
+            {
+              "title": "should update order fulfillment status from Placed to Shipped",
+              "ok": false,
+              "tags": [
+                "admin"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 7,
+                      "status": "failed",
+                      "duration": 10583,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('admin-order-details-status-select')\nExpected: \u001b[32m\"\u001b[7mShipp\u001b[27med\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mPlac\u001b[27med\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-order-details-status-select')\u001b[22m\n\u001b[2m    13 × locator resolved to <select data-testid=\"admin-order-details-status-select\" class=\"bg-surface-container-lowest border border-outline-variant rounded px-4 py-2 text-xs font-bold uppercase tracking-wider focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer\">…</select>\u001b[22m\n\u001b[2m       - unexpected value \"Placed\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('admin-order-details-status-select')\nExpected: \u001b[32m\"\u001b[7mShipp\u001b[27med\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mPlac\u001b[27med\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-order-details-status-select')\u001b[22m\n\u001b[2m    13 × locator resolved to <select data-testid=\"admin-order-details-status-select\" class=\"bg-surface-container-lowest border border-outline-variant rounded px-4 py-2 text-xs font-bold uppercase tracking-wider focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer\">…</select>\u001b[22m\n\u001b[2m       - unexpected value \"Placed\"\u001b[22m\n\n    at D:\\Nuvora\\tests\\admin\\orders.spec.ts:66:54",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\admin\\orders.spec.ts",
+                          "column": 54,
+                          "line": 66
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 64 |\u001b[39m     \u001b[36mawait\u001b[39m adminOrderDetailsPage\u001b[33m.\u001b[39mselectStatus(\u001b[32m'Shipped'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 65 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mreload()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 66 |\u001b[39m     \u001b[36mawait\u001b[39m expect(adminOrderDetailsPage\u001b[33m.\u001b[39mstatusSelect)\u001b[33m.\u001b[39mtoHaveValue(\u001b[32m'Shipped'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 67 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 68 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 69 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\admin\\orders.spec.ts",
+                            "column": 54,
+                            "line": 66
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('admin-order-details-status-select')\nExpected: \u001b[32m\"\u001b[7mShipp\u001b[27med\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mPlac\u001b[27med\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-order-details-status-select')\u001b[22m\n\u001b[2m    13 × locator resolved to <select data-testid=\"admin-order-details-status-select\" class=\"bg-surface-container-lowest border border-outline-variant rounded px-4 py-2 text-xs font-bold uppercase tracking-wider focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer\">…</select>\u001b[22m\n\u001b[2m       - unexpected value \"Placed\"\u001b[22m\n\n\n  64 |     await adminOrderDetailsPage.selectStatus('Shipped');\n  65 |     await page.reload();\n> 66 |     await expect(adminOrderDetailsPage.statusSelect).toHaveValue('Shipped');\n     |                                                      ^\n  67 |   });\n  68 | });\n  69 |\n    at D:\\Nuvora\\tests\\admin\\orders.spec.ts:66:54"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:32.251Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\admin-orders-Admin-Orders--b21bb-atus-from-Placed-to-Shipped-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\admin-orders-Admin-Orders--b21bb-atus-from-Placed-to-Shipped-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\admin-orders-Admin-Orders--b21bb-atus-from-Placed-to-Shipped-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\admin\\orders.spec.ts",
+                        "column": 54,
+                        "line": 66
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "9216327811c2a1ea79fc-ab82b70133ffba974250",
+              "file": "admin/orders.spec.ts",
+              "line": 43,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "admin\\products.spec.ts",
+      "file": "admin/products.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Admin Product Catalog CRUD Management @admin",
+          "file": "admin/products.spec.ts",
+          "line": 7,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display product list and filter by search query",
+              "ok": true,
+              "tags": [
+                "admin"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2151,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:36.891Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "77a6ad769f47839be9eb-03584f26a0ae5876bb6f",
+              "file": "admin/products.spec.ts",
+              "line": 13,
+              "column": 3
+            },
+            {
+              "title": "should complete full Product CRUD lifecycle (Create, Edit, Delete)",
+              "ok": false,
+              "tags": [
+                "admin"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 8284,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('CRUD Test Item 1789726358626')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('CRUD Test Item 1789726358626')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('CRUD Test Item 1789726358626')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('CRUD Test Item 1789726358626')\u001b[22m\n\n    at D:\\Nuvora\\tests\\admin\\products.spec.ts:44:48",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\admin\\products.spec.ts",
+                          "column": 48,
+                          "line": 44
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 42 |\u001b[39m\n \u001b[90m 43 |\u001b[39m     \u001b[36mawait\u001b[39m expect(adminProductsPage\u001b[33m.\u001b[39mcontainer)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 44 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(newProd\u001b[33m.\u001b[39mname))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 45 |\u001b[39m\n \u001b[90m 46 |\u001b[39m     \u001b[90m// 2. EDIT\u001b[39m\n \u001b[90m 47 |\u001b[39m     \u001b[36mawait\u001b[39m adminProductsPage\u001b[33m.\u001b[39msearchProduct(newProd\u001b[33m.\u001b[39mname)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\admin\\products.spec.ts",
+                            "column": 48,
+                            "line": 44
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('CRUD Test Item 1789726358626')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('CRUD Test Item 1789726358626')\u001b[22m\n\n\n  42 |\n  43 |     await expect(adminProductsPage.container).toBeVisible();\n> 44 |     await expect(page.getByText(newProd.name)).toBeVisible();\n     |                                                ^\n  45 |\n  46 |     // 2. EDIT\n  47 |     await adminProductsPage.searchProduct(newProd.name);\n    at D:\\Nuvora\\tests\\admin\\products.spec.ts:44:48"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:36.916Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\admin-products-Admin-Produ-e7df6-fecycle-Create-Edit-Delete--chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\admin-products-Admin-Produ-e7df6-fecycle-Create-Edit-Delete--chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\admin-products-Admin-Produ-e7df6-fecycle-Create-Edit-Delete--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\admin\\products.spec.ts",
+                        "column": 48,
+                        "line": 44
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "77a6ad769f47839be9eb-ef19ea5b8dd001095d37",
+              "file": "admin/products.spec.ts",
+              "line": 24,
+              "column": 3
+            },
+            {
+              "title": "should toggle product catalog status between Active and Inactive",
+              "ok": false,
+              "tags": [
+                "admin"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 8016,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('admin-product-status-toggle-1')\nExpected: \u001b[32m\"\u001b[7mIna\u001b[27mctive\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mA\u001b[27mctive\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-product-status-toggle-1')\u001b[22m\n\u001b[2m    14 × locator resolved to <button data-testid=\"admin-product-status-toggle-1\" class=\"px-3 py-1 rounded text-xs font-bold uppercase tracking-wider cursor-pointer transition-colors bg-primary/10 text-primary\">Active</button>\u001b[22m\n\u001b[2m       - unexpected value \"Active\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('admin-product-status-toggle-1')\nExpected: \u001b[32m\"\u001b[7mIna\u001b[27mctive\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mA\u001b[27mctive\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-product-status-toggle-1')\u001b[22m\n\u001b[2m    14 × locator resolved to <button data-testid=\"admin-product-status-toggle-1\" class=\"px-3 py-1 rounded text-xs font-bold uppercase tracking-wider cursor-pointer transition-colors bg-primary/10 text-primary\">Active</button>\u001b[22m\n\u001b[2m       - unexpected value \"Active\"\u001b[22m\n\n    at D:\\Nuvora\\tests\\admin\\products.spec.ts:75:29",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\admin\\products.spec.ts",
+                          "column": 29,
+                          "line": 75
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 73 |\u001b[39m\n \u001b[90m 74 |\u001b[39m     \u001b[36mawait\u001b[39m toggleBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 75 |\u001b[39m     \u001b[36mawait\u001b[39m expect(toggleBtn)\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'Inactive'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 76 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 77 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 78 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\admin\\products.spec.ts",
+                            "column": 29,
+                            "line": 75
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('admin-product-status-toggle-1')\nExpected: \u001b[32m\"\u001b[7mIna\u001b[27mctive\"\u001b[39m\nReceived: \u001b[31m\"\u001b[7mA\u001b[27mctive\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-product-status-toggle-1')\u001b[22m\n\u001b[2m    14 × locator resolved to <button data-testid=\"admin-product-status-toggle-1\" class=\"px-3 py-1 rounded text-xs font-bold uppercase tracking-wider cursor-pointer transition-colors bg-primary/10 text-primary\">Active</button>\u001b[22m\n\u001b[2m       - unexpected value \"Active\"\u001b[22m\n\n\n  73 |\n  74 |     await toggleBtn.click();\n> 75 |     await expect(toggleBtn).toHaveText('Inactive');\n     |                             ^\n  76 |   });\n  77 | });\n  78 |\n    at D:\\Nuvora\\tests\\admin\\products.spec.ts:75:29"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:37.000Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\admin-products-Admin-Produ-06556-between-Active-and-Inactive-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\admin-products-Admin-Produ-06556-between-Active-and-Inactive-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\admin-products-Admin-Produ-06556-between-Active-and-Inactive-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\admin\\products.spec.ts",
+                        "column": 29,
+                        "line": 75
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "77a6ad769f47839be9eb-eae8909e2bfefd6e76cd",
+              "file": "admin/products.spec.ts",
+              "line": 67,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "admin\\users.spec.ts",
+      "file": "admin/users.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Admin User Account Management CRUD @admin",
+          "file": "admin/users.spec.ts",
+          "line": 7,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should list registered users and toggle account status",
+              "ok": false,
+              "tags": [
+                "admin"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 7726,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('admin-user-status-toggle-1')\nExpected substring: \u001b[32m\"Disabled\"\u001b[39m\nReceived string:    \u001b[31m\"Active\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-user-status-toggle-1')\u001b[22m\n\u001b[2m    14 × locator resolved to <button data-testid=\"admin-user-status-toggle-1\" class=\"px-3 py-1 rounded text-xs font-bold uppercase tracking-wider transition-colors bg-primary/10 text-primary hover:bg-primary/20 cursor-pointer\">Active</button>\u001b[22m\n\u001b[2m       - unexpected value \"Active\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('admin-user-status-toggle-1')\nExpected substring: \u001b[32m\"Disabled\"\u001b[39m\nReceived string:    \u001b[31m\"Active\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-user-status-toggle-1')\u001b[22m\n\u001b[2m    14 × locator resolved to <button data-testid=\"admin-user-status-toggle-1\" class=\"px-3 py-1 rounded text-xs font-bold uppercase tracking-wider transition-colors bg-primary/10 text-primary hover:bg-primary/20 cursor-pointer\">Active</button>\u001b[22m\n\u001b[2m       - unexpected value \"Active\"\u001b[22m\n\n    at D:\\Nuvora\\tests\\admin\\users.spec.ts:25:29",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\admin\\users.spec.ts",
+                          "column": 29,
+                          "line": 25
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(toggleBtn)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m toggleBtn\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(toggleBtn)\u001b[33m.\u001b[39mtoContainText(\u001b[32m'Disabled'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 26 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 27 |\u001b[39m\n \u001b[90m 28 |\u001b[39m   test(\u001b[32m'should delete user from admin user directory'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\admin\\users.spec.ts",
+                            "column": 29,
+                            "line": 25
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('admin-user-status-toggle-1')\nExpected substring: \u001b[32m\"Disabled\"\u001b[39m\nReceived string:    \u001b[31m\"Active\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('admin-user-status-toggle-1')\u001b[22m\n\u001b[2m    14 × locator resolved to <button data-testid=\"admin-user-status-toggle-1\" class=\"px-3 py-1 rounded text-xs font-bold uppercase tracking-wider transition-colors bg-primary/10 text-primary hover:bg-primary/20 cursor-pointer\">Active</button>\u001b[22m\n\u001b[2m       - unexpected value \"Active\"\u001b[22m\n\n\n  23 |     await expect(toggleBtn).toBeVisible();\n  24 |     await toggleBtn.click();\n> 25 |     await expect(toggleBtn).toContainText('Disabled');\n     |                             ^\n  26 |   });\n  27 |\n  28 |   test('should delete user from admin user directory', async ({ page }) => {\n    at D:\\Nuvora\\tests\\admin\\users.spec.ts:25:29"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:37.213Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\admin-users-Admin-User-Acc-8b888-s-and-toggle-account-status-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\admin-users-Admin-User-Acc-8b888-s-and-toggle-account-status-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\admin-users-Admin-User-Acc-8b888-s-and-toggle-account-status-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\admin\\users.spec.ts",
+                        "column": 29,
+                        "line": 25
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a1b3712b214f85e87482-c112ceb480e8d7d0ca3d",
+              "file": "admin/users.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should delete user from admin user directory",
+              "ok": false,
+              "tags": [
+                "admin"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 6,
+                      "status": "failed",
+                      "duration": 7890,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByText('tempdelete_1789726359314@example.com')\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('tempdelete_1789726359314@example.com')\u001b[22m\n\u001b[2m    14 × locator resolved to <p class=\"text-xs text-on-surface-variant\" data-testid=\"admin-user-email-1789726359634\">tempdelete_1789726359314@example.com</p>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByText('tempdelete_1789726359314@example.com')\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('tempdelete_1789726359314@example.com')\u001b[22m\n\u001b[2m    14 × locator resolved to <p class=\"text-xs text-on-surface-variant\" data-testid=\"admin-user-email-1789726359634\">tempdelete_1789726359314@example.com</p>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n    at D:\\Nuvora\\tests\\admin\\users.spec.ts:51:54",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\admin\\users.spec.ts",
+                          "column": 54,
+                          "line": 51
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m userRow\u001b[33m.\u001b[39mgetByTitle(\u001b[32m'Delete User'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n \u001b[90m 50 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 51 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByText(tempUser\u001b[33m.\u001b[39memail))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 52 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 53 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 54 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\admin\\users.spec.ts",
+                            "column": 54,
+                            "line": 51
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByText('tempdelete_1789726359314@example.com')\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('tempdelete_1789726359314@example.com')\u001b[22m\n\u001b[2m    14 × locator resolved to <p class=\"text-xs text-on-surface-variant\" data-testid=\"admin-user-email-1789726359634\">tempdelete_1789726359314@example.com</p>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n\n  49 |     await userRow.getByTitle('Delete User').click();\n  50 |\n> 51 |     await expect(page.getByText(tempUser.email)).not.toBeVisible();\n     |                                                      ^\n  52 |   });\n  53 | });\n  54 |\n    at D:\\Nuvora\\tests\\admin\\users.spec.ts:51:54"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:38.093Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\admin-users-Admin-User-Acc-835cb-r-from-admin-user-directory-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\admin-users-Admin-User-Acc-835cb-r-from-admin-user-directory-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\admin-users-Admin-User-Acc-835cb-r-from-admin-user-directory-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\admin\\users.spec.ts",
+                        "column": 54,
+                        "line": 51
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a1b3712b214f85e87482-5623f0386ee7fcf0061d",
+              "file": "admin/users.spec.ts",
+              "line": 28,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "customer\\authentication.spec.ts",
+      "file": "customer/authentication.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Customer Authentication @customer",
+          "file": "customer/authentication.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should register a new customer account successfully",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1261,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:39.090Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0f44d1a7598afbb0d9cd-c57edc504c075eb1b9e7",
+              "file": "customer/authentication.spec.ts",
+              "line": 13,
+              "column": 3
+            },
+            {
+              "title": "should show error when registering with an existing email",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 785,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:40.364Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0f44d1a7598afbb0d9cd-0b52eb13f362c15baade",
+              "file": "customer/authentication.spec.ts",
+              "line": 24,
+              "column": 3
+            },
+            {
+              "title": "should show error when passwords do not match during registration",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 909,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:41.158Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0f44d1a7598afbb0d9cd-1d069440bc385cba5c96",
+              "file": "customer/authentication.spec.ts",
+              "line": 33,
+              "column": 3
+            },
+            {
+              "title": "should log in successfully with valid customer credentials",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 1462,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:41.870Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0f44d1a7598afbb0d9cd-1b2b9fc5d0065aa100a4",
+              "file": "customer/authentication.spec.ts",
+              "line": 42,
+              "column": 3
+            },
+            {
+              "title": "should reject login with invalid password",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1363,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:42.151Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0f44d1a7598afbb0d9cd-d84c51b135dc5eafe94a",
+              "file": "customer/authentication.spec.ts",
+              "line": 52,
+              "column": 3
+            },
+            {
+              "title": "should log out customer and clear active session UI",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1676,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:42.077Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "0f44d1a7598afbb0d9cd-eb7363caa465a9b7a0c9",
+              "file": "customer/authentication.spec.ts",
+              "line": 61,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "customer\\cart.spec.ts",
+      "file": "customer/cart.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Customer Cart Management @customer",
+          "file": "customer/cart.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should add items to cart and calculate correct subtotal",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 7,
+                      "status": "passed",
+                      "duration": 2513,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:44.229Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "acfa5c0ee11dceafdc48-06074487673f710a1d20",
+              "file": "customer/cart.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "should update item quantity and recalculate cart totals",
+              "ok": false,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 5,
+                      "status": "failed",
+                      "duration": 7670,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cart-item-1-quantity')\nExpected: \u001b[32m\"2\"\u001b[39m\nReceived: \u001b[31m\"1\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cart-item-1-quantity')\u001b[22m\n\u001b[2m    13 × locator resolved to <span data-testid=\"cart-item-1-quantity\" class=\"flex-1 text-center font-body-md text-sm\">1</span>\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cart-item-1-quantity')\nExpected: \u001b[32m\"2\"\u001b[39m\nReceived: \u001b[31m\"1\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cart-item-1-quantity')\u001b[22m\n\u001b[2m    13 × locator resolved to <span data-testid=\"cart-item-1-quantity\" class=\"flex-1 text-center font-body-md text-sm\">1</span>\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n    at D:\\Nuvora\\tests\\customer\\cart.spec.ts:36:72",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\customer\\cart.spec.ts",
+                          "column": 72,
+                          "line": 36
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m cartPage\u001b[33m.\u001b[39mgoto()\u001b[33m;\u001b[39m\n \u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m cartPage\u001b[33m.\u001b[39mincreaseQuantity(testProducts\u001b[33m.\u001b[39mheadphones\u001b[33m.\u001b[39mid)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 36 |\u001b[39m     \u001b[36mawait\u001b[39m expect(cartPage\u001b[33m.\u001b[39mgetItemQuantity(testProducts\u001b[33m.\u001b[39mheadphones\u001b[33m.\u001b[39mid))\u001b[33m.\u001b[39mtoHaveText(\u001b[32m'2'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m expect(cartPage\u001b[33m.\u001b[39msubtotal)\u001b[33m.\u001b[39mtoContainText(\u001b[32m'$258.00'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 38 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\customer\\cart.spec.ts",
+                            "column": 72,
+                            "line": 36
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('cart-item-1-quantity')\nExpected: \u001b[32m\"2\"\u001b[39m\nReceived: \u001b[31m\"1\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cart-item-1-quantity')\u001b[22m\n\u001b[2m    13 × locator resolved to <span data-testid=\"cart-item-1-quantity\" class=\"flex-1 text-center font-body-md text-sm\">1</span>\u001b[22m\n\u001b[2m       - unexpected value \"1\"\u001b[22m\n\n\n  34 |     await cartPage.goto();\n  35 |     await cartPage.increaseQuantity(testProducts.headphones.id);\n> 36 |     await expect(cartPage.getItemQuantity(testProducts.headphones.id)).toHaveText('2');\n     |                                                                        ^\n  37 |     await expect(cartPage.subtotal).toContainText('$258.00');\n  38 |   });\n  39 |\n    at D:\\Nuvora\\tests\\customer\\cart.spec.ts:36:72"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:43.612Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\customer-cart-Customer-Car-566fd-and-recalculate-cart-totals-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\customer-cart-Customer-Car-566fd-and-recalculate-cart-totals-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\customer-cart-Customer-Car-566fd-and-recalculate-cart-totals-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\customer\\cart.spec.ts",
+                        "column": 72,
+                        "line": 36
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "acfa5c0ee11dceafdc48-d053ae1975856b4c3fe0",
+              "file": "customer/cart.spec.ts",
+              "line": 27,
+              "column": 3
+            },
+            {
+              "title": "should remove item from cart",
+              "ok": false,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 7985,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('cart-empty-state')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cart-empty-state')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('cart-empty-state')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cart-empty-state')\u001b[22m\n\n    at D:\\Nuvora\\tests\\customer\\cart.spec.ts:49:39",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\customer\\cart.spec.ts",
+                          "column": 39,
+                          "line": 49
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 47 |\u001b[39m     \u001b[36mawait\u001b[39m cartPage\u001b[33m.\u001b[39mgoto()\u001b[33m;\u001b[39m\n \u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m cartPage\u001b[33m.\u001b[39mremoveItem(testProducts\u001b[33m.\u001b[39mheadphones\u001b[33m.\u001b[39mid)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(cartPage\u001b[33m.\u001b[39memptyState)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 50 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 51 |\u001b[39m\n \u001b[90m 52 |\u001b[39m   test(\u001b[32m'should isolate cart items per logged-in user account'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\customer\\cart.spec.ts",
+                            "column": 39,
+                            "line": 49
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('cart-empty-state')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('cart-empty-state')\u001b[22m\n\n\n  47 |     await cartPage.goto();\n  48 |     await cartPage.removeItem(testProducts.headphones.id);\n> 49 |     await expect(cartPage.emptyState).toBeVisible();\n     |                                       ^\n  50 |   });\n  51 |\n  52 |   test('should isolate cart items per logged-in user account', async ({ page }) => {\n    at D:\\Nuvora\\tests\\customer\\cart.spec.ts:49:39"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:43.779Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\customer-cart-Customer-Car-0e4d3-hould-remove-item-from-cart-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\customer-cart-Customer-Car-0e4d3-hould-remove-item-from-cart-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\customer-cart-Customer-Car-0e4d3-hould-remove-item-from-cart-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\customer\\cart.spec.ts",
+                        "column": 39,
+                        "line": 49
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "acfa5c0ee11dceafdc48-58ac48fdfb324656914f",
+              "file": "customer/cart.spec.ts",
+              "line": 40,
+              "column": 3
+            },
+            {
+              "title": "should isolate cart items per logged-in user account",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 3160,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:43.952Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "acfa5c0ee11dceafdc48-757b2e56591736a8a49a",
+              "file": "customer/cart.spec.ts",
+              "line": 52,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "customer\\checkout.spec.ts",
+      "file": "customer/checkout.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Customer Checkout & Order Placement @customer",
+          "file": "customer/checkout.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should pre-fill customer checkout form and place order successfully",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 3918,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:46.465Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7844ae813184942695cd-9eca42e8d43e5f3fe2b5",
+              "file": "customer/checkout.spec.ts",
+              "line": 13,
+              "column": 3
+            },
+            {
+              "title": "should display empty cart state when accessing checkout without items",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2549,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:46.495Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "7844ae813184942695cd-c5d1220d9b2cc97aa168",
+              "file": "customer/checkout.spec.ts",
+              "line": 30,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "customer\\collection.spec.ts",
+      "file": "customer/collection.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Customer Collection / Shop Page @customer",
+          "file": "customer/collection.spec.ts",
+          "line": 7,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display product list on shop page",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3079,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:46.572Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c1d227b5f8c083d7c0c6-3a77c76f1525ebd06541",
+              "file": "customer/collection.spec.ts",
+              "line": 12,
+              "column": 3
+            },
+            {
+              "title": "should filter products by search query",
+              "ok": false,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 6,
+                      "status": "failed",
+                      "duration": 8086,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('product-card-2')\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-card-2')\u001b[22m\n\u001b[2m    14 × locator resolved to <div data-testid=\"product-card-2\" class=\"group flex flex-col bg-surface-container-lowest border border-outline-variant rounded overflow-hidden hover:shadow-lg transition-shadow duration-300 relative\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('product-card-2')\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-card-2')\u001b[22m\n\u001b[2m    14 × locator resolved to <div data-testid=\"product-card-2\" class=\"group flex flex-col bg-surface-container-lowest border border-outline-variant rounded overflow-hidden hover:shadow-lg transition-shadow duration-300 relative\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n    at D:\\Nuvora\\tests\\customer\\collection.spec.ts:29:69",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\customer\\collection.spec.ts",
+                          "column": 69,
+                          "line": 29
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 27 |\u001b[39m\n \u001b[90m 28 |\u001b[39m     \u001b[36mawait\u001b[39m expect(productCard\u001b[33m.\u001b[39mgetCard(testProducts\u001b[33m.\u001b[39mheadphones\u001b[33m.\u001b[39mid))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 |\u001b[39m     \u001b[36mawait\u001b[39m expect(productCard\u001b[33m.\u001b[39mgetCard(testProducts\u001b[33m.\u001b[39mkeyboard\u001b[33m.\u001b[39mid))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 30 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 31 |\u001b[39m\n \u001b[90m 32 |\u001b[39m   test(\u001b[32m'should show no results message when search match is empty'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\customer\\collection.spec.ts",
+                            "column": 69,
+                            "line": 29
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('product-card-2')\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-card-2')\u001b[22m\n\u001b[2m    14 × locator resolved to <div data-testid=\"product-card-2\" class=\"group flex flex-col bg-surface-container-lowest border border-outline-variant rounded overflow-hidden hover:shadow-lg transition-shadow duration-300 relative\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n\n  27 |\n  28 |     await expect(productCard.getCard(testProducts.headphones.id)).toBeVisible();\n> 29 |     await expect(productCard.getCard(testProducts.keyboard.id)).not.toBeVisible();\n     |                                                                     ^\n  30 |   });\n  31 |\n  32 |   test('should show no results message when search match is empty', async ({ page }) => {\n    at D:\\Nuvora\\tests\\customer\\collection.spec.ts:29:69"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:47.468Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\customer-collection-Custom-8b32d-er-products-by-search-query-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\customer-collection-Custom-8b32d-er-products-by-search-query-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\customer-collection-Custom-8b32d-er-products-by-search-query-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\customer\\collection.spec.ts",
+                        "column": 69,
+                        "line": 29
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c1d227b5f8c083d7c0c6-95ed43bb1465ac0c4a86",
+              "file": "customer/collection.spec.ts",
+              "line": 21,
+              "column": 3
+            },
+            {
+              "title": "should show no results message when search match is empty",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2182,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:47.144Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c1d227b5f8c083d7c0c6-998e9e8f5f0e67ebf96b",
+              "file": "customer/collection.spec.ts",
+              "line": 32,
+              "column": 3
+            },
+            {
+              "title": "should filter products by category checkbox selection",
+              "ok": false,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 7,
+                      "status": "failed",
+                      "duration": 7863,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('product-card-3')\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-card-3')\u001b[22m\n\u001b[2m    13 × locator resolved to <div data-testid=\"product-card-3\" class=\"group flex flex-col bg-surface-container-lowest border border-outline-variant rounded overflow-hidden hover:shadow-lg transition-shadow duration-300 relative\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('product-card-3')\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-card-3')\u001b[22m\n\u001b[2m    13 × locator resolved to <div data-testid=\"product-card-3\" class=\"group flex flex-col bg-surface-container-lowest border border-outline-variant rounded overflow-hidden hover:shadow-lg transition-shadow duration-300 relative\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n    at D:\\Nuvora\\tests\\customer\\collection.spec.ts:49:66",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\customer\\collection.spec.ts",
+                          "column": 66,
+                          "line": 49
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 47 |\u001b[39m\n \u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m expect(productCard\u001b[33m.\u001b[39mgetCard(testProducts\u001b[33m.\u001b[39mheadphones\u001b[33m.\u001b[39mid))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(productCard\u001b[33m.\u001b[39mgetCard(testProducts\u001b[33m.\u001b[39mwatch\u001b[33m.\u001b[39mid))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 50 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 51 |\u001b[39m\n \u001b[90m 52 |\u001b[39m   test(\u001b[32m'should sort products by price low to high and high to low'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\customer\\collection.spec.ts",
+                            "column": 66,
+                            "line": 49
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('product-card-3')\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-card-3')\u001b[22m\n\u001b[2m    13 × locator resolved to <div data-testid=\"product-card-3\" class=\"group flex flex-col bg-surface-container-lowest border border-outline-variant rounded overflow-hidden hover:shadow-lg transition-shadow duration-300 relative\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n\n  47 |\n  48 |     await expect(productCard.getCard(testProducts.headphones.id)).toBeVisible();\n> 49 |     await expect(productCard.getCard(testProducts.watch.id)).not.toBeVisible();\n     |                                                                  ^\n  50 |   });\n  51 |\n  52 |   test('should sort products by price low to high and high to low', async ({ page }) => {\n    at D:\\Nuvora\\tests\\customer\\collection.spec.ts:49:66"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:47.377Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\customer-collection-Custom-8a566-category-checkbox-selection-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\customer-collection-Custom-8a566-category-checkbox-selection-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\customer-collection-Custom-8a566-category-checkbox-selection-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\customer\\collection.spec.ts",
+                        "column": 66,
+                        "line": 49
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c1d227b5f8c083d7c0c6-888a7026a27c6701ee18",
+              "file": "customer/collection.spec.ts",
+              "line": 41,
+              "column": 3
+            },
+            {
+              "title": "should sort products by price low to high and high to low",
+              "ok": false,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 1938,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m89\u001b[39m\nReceived:    \u001b[31m129\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m89\u001b[39m\nReceived:    \u001b[31m129\u001b[39m\n    at D:\\Nuvora\\tests\\customer\\collection.spec.ts:62:34",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\customer\\collection.spec.ts",
+                          "column": 34,
+                          "line": 62
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 60 |\u001b[39m     expect(lowToHighPrices\u001b[33m.\u001b[39mlength)\u001b[33m.\u001b[39mtoBeGreaterThan(\u001b[35m1\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m     \u001b[36mfor\u001b[39m (\u001b[36mlet\u001b[39m i \u001b[33m=\u001b[39m \u001b[35m0\u001b[39m\u001b[33m;\u001b[39m i \u001b[33m<\u001b[39m lowToHighPrices\u001b[33m.\u001b[39mlength \u001b[33m-\u001b[39m \u001b[35m1\u001b[39m\u001b[33m;\u001b[39m i\u001b[33m++\u001b[39m) {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 62 |\u001b[39m       expect(lowToHighPrices[i])\u001b[33m.\u001b[39mtoBeLessThanOrEqual(lowToHighPrices[i \u001b[33m+\u001b[39m \u001b[35m1\u001b[39m])\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 63 |\u001b[39m     }\n \u001b[90m 64 |\u001b[39m\n \u001b[90m 65 |\u001b[39m     \u001b[90m// High to Low\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\customer\\collection.spec.ts",
+                            "column": 34,
+                            "line": 62
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m89\u001b[39m\nReceived:    \u001b[31m129\u001b[39m\n\n  60 |     expect(lowToHighPrices.length).toBeGreaterThan(1);\n  61 |     for (let i = 0; i < lowToHighPrices.length - 1; i++) {\n> 62 |       expect(lowToHighPrices[i]).toBeLessThanOrEqual(lowToHighPrices[i + 1]);\n     |                                  ^\n  63 |     }\n  64 |\n  65 |     // High to Low\n    at D:\\Nuvora\\tests\\customer\\collection.spec.ts:62:34"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:49.350Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\customer-collection-Custom-33b82-low-to-high-and-high-to-low-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\customer-collection-Custom-33b82-low-to-high-and-high-to-low-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\customer-collection-Custom-33b82-low-to-high-and-high-to-low-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\customer\\collection.spec.ts",
+                        "column": 34,
+                        "line": 62
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "c1d227b5f8c083d7c0c6-71a01ed8938c25c159fc",
+              "file": "customer/collection.spec.ts",
+              "line": 52,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "customer\\guest-authorization.spec.ts",
+      "file": "customer/guest-authorization.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Guest Route Authorization & Security @customer @security",
+          "file": "customer/guest-authorization.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should redirect unauthenticated guest accessing protected customer routes to login",
+              "ok": true,
+              "tags": [
+                "customer",
+                "security"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1880,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:49.513Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9b0a6f0b90f960ad8795-69fc4451a7baac371f58",
+              "file": "customer/guest-authorization.spec.ts",
+              "line": 11,
+              "column": 3
+            },
+            {
+              "title": "should redirect unauthenticated guest accessing protected admin routes to login",
+              "ok": true,
+              "tags": [
+                "customer",
+                "security"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2197,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:50.237Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "9b0a6f0b90f960ad8795-dc9a99f52c91b432fa23",
+              "file": "customer/guest-authorization.spec.ts",
+              "line": 22,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "customer\\home.spec.ts",
+      "file": "customer/home.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Customer Home Page @customer",
+          "file": "customer/home.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display categories and navigate on category card click",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 2009,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:50.923Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c36c9389575402afe885-86834fb98c1c3472b1ad",
+              "file": "customer/home.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "should click featured product and open Product Details page",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1934,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:51.414Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c36c9389575402afe885-709a4f6fd9d4a5c1aad6",
+              "file": "customer/home.spec.ts",
+              "line": 24,
+              "column": 3
+            },
+            {
+              "title": "should allow quick add to cart from home featured section",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 2839,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:52.672Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c36c9389575402afe885-4748c2879d8015adef8a",
+              "file": "customer/home.spec.ts",
+              "line": 36,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "customer\\orders.spec.ts",
+      "file": "customer/orders.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Customer Orders History & Details @customer",
+          "file": "customer/orders.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should place an order dynamically and display it in customer order history list",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 3545,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:52.686Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "978bbd159cb7a7d26c07-47faeced6d34328d2ca5",
+              "file": "customer/orders.spec.ts",
+              "line": 17,
+              "column": 3
+            },
+            {
+              "title": "should block customer from viewing another customer order details",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4656,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:52.971Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "978bbd159cb7a7d26c07-15f77bfb9f61d079599f",
+              "file": "customer/orders.spec.ts",
+              "line": 38,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "customer\\product-details.spec.ts",
+      "file": "customer/product-details.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Customer Product Details Page @customer",
+          "file": "customer/product-details.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should load correct product details by product ID in URL",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 1912,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:52.473Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "36d182084c202d812100-c187f7806c1fec21cc45",
+              "file": "customer/product-details.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "should increase and decrease product quantity within stock boundaries",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 2389,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:52.983Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "36d182084c202d812100-b7703bd1453564e71bcc",
+              "file": "customer/product-details.spec.ts",
+              "line": 23,
+              "column": 3
+            },
+            {
+              "title": "should add product to cart from details page",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2508,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:53.374Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "36d182084c202d812100-10a8045fc0c8d6920b87",
+              "file": "customer/product-details.spec.ts",
+              "line": 34,
+              "column": 3
+            },
+            {
+              "title": "should display Not Found state for invalid product ID",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2263,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:54.400Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "36d182084c202d812100-b692ac095258e2cc988e",
+              "file": "customer/product-details.spec.ts",
+              "line": 44,
+              "column": 3
+            },
+            {
+              "title": "REGRESSION: should open exact clicked product details from collection page matching its product identity",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 2597,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:55.388Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "36d182084c202d812100-e31a6b8f11a1228c7f16",
+              "file": "customer/product-details.spec.ts",
+              "line": 51,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "customer\\profile.spec.ts",
+      "file": "customer/profile.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Customer Profile Management @customer",
+          "file": "customer/profile.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should display current user profile details and update profile info",
+              "ok": false,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 7885,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('profile-name-input')\nExpected: \u001b[32m\"Jane \u001b[7mUpdated \u001b[27mDoe\"\u001b[39m\nReceived: \u001b[31m\"Jane Doe\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('profile-name-input')\u001b[22m\n\u001b[2m    14 × locator resolved to <input id=\"name\" type=\"text\" value=\"Jane Doe\" placeholder=\"Jane Doe\" data-testid=\"profile-name-input\" class=\"w-full pl-10 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-[#1B3B32]/20 focus:border-[#1B3B32] transition-colors\"/>\u001b[22m\n\u001b[2m       - unexpected value \"Jane Doe\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('profile-name-input')\nExpected: \u001b[32m\"Jane \u001b[7mUpdated \u001b[27mDoe\"\u001b[39m\nReceived: \u001b[31m\"Jane Doe\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('profile-name-input')\u001b[22m\n\u001b[2m    14 × locator resolved to <input id=\"name\" type=\"text\" value=\"Jane Doe\" placeholder=\"Jane Doe\" data-testid=\"profile-name-input\" class=\"w-full pl-10 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-[#1B3B32]/20 focus:border-[#1B3B32] transition-colors\"/>\u001b[22m\n\u001b[2m       - unexpected value \"Jane Doe\"\u001b[22m\n\n    at D:\\Nuvora\\tests\\customer\\profile.spec.ts:25:41",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\customer\\profile.spec.ts",
+                          "column": 41,
+                          "line": 25
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(profilePage\u001b[33m.\u001b[39msavedSuccessAlert)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mreload()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(profilePage\u001b[33m.\u001b[39mnameInput)\u001b[33m.\u001b[39mtoHaveValue(\u001b[32m'Jane Updated Doe'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 26 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 27 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 28 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\customer\\profile.spec.ts",
+                            "column": 41,
+                            "line": 25
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('profile-name-input')\nExpected: \u001b[32m\"Jane \u001b[7mUpdated \u001b[27mDoe\"\u001b[39m\nReceived: \u001b[31m\"Jane Doe\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('profile-name-input')\u001b[22m\n\u001b[2m    14 × locator resolved to <input id=\"name\" type=\"text\" value=\"Jane Doe\" placeholder=\"Jane Doe\" data-testid=\"profile-name-input\" class=\"w-full pl-10 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-[#1B3B32]/20 focus:border-[#1B3B32] transition-colors\"/>\u001b[22m\n\u001b[2m       - unexpected value \"Jane Doe\"\u001b[22m\n\n\n  23 |     await expect(profilePage.savedSuccessAlert).toBeVisible();\n  24 |     await page.reload();\n> 25 |     await expect(profilePage.nameInput).toHaveValue('Jane Updated Doe');\n     |                                         ^\n  26 |   });\n  27 | });\n  28 |\n    at D:\\Nuvora\\tests\\customer\\profile.spec.ts:25:41"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:55.914Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\customer-profile-Customer--ecf77-ils-and-update-profile-info-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\customer-profile-Customer--ecf77-ils-and-update-profile-info-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\customer-profile-Customer--ecf77-ils-and-update-profile-info-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\customer\\profile.spec.ts",
+                        "column": 41,
+                        "line": 25
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "52b8cbd6f89d2c70f9cb-8913924ad9ee1e7535a2",
+              "file": "customer/profile.spec.ts",
+              "line": 11,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "customer\\wishlist.spec.ts",
+      "file": "customer/wishlist.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Customer Wishlist Page @customer",
+          "file": "customer/wishlist.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should toggle product wishlist state and display in Wishlist page",
+              "ok": false,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 7497,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('product-card-2')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-card-2')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('product-card-2')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-card-2')\u001b[22m\n\n    at D:\\Nuvora\\tests\\customer\\wishlist.spec.ts:24:65",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\customer\\wishlist.spec.ts",
+                          "column": 65,
+                          "line": 24
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 22 |\u001b[39m     \u001b[36mawait\u001b[39m wishlistPage\u001b[33m.\u001b[39mgoto()\u001b[33m;\u001b[39m\n \u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(wishlistPage\u001b[33m.\u001b[39mcontainer)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(productCard\u001b[33m.\u001b[39mgetCard(testProducts\u001b[33m.\u001b[39mkeyboard\u001b[33m.\u001b[39mid))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m\n \u001b[90m 27 |\u001b[39m   test(\u001b[32m'should persist wishlist state across page refreshes'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\customer\\wishlist.spec.ts",
+                            "column": 65,
+                            "line": 24
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('product-card-2')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-card-2')\u001b[22m\n\n\n  22 |     await wishlistPage.goto();\n  23 |     await expect(wishlistPage.container).toBeVisible();\n> 24 |     await expect(productCard.getCard(testProducts.keyboard.id)).toBeVisible();\n     |                                                                 ^\n  25 |   });\n  26 |\n  27 |   test('should persist wishlist state across page refreshes', async ({ page }) => {\n    at D:\\Nuvora\\tests\\customer\\wishlist.spec.ts:24:65"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:56.097Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\customer-wishlist-Customer-787d2-nd-display-in-Wishlist-page-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\customer-wishlist-Customer-787d2-nd-display-in-Wishlist-page-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\customer-wishlist-Customer-787d2-nd-display-in-Wishlist-page-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\customer\\wishlist.spec.ts",
+                        "column": 65,
+                        "line": 24
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ed69b3c13235fa9bd2f8-9cd3e75e1e0adce187cf",
+              "file": "customer/wishlist.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "should persist wishlist state across page refreshes",
+              "ok": false,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 7692,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('product-card-2')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-card-2')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('product-card-2')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-card-2')\u001b[22m\n\n    at D:\\Nuvora\\tests\\customer\\wishlist.spec.ts:37:65",
+                        "location": {
+                          "file": "D:\\Nuvora\\tests\\customer\\wishlist.spec.ts",
+                          "column": 65,
+                          "line": 37
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mreload()\u001b[33m;\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mawait\u001b[39m wishlistPage\u001b[33m.\u001b[39mgoto()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m expect(productCard\u001b[33m.\u001b[39mgetCard(testProducts\u001b[33m.\u001b[39mkeyboard\u001b[33m.\u001b[39mid))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 38 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m\n \u001b[90m 40 |\u001b[39m   test(\u001b[32m'should isolate wishlist between different logged-in users'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "D:\\Nuvora\\tests\\customer\\wishlist.spec.ts",
+                            "column": 65,
+                            "line": 37
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('product-card-2')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('product-card-2')\u001b[22m\n\n\n  35 |     await page.reload();\n  36 |     await wishlistPage.goto();\n> 37 |     await expect(productCard.getCard(testProducts.keyboard.id)).toBeVisible();\n     |                                                                 ^\n  38 |   });\n  39 |\n  40 |   test('should isolate wishlist between different logged-in users', async ({ page }) => {\n    at D:\\Nuvora\\tests\\customer\\wishlist.spec.ts:37:65"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:56.705Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "D:\\Nuvora\\test-results\\customer-wishlist-Customer-4ab74-state-across-page-refreshes-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "D:\\Nuvora\\test-results\\customer-wishlist-Customer-4ab74-state-across-page-refreshes-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "D:\\Nuvora\\test-results\\customer-wishlist-Customer-4ab74-state-across-page-refreshes-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "D:\\Nuvora\\tests\\customer\\wishlist.spec.ts",
+                        "column": 65,
+                        "line": 37
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ed69b3c13235fa9bd2f8-1b003a354adb77f8b035",
+              "file": "customer/wishlist.spec.ts",
+              "line": 27,
+              "column": 3
+            },
+            {
+              "title": "should isolate wishlist between different logged-in users",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 3537,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:56.888Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ed69b3c13235fa9bd2f8-7eb89fb71a08dfd3e45f",
+              "file": "customer/wishlist.spec.ts",
+              "line": 40,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e\\customer-purchase-flow.spec.ts",
+      "file": "e2e/customer-purchase-flow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "E2E - Customer Complete Purchase Workflow @e2e",
+          "file": "e2e/customer-purchase-flow.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Customer login -> Browse product -> Add to cart -> Checkout -> Place order -> View confirmation",
+              "ok": true,
+              "tags": [
+                "e2e"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 2266,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:58.015Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1c3d4f4eddce2a4de339-62ec387c4b03fa6e3130",
+              "file": "e2e/customer-purchase-flow.spec.ts",
+              "line": 16,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e\\inventory-flow.spec.ts",
+      "file": "e2e/inventory-flow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "E2E - Cross-Role Inventory Stock Reduction @e2e",
+          "file": "e2e/inventory-flow.spec.ts",
+          "line": 10,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Customer purchases 2 units -> Stock decreases by 2 in Admin Inventory",
+              "ok": true,
+              "tags": [
+                "e2e"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3743,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:12:58.272Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "68ed74c16b96d32cc55d-8f8aca91d9ee6b02674b",
+              "file": "e2e/inventory-flow.spec.ts",
+              "line": 15,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e\\order-status-flow.spec.ts",
+      "file": "e2e/order-status-flow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "E2E - Cross-Role Order Status Synchronization @e2e",
+          "file": "e2e/order-status-flow.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Customer places order -> Admin updates status to Shipped -> Customer sees updated status",
+              "ok": true,
+              "tags": [
+                "e2e"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 7,
+                      "status": "passed",
+                      "duration": 3753,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:13:00.554Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "03d7b17e7b6f733b1e31-2afde9c4b7b1bae99a0d",
+              "file": "e2e/order-status-flow.spec.ts",
+              "line": 16,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e\\user-data-flow.spec.ts",
+      "file": "e2e/user-data-flow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "E2E - Customer Registration & Admin Directory Sync @e2e",
+          "file": "e2e/user-data-flow.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Customer registers & updates profile -> Admin Users directory displays updated customer details",
+              "ok": true,
+              "tags": [
+                "e2e"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 6,
+                      "status": "passed",
+                      "duration": 2468,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:13:00.787Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "56f39aed4d8940f2c8da-e99a6021afd8cbcce7d9",
+              "file": "e2e/user-data-flow.spec.ts",
+              "line": 13,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "smoke\\authentication.spec.ts",
+      "file": "smoke/authentication.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Smoke - Authentication @smoke",
+          "file": "smoke/authentication.spec.ts",
+          "line": 7,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should load login page, perform login, and verify post-login state",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 1556,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:13:00.334Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d95ecfe86254d387e1a5-f64fec6f7e8a73833d7c",
+              "file": "smoke/authentication.spec.ts",
+              "line": 12,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
       "title": "smoke\\home.spec.ts",
       "file": "smoke/home.spec.ts",
       "column": 0,
@@ -100,15 +2911,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 0,
-                      "parallelIndex": 0,
+                      "workerIndex": 15,
+                      "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 1382,
+                      "duration": 1638,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-09-18T09:01:01.986Z",
+                      "startTime": "2026-09-18T10:13:00.455Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -124,15 +2935,68 @@
           ]
         }
       ]
+    },
+    {
+      "title": "smoke\\navigation.spec.ts",
+      "file": "smoke/navigation.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Smoke - Navigation @smoke",
+          "file": "smoke/navigation.spec.ts",
+          "line": 8,
+          "column": 6,
+          "specs": [
+            {
+              "title": "should navigate between public header links",
+              "ok": true,
+              "tags": [
+                "smoke"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 2087,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-18T10:13:01.914Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "b742480c9c15ea7d033a-f30edb442699c511b264",
+              "file": "smoke/navigation.spec.ts",
+              "line": 13,
+              "column": 3
+            }
+          ]
+        }
+      ]
     }
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-09-18T09:01:00.229Z",
-    "duration": 4174.851000000001,
-    "expected": 1,
+    "startTime": "2026-09-18T10:12:29.881Z",
+    "duration": 35856.030999999995,
+    "expected": 38,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 15,
     "flaky": 0
   }
 }
