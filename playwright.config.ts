@@ -27,8 +27,11 @@ export default defineConfig({
   /* Parallel workers */
   workers: process.env.CI ? 1 : undefined,
 
-  /* HTML Test Reporter */
-  reporter: 'html',
+  /* HTML & JSON Test Reporters */
+  reporter: [
+    ['html', { open: 'never' }],
+    ['json', { outputFile: 'playwright-results.json' }],
+  ],
 
   /* Shared test execution options */
   use: {

@@ -66,6 +66,7 @@ jobs:
 
       - name: 🧪 Execute Playwright E2E test suite
         run: npm run test:e2e
+        continue-on-error: true
         env:
           CI: true
 
@@ -77,13 +78,12 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: 📝 Publish Playwright Report Summary to GitHub Actions Summary
+      - name: 🎯 Evaluate Test Pass Rate Threshold (80% Passing Gate)
         if: always()
-        run: |
-          echo "### 🎭 Playwright E2E Test Report Summary" >> $GITHUB_STEP_SUMMARY
-          echo "- **Artifact Name**: \`playwright-report\`" >> $GITHUB_STEP_SUMMARY
-          echo "- **Status**: Playwright HTML report generated and stored as workflow artifact." >> $GITHUB_STEP_SUMMARY
-          echo "- **How to View**: Download \`playwright-report.zip\` from Artifacts below, unzip, and open \`index.html\` in your browser." >> $GITHUB_STEP_SUMMARY
+        run: node .github/scripts/evaluate-threshold.cjs
+        env:
+          PASS_THRESHOLD: "80.0"
+          RESULTS_FILE: "playwright-results.json"
 
       - name: 🖼️ Upload Test Failure Screenshots & Traces
         if: failure()

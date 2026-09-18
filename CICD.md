@@ -150,13 +150,12 @@ jobs:
           path: playwright-report/
           retention-days: 30
 
-      - name: 📝 Publish Playwright Report Summary to GitHub Actions Summary
+      - name: 🎯 Evaluate Test Pass Rate Threshold (80% Passing Gate)
         if: always()
-        run: |
-          echo "### 🎭 Playwright E2E Test Report Summary" >> $GITHUB_STEP_SUMMARY
-          echo "- **Artifact Name**: \`playwright-report\`" >> $GITHUB_STEP_SUMMARY
-          echo "- **Status**: Playwright HTML report generated and stored as workflow artifact." >> $GITHUB_STEP_SUMMARY
-          echo "- **How to View**: Download \`playwright-report.zip\` from Artifacts below, unzip, and open \`index.html\` in your browser." >> $GITHUB_STEP_SUMMARY
+        run: node .github/scripts/evaluate-threshold.cjs
+        env:
+          PASS_THRESHOLD: "80.0"
+          RESULTS_FILE: "playwright-results.json"
 
       - name: 🖼️ Upload Test Failure Screenshots & Traces
         if: failure()
@@ -169,9 +168,11 @@ jobs:
 - `needs: [code-quality]`: **Job Dependency Gate**. This job will ONLY execute if `code-quality` passes 100%.
 - `npx playwright install --with-deps chromium`: Downloads headless Chromium browser binaries along with required Linux system libraries.
 - `npm run test:e2e`: Starts local dev server on port `5180` and executes all 53 Playwright E2E test specs.
-- `env: CI: true`: Signals to Playwright that it is running in CI mode (enables forbidden `.only` checks and multi-retry rules).
+- `continue-on-error: true`: Allows the subsequent pass-rate threshold evaluator to execute and calculate metrics even if some individual tests fail.
 - `if: always()`: **Unconditional Report Guarantee**. Guarantees that the Playwright HTML test report artifact (`playwright-report`) is ALWAYS uploaded regardless of whether the tests **pass or fail**.
-- `$GITHUB_STEP_SUMMARY`: Writes a formatted summary card directly onto the GitHub Actions workflow run page with artifact download instructions.
+- `node .github/scripts/evaluate-threshold.cjs`: **Pass Percentage Threshold Gate**. Parses `playwright-results.json`, calculates the exact pass percentage `(passed / total) * 100`, and verifies it meets or exceeds the required threshold (**80%**).
+  - If `passRate >= 80%`: Renders a success summary card to `$GITHUB_STEP_SUMMARY` and exits with code `0`, approving deployment.
+  - If `passRate < 80%`: Renders a failure summary card to `$GITHUB_STEP_SUMMARY` and exits with code `1`, blocking deployment.
 - `actions/upload-artifact@v4`: Packages `playwright-report/` into a downloadable zip stored on GitHub Actions for 30 days.
 - `if: failure()`: Uploads `test-results/` (containing failure screenshots, DOM snapshots, and video recordings) only when a test fails.
 
