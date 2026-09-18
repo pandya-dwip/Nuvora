@@ -40,7 +40,7 @@
   - 100% full-screen layout container structure.
 - **State Management & Persistence**: Custom React Context (`StoreContext.jsx`) backed by `localStorage` persistence and pre-seeded seed data (`src/data/`).
 - **QA Automation Framework**: Playwright (v1.62) with TypeScript, Page Object Model (POM) architecture, custom fixtures, helper utilities, and HTML test reporting.
-- **CI/CD Integration**: GitHub Actions workflow ([`.github/workflows/playwright.yml`](file:///.github/workflows/playwright.yml)) automated on `main` branch pushes and pull requests.
+- **CI/CD Integration**: GitHub Actions workflow ([`.github/workflows/ci-cd.yml`](file:///.github/workflows/ci-cd.yml)) automated on `main` branch pushes and pull requests.
 
 ---
 
@@ -193,7 +193,7 @@ For complete documentation on test suites, Page Object Models, test data fixture
 Nuvora/
 ├── .github/
 │   └── workflows/
-│       └── playwright.yml        # Automated CI/CD Test Pipeline
+│       └── ci-cd.yml             # Automated 3-Stage CI/CD Pipeline
 ├── src/
 │   ├── components/               # Header, ProductCard, Footer
 │   ├── context/                  # StoreContext state provider & auth logic
@@ -213,6 +213,7 @@ Nuvora/
 │   ├── smoke/                    # Smoke test specs
 │   ├── test-data/                # Static test data & configuration
 │   └── utils/                    # Session reset & auth test helpers
+├── CICD.md                       # CI/CD Pipeline Documentation Manual
 ├── DESIGN.md                     # UX/UI Design Guidelines & Palette Tokens
 ├── TESTING.md                    # QA Automation Framework Documentation
 ├── playwright.config.ts          # Playwright Test Runner Configuration
