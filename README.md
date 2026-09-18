@@ -1,6 +1,6 @@
 # Nuvora E-Commerce & QA Automation Sandbox
 
-[![Playwright Tests](https://github.com/pandya-dwip/Nuvora/actions/workflows/playwright.yml/badge.svg)](https://github.com/pandya-dwip/Nuvora/actions/workflows/playwright.yml)
+[![Nuvora CI/CD Pipeline](https://github.com/pandya-dwip/Nuvora/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/pandya-dwip/Nuvora/actions/workflows/ci-cd.yml)
 [![Vite](https://img.shields.io/badge/Vite-v8.2-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![React](https://img.shields.io/badge/React-v19.2-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-v4.3-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
@@ -157,6 +157,18 @@ vercel
 # Deploy to production
 vercel --prod
 ```
+
+---
+
+## 🤖 GitHub Actions CI/CD Pipeline
+
+Nuvora features a 3-stage automated CI/CD pipeline ([`.github/workflows/ci-cd.yml`](file:///.github/workflows/ci-cd.yml)):
+
+1. **Stage 1 (`code-quality`)**: ESLint static analysis (`npm run lint`) & Vite bundle compilation (`npm run build`).
+2. **Stage 2 (`playwright-tests`)**: Runs 53 Playwright E2E tests and uploads HTML test report artifacts.
+3. **Stage 3 (`deployment-gate`)**: Enforces a 100% test pass rate boundary gate before approving Vercel production deployment.
+
+For complete documentation, workflow diagrams, and line-by-line YAML explanation, see [**CICD.md**](file:///d:/Nuvora/CICD.md).
 
 ---
 

@@ -243,36 +243,60 @@ export default defineConfig({
 
 ---
 
-## 🤖 CI/CD Pipeline Integration
+## 🚀 GitHub Actions CI/CD Integration
 
-The project includes an automated GitHub Actions workflow in [`.github/workflows/playwright.yml`](file:///.github/workflows/playwright.yml) that executes the complete test suite on every push or pull request to `main`.
+Learn how to build a GitHub Actions pipeline from scratch to run Playwright tests automatically on every `git push`.
+
+### Step-by-Step CI Setup Guide
+
+1. **Create the Workflows Directory**:
+   Create a folder at `.github/workflows/` in the root of your project.
+
+2. **Create Workflow YAML File**:
+   Create a file named `.github/workflows/playwright.yml`.
+
+3. **Define Workflow Steps**:
+   Write the following configuration inside `playwright.yml`:
 
 ```yaml
-name: Playwright Tests
+name: Playwright E2E Tests
+
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
+
 jobs:
   test:
-    timeout-minutes: 60
+    name: Run Playwright E2E Test Suite
+    timeout-minutes: 30
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npm run test:e2e
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers & dependencies
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: npm run test:e2e
+
+      - name: Upload HTML Test Report Artifact
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
 ```
