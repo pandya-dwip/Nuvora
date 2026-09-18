@@ -142,16 +142,24 @@ jobs:
         env:
           CI: true
 
-      - name: 📊 Upload Playwright HTML Test Report
-        if: ${{ !cancelled() }}
+      - name: 📊 Upload Playwright HTML Test Report (Always Upload On Pass or Fail)
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
 
+      - name: 📝 Publish Playwright Report Summary to GitHub Actions Summary
+        if: always()
+        run: |
+          echo "### 🎭 Playwright E2E Test Report Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- **Artifact Name**: \`playwright-report\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Status**: Playwright HTML report generated and stored as workflow artifact." >> $GITHUB_STEP_SUMMARY
+          echo "- **How to View**: Download \`playwright-report.zip\` from Artifacts below, unzip, and open \`index.html\` in your browser." >> $GITHUB_STEP_SUMMARY
+
       - name: 🖼️ Upload Test Failure Screenshots & Traces
-        if: ${{ failure() }}
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: test-failure-artifacts
@@ -162,9 +170,10 @@ jobs:
 - `npx playwright install --with-deps chromium`: Downloads headless Chromium browser binaries along with required Linux system libraries.
 - `npm run test:e2e`: Starts local dev server on port `5180` and executes all 53 Playwright E2E test specs.
 - `env: CI: true`: Signals to Playwright that it is running in CI mode (enables forbidden `.only` checks and multi-retry rules).
-- `if: ${{ !cancelled() }}`: Uploads the HTML report artifact even if tests failed (as long as the job wasn't manually cancelled).
+- `if: always()`: **Unconditional Report Guarantee**. Guarantees that the Playwright HTML test report artifact (`playwright-report`) is ALWAYS uploaded regardless of whether the tests **pass or fail**.
+- `$GITHUB_STEP_SUMMARY`: Writes a formatted summary card directly onto the GitHub Actions workflow run page with artifact download instructions.
 - `actions/upload-artifact@v4`: Packages `playwright-report/` into a downloadable zip stored on GitHub Actions for 30 days.
-- `if: ${{ failure() }}`: Uploads `test-results/` (containing failure screenshots, DOM snapshots, and video recordings) only when a test fails.
+- `if: failure()`: Uploads `test-results/` (containing failure screenshots, DOM snapshots, and video recordings) only when a test fails.
 
 ---
 
