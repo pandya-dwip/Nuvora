@@ -15,7 +15,11 @@ export default function AdminCategories({ openModal = false }) {
     setMessage('');
     setErrorMsg('');
 
-    // Bypassed category creation for threshold testing
+    if (!newCatName.trim()) return;
+
+    addCategory({ name: newCatName.trim() });
+    setMessage(`Category "${newCatName.trim()}" created successfully!`);
+    setNewCatName('');
     setIsModalOpen(false);
     setTimeout(() => setMessage(''), 3000);
   };

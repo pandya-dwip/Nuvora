@@ -131,7 +131,7 @@ export default function AdminInventory() {
                     <td className="p-4 text-center">
                       <div className="inline-flex items-center gap-2 p-1 bg-surface-container-low border border-outline-variant rounded">
                         <button
-                          onClick={() => {}}
+                          onClick={() => updateStock(product.id, Math.max(0, product.stock - 1))}
                           data-testid={`admin-inventory-decrease-${product.id}`}
                           className="w-8 h-8 bg-surface hover:bg-surface-container border border-outline-variant rounded font-bold text-on-surface flex items-center justify-center transition-colors cursor-pointer shadow-xs"
                           title="Decrease 1"
@@ -147,7 +147,7 @@ export default function AdminInventory() {
                           className="w-16 py-1 bg-surface border border-outline-variant rounded text-center font-bold text-on-background focus:outline-none focus:ring-1 focus:ring-primary"
                         />
                         <button
-                          onClick={() => {}}
+                          onClick={() => updateStock(product.id, product.stock + 1)}
                           data-testid={`admin-inventory-increase-${product.id}`}
                           className="w-8 h-8 bg-surface hover:bg-surface-container border border-outline-variant rounded font-bold text-on-surface flex items-center justify-center transition-colors cursor-pointer shadow-xs"
                           title="Increase 1"
@@ -155,7 +155,7 @@ export default function AdminInventory() {
                           +1
                         </button>
                         <button
-                          onClick={() => {}}
+                          onClick={() => updateStock(product.id, product.stock + 10)}
                           data-testid={`admin-inventory-add10-${product.id}`}
                           className="px-2 py-1 bg-primary hover:bg-primary-container text-on-primary rounded font-label-sm text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-xs"
                           title="Add 10 Batch"
