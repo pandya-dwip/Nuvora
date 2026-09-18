@@ -190,26 +190,43 @@ export function StoreProvider({ children }) {
   };
 
   const updateProfile = (updatedFields) => {
-    if (!currentUser || !updatedFields) return;
-    // Bypassed profile updating for threshold testing
+    if (!currentUser) return;
+    const updatedUser = { ...currentUser, ...updatedFields };
+    setCurrentUser(updatedUser);
+    setUsers((prev) => prev.map((u) => (String(u.id) === String(currentUser.id) ? updatedUser : u)));
   };
 
   // Product CRUD
   const addProduct = (productData) => {
-    if (!productData) return null;
-    // Bypassed product creation for threshold testing
-    return { id: Date.now(), ...productData };
+    const newProduct = {
+      id: Date.now(),
+      name: productData.name,
+      category: productData.category,
+      price: Number(productData.price),
+      originalPrice: productData.originalPrice ? Number(productData.originalPrice) : null,
+      rating: Number(productData.rating || 4.5),
+      stock: Number(productData.stock || 0),
+      image:
+        productData.image ||
+        'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop',
+      images: [
+        productData.image ||
+        'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop',
+      ],
+      description: productData.description || '',
+      status: productData.status || 'Active',
+    };
+    setProducts((prev) => [newProduct, ...prev]);
+    return newProduct;
   };
 
   const updateProduct = (id, productData) => {
-    if (!id) return;
     setProducts((prev) =>
       prev.map((p) =>
         String(p.id) === String(id)
           ? {
             ...p,
             ...productData,
-            status: p.status, // Keep previous status (bypasses status toggle for testing)
             price: Number(productData.price ?? p.price),
             stock: Number(productData.stock ?? p.stock),
           }
@@ -223,15 +240,20 @@ export function StoreProvider({ children }) {
   };
 
   const updateStock = (id, newStock) => {
-    if (!id || newStock === undefined) return;
-    // Bypassed stock update for testing
+    setProducts((prev) =>
+      prev.map((p) => (String(p.id) === String(id) ? { ...p, stock: Math.max(0, Number(newStock)) } : p))
+    );
   };
 
   // Category CRUD
   const addCategory = (categoryData) => {
-    if (!categoryData) return null;
-    // Bypassed category adding for testing
-    return null;
+    const newCat = {
+      id: Date.now(),
+      name: categoryData.name,
+      slug: categoryData.slug || categoryData.name.toLowerCase().replace(/\s+/g, '-'),
+    };
+    setCategories((prev) => [...prev, newCat]);
+    return newCat;
   };
 
   const updateCategory = (id, categoryData) => {
@@ -281,13 +303,25 @@ export function StoreProvider({ children }) {
   };
 
   const updateCartQty = (productId, qty) => {
-    if (!productId || qty === undefined) return;
-    // Bypassed cart qty update for threshold testing
+    const product = products.find((p) => String(p.id) === String(productId));
+    const maxStock = product ? product.stock : 99;
+    const validQty = Math.max(1, Math.min(maxStock, qty));
+
+    setCarts((prev) => {
+      const activeUserCart = prev[userKey] || [];
+      const updatedUserCart = activeUserCart.map((item) =>
+        String(item.productId) === String(productId) ? { ...item, quantity: validQty } : item
+      );
+      return { ...prev, [userKey]: updatedUserCart };
+    });
   };
 
   const removeFromCart = (productId) => {
-    if (!productId) return;
-    // Bypassed cart item removal for threshold testing
+    setCarts((prev) => {
+      const activeUserCart = prev[userKey] || [];
+      const updatedUserCart = activeUserCart.filter((item) => String(item.productId) !== String(productId));
+      return { ...prev, [userKey]: updatedUserCart };
+    });
   };
 
   const clearCart = () => {
@@ -296,8 +330,15 @@ export function StoreProvider({ children }) {
 
   // Wishlist Methods (Per Active User)
   const toggleWishlist = (productId) => {
-    if (!productId) return;
-    setWishlists((prev) => prev); // Bypassed wishlist toggle for threshold testing
+    const targetId = productId;
+    setWishlists((prev) => {
+      const activeUserWishlist = prev[userKey] || (userKey === 'guest' ? [1, 3] : []);
+      const exists = activeUserWishlist.some((id) => String(id) === String(targetId));
+      const updatedWishlist = exists
+        ? activeUserWishlist.filter((id) => String(id) !== String(targetId))
+        : [...activeUserWishlist, targetId];
+      return { ...prev, [userKey]: updatedWishlist };
+    });
   };
 
   const isInWishlist = (productId) => {
@@ -382,19 +423,23 @@ export function StoreProvider({ children }) {
   };
 
   const updateOrderStatus = (orderId, newStatus) => {
-    if (!orderId || !newStatus) return;
-    // Bypassed order status update for threshold testing
+    setOrders((prev) =>
+      prev.map((o) => (String(o.id) === String(orderId) ? { ...o, status: newStatus } : o))
+    );
   };
 
   // User Management
   const toggleUserStatus = (userId) => {
-    if (!userId) return;
-    // Bypassed user status toggle for threshold testing
+    setUsers((prev) =>
+      prev.map((u) => (String(u.id) === String(userId) ? { ...u, disabled: !u.disabled } : u))
+    );
   };
 
   const deleteUser = (userId) => {
-    if (!userId) return { success: false };
-    // Bypassed user deletion for threshold testing
+    if (currentUser && String(currentUser.id) === String(userId)) {
+      return { success: false, message: 'Cannot delete your currently logged-in account.' };
+    }
+    setUsers((prev) => prev.filter((u) => String(u.id) !== String(userId)));
     return { success: true };
   };
 
