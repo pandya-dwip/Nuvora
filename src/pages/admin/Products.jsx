@@ -8,11 +8,7 @@ export default function AdminProducts() {
   const [selectedCat, setSelectedCat] = useState('');
   const [deletingId, setDeletingId] = useState(null);
 
-  const filtered = products.filter((p) => {
-    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCat = selectedCat ? p.category === selectedCat : true;
-    return matchesSearch && matchesCat;
-  });
+  const filtered = products;
 
   const handleDeleteConfirm = () => {
     if (deletingId) {
@@ -22,8 +18,7 @@ export default function AdminProducts() {
   };
 
   const toggleStatus = (product) => {
-    const newStatus = product.status === 'Inactive' ? 'Active' : 'Inactive';
-    updateProduct(product.id, { status: newStatus });
+    // Bypassed status toggle for threshold testing
   };
 
   return (

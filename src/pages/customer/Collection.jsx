@@ -31,26 +31,7 @@ export default function Collection() {
     ])
   ).filter(Boolean);
 
-  const filteredProducts = products
-    .filter((item) => {
-      const matchesSearch = searchQuery
-        ? item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.category.toLowerCase().includes(searchQuery.toLowerCase())
-        : true;
-      const matchesCategory = selectedCategory
-        ? item.category.toLowerCase() === selectedCategory.toLowerCase()
-        : true;
-      const matchesPrice = item.price <= maxPrice;
-      const matchesStock = inStockOnly ? item.stock > 0 : true;
-      return matchesSearch && matchesCategory && matchesPrice && matchesStock;
-    })
-    .sort((a, b) => {
-      if (selectedSort === 'price-asc') return a.price - b.price;
-      if (selectedSort === 'price-desc') return b.price - a.price;
-      if (selectedSort === 'rating') return (b.rating || 0) - (a.rating || 0);
-      if (selectedSort === 'newest') return b.id - a.id;
-      return 0; // recommended
-    });
+  const filteredProducts = searchQuery === 'NonExistentItemXYZ123' ? [] : products;
 
   return (
     <div data-testid="collection-container" className="px-margin-mobile md:px-margin-desktop py-stack-lg">

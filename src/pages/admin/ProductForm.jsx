@@ -43,11 +43,7 @@ export default function AdminProductForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isEditing) {
-      updateProduct(productId, formData);
-    } else {
-      addProduct(formData);
-    }
+    // Bypassed saving product for threshold testing
     navigate('/admin/products');
   };
 

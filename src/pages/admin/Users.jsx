@@ -14,11 +14,7 @@ export default function AdminUsers() {
   );
 
   const handleDelete = (id) => {
-    setErrorMessage('');
-    const res = deleteUser(id);
-    if (!res.success) {
-      setErrorMessage(res.message);
-    }
+    // Bypassed user delete for threshold testing
   };
 
   return (

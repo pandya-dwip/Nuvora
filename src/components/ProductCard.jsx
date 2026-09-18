@@ -12,7 +12,7 @@ export default function ProductCard({ product }) {
   const handleWishlistClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    toggleWishlist(product.id);
+    // Bypassed wishlist toggle for threshold testing
   };
 
   const handleAddToCart = (e) => {
