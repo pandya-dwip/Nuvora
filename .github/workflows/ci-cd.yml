@@ -5,6 +5,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch:
 
 # Cancel in-progress runs for the same branch when pushing new commits
 concurrency:
@@ -49,6 +50,7 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: write
+      actions: write
 
     steps:
       - name: 📥 Checkout repository
@@ -97,8 +99,10 @@ jobs:
           path: test-results/
           retention-days: 14
 
-      - name: 🔄 Auto-Revert Commit on Test Gate Failure
+      - name: 🔄 Auto-Revert Commit & Re-trigger Pipeline on Test Gate Failure
         if: failure() && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') && github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "========================================================"
           echo "❌ Playwright quality gate failed below required threshold!"
@@ -108,7 +112,10 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git revert HEAD --no-edit
           git push origin ${{ github.ref_name }}
-          echo "✔ Successfully reverted commit on ${{ github.ref_name }}. Deployment aborted."
+          echo "✔ Successfully reverted commit on ${{ github.ref_name }}."
+          echo "🚀 Re-triggering pipeline to validate reverted code and deploy..."
+          gh workflow run ci-cd.yml --ref ${{ github.ref_name }}
+          echo "✔ Pipeline re-triggered successfully."
 
   # ==========================================
   # STAGE 3: Passing Boundary & Deployment Gate
