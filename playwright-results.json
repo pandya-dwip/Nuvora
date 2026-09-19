@@ -4,7 +4,7 @@
       "C:\\Program Files\\nodejs\\node.exe",
       "D:\\Nuvora\\node_modules\\@playwright\\test\\cli.js",
       "test",
-      "tests/smoke/home.spec.ts"
+      "tests/customer/home.spec.ts"
     ],
     "configFile": "D:\\Nuvora\\playwright.config.ts",
     "rootDir": "D:/Nuvora/tests",
@@ -18,7 +18,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 1
+      "actualWorkers": 3
     },
     "preserveOutput": "always",
     "projects": [
@@ -27,7 +27,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 1
+          "actualWorkers": 3
         },
         "id": "chromium",
         "name": "chromium",
@@ -52,6 +52,13 @@
         {
           "outputFile": "playwright-results.json"
         }
+      ],
+      [
+        "D:\\Nuvora\\node_modules\\allure-playwright\\dist\\cjs\\index.js",
+        {
+          "outputFolder": "allure-results",
+          "detail": true
+        }
       ]
     ],
     "reportSlowTests": {
@@ -73,23 +80,23 @@
   },
   "suites": [
     {
-      "title": "smoke\\home.spec.ts",
-      "file": "smoke/home.spec.ts",
+      "title": "customer\\home.spec.ts",
+      "file": "customer/home.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Smoke - Home Page @smoke",
-          "file": "smoke/home.spec.ts",
-          "line": 8,
+          "title": "Customer Home Page @customer",
+          "file": "customer/home.spec.ts",
+          "line": 9,
           "column": 6,
           "specs": [
             {
-              "title": "should load home page, header, and render featured products grid",
+              "title": "should display categories and navigate on category card click",
               "ok": true,
               "tags": [
-                "smoke"
+                "customer"
               ],
               "tests": [
                 {
@@ -103,12 +110,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1382,
+                      "duration": 2151,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-09-18T09:01:01.986Z",
+                      "startTime": "2026-09-19T06:51:21.230Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -116,9 +123,81 @@
                   "status": "expected"
                 }
               ],
-              "id": "f554f2e1166b9d505fc1-51beeb24d4b313baf9bf",
-              "file": "smoke/home.spec.ts",
-              "line": 13,
+              "id": "c36c9389575402afe885-86834fb98c1c3472b1ad",
+              "file": "customer/home.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "should click featured product and open Product Details page",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 2123,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-19T06:51:21.230Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c36c9389575402afe885-709a4f6fd9d4a5c1aad6",
+              "file": "customer/home.spec.ts",
+              "line": 24,
+              "column": 3
+            },
+            {
+              "title": "should allow quick add to cart from home featured section",
+              "ok": true,
+              "tags": [
+                "customer"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2193,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-09-19T06:51:21.230Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "c36c9389575402afe885-4748c2879d8015adef8a",
+              "file": "customer/home.spec.ts",
+              "line": 36,
               "column": 3
             }
           ]
@@ -128,9 +207,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-09-18T09:01:00.229Z",
-    "duration": 4174.851000000001,
-    "expected": 1,
+    "startTime": "2026-09-19T06:51:19.379Z",
+    "duration": 5473.871,
+    "expected": 3,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

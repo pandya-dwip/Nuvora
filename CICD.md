@@ -1,7 +1,6 @@
 # 🛡️ Nuvora Enterprise CI/CD Pipeline: Technical Architecture & Self-Healing Engine
 
 > **Document Type:** Technical & Executive Architecture Brief  
-> **Target Audience:** Executive Leadership (CEO, CTO, VP of Engineering) & Engineering Teams  
 > **Repository:** [pandya-dwip/Nuvora](https://github.com/pandya-dwip/Nuvora)  
 > **Production URL:** [https://nuvora.vercel.app](https://nuvora.vercel.app)  
 > **Workflow Specification:** [`.github/workflows/ci-cd.yml`](file:///.github/workflows/ci-cd.yml)  
@@ -18,7 +17,7 @@ To solve this, we engineered an **Enterprise-Grade, Self-Healing CI/CD Pipeline*
 2. **80% Passing Boundary Policy:** A dedicated metric evaluation engine halts the pipeline and blocks deployment if the test pass rate dips below **80.00%**.
 3. **Autonomous Self-Healing Rollback:** If a regression slips into the `main` branch, the pipeline **automatically reverts the faulty commit**, pushes the clean code back to `main`, and **re-triggers a clean pipeline run** using GitHub CLI (`workflow_dispatch`).
 4. **Zero-Downtime Production Deployment:** Only verified, 100% compliant builds reach **Vercel Production**. No broken release can ever reach end customers.
-5. **Full Auditability & Observability:** Every run produces downloadable interactive HTML reports, execution traces, DOM snapshots, and video recordings.
+5. **Full Auditability & Multi-Layer Reporting:** Every run produces downloadable native Playwright HTML reports, **Allure Interactive Dashboards** (behavioral, epics, timeline), execution traces, DOM snapshots, and video recordings.
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────┐
@@ -43,42 +42,42 @@ The pipeline operates across two distinct operational loops: the **Standard Depl
 
 ```mermaid
 graph TD
-    A[👨‍💻 Engineer Pushes Code to main] --> B[Stage 1: Code Quality & Build Check]
+    A["Engineer Pushes Code to main"] --> B["Stage 1: Code Quality & Build Check"]
     
-    subgraph Stage 1: Static Verification
-        B --> B1[ESLint Static Code Analysis]
-        B --> B2[Vite Production Bundle Compilation]
+    subgraph "Stage 1: Static Verification"
+        B --> B1["ESLint Static Code Analysis"]
+        B --> B2["Vite Production Bundle Compilation"]
     end
 
-    B1 -->|Pass| C[Stage 2: Playwright E2E Test Suite]
-    B2 -->|Pass| C
-    B1 -->|Fail| F1[❌ Pipeline Blocked: Build Error]
-    B2 -->|Fail| F1
+    B1 -->|"Pass"| C["Stage 2: Playwright E2E Test Suite"]
+    B2 -->|"Pass"| C
+    B1 -->|"Fail"| F1["Pipeline Blocked: Build Error"]
+    B2 -->|"Fail"| F1
 
-    subgraph Stage 2: Automated E2E Testing
-        C --> C1[Execute 53 Browser Test Scenarios]
-        C1 --> C2[Always Upload Interactive HTML Report]
-        C1 --> C3[Evaluate 80% Pass Rate Quality Gate]
+    subgraph "Stage 2: Automated E2E Testing"
+        C --> C1["Execute 53 Browser Test Scenarios"]
+        C1 --> C2["Upload Playwright & Allure HTML Reports"]
+        C1 --> C3["Evaluate 80% Pass Rate Quality Gate"]
     end
 
-    C3 -->|Pass Rate >= 80%| D[Stage 3: Production Deployment Gate]
+    C3 -->|"Pass Rate >= 80%"| D["Stage 3: Production Deployment Gate"]
     
-    subgraph Stage 3: Zero-Failure Deployment
-        D --> D1[Verify Zero-Failure Criteria]
-        D1 --> D2[🚀 Vercel Production Deployment Live]
+    subgraph "Stage 3: Zero-Failure Deployment"
+        D --> D1["Verify Zero-Failure Criteria"]
+        D1 --> D2["Vercel Production Deployment Live"]
     end
 
-    C3 -->|Pass Rate < 80%| E[🚨 Quality Gate Failure Detected]
+    C3 -->|"Pass Rate < 80%"| E["Quality Gate Failure Detected"]
     
-    subgraph Autonomous Self-Healing Engine
-        E --> E1[Block Stage 3: Deployment Aborted]
-        E --> E2[Upload Failure Screenshots, Traces & Videos]
-        E --> E3[github-actions bot Reverts Failed Commit: git revert HEAD]
-        E --> E4[Push Restored Clean Code to main Branch]
-        E --> E5[Autonomous Dispatch: gh workflow run ci-cd.yml]
+    subgraph "Autonomous Self-Healing Engine"
+        E --> E1["Block Stage 3: Deployment Aborted"]
+        E --> E2["Upload Failure Screenshots, Traces & Videos"]
+        E --> E3["github-actions bot Reverts Failed Commit"]
+        E --> E4["Push Restored Clean Code to main Branch"]
+        E --> E5["Autonomous Dispatch: gh workflow run"]
     end
 
-    E5 -->|Auto Re-triggers Pipeline| B
+    E5 -->|"Auto Re-triggers Pipeline"| B
 ```
 
 ---
@@ -336,6 +335,28 @@ jobs:
 * `if: always()`: Guarantees that test reports are archived even if tests fail or the process errors. Retained for 30 days.
 
 ```yaml
+      - name: ☕ Setup Java for Allure Report Generation
+        if: always()
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 📈 Generate Allure Interactive HTML Report
+        if: always()
+        run: npx allure-commandline generate allure-results --clean -o allure-report
+
+      - name: 📦 Upload Allure HTML Report Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report/
+          retention-days: 30
+```
+* `setup-java@v4` & `allure-commandline`: Compiles raw test execution JSONs into an executive Allure Dashboard, uploaded as artifact `allure-report` (30-day retention).
+
+```yaml
       - name: 🎯 Evaluate Test Pass Rate Threshold (80% Passing Gate)
         if: always()
         run: node .github/scripts/evaluate-threshold.cjs
@@ -414,7 +435,10 @@ Every pipeline execution generates full diagnostic evidence stored directly in G
 2. **Interactive Playwright HTML Report (`playwright-report`):**
    - Retained for 30 days as a downloadable artifact.
    - Allows engineers to open `index.html` locally and inspect interactive step-by-step browser interactions, execution timings, network requests, and console logs.
-3. **Diagnostic Failure Artifacts (`test-failure-artifacts`):**
+3. **Allure Interactive Dashboard (`allure-report`):**
+   - Retained for 30 days as a downloadable artifact.
+   - Visual executive dashboard with test hierarchy (Epics ➔ Features ➔ Stories), duration graphs, defect classifications, and worker timelines. See [ALLURE.md](file:///d:/Nuvora/ALLURE.md) for full guide.
+4. **Diagnostic Failure Artifacts (`test-failure-artifacts`):**
    - Captured whenever any test fails.
    - Includes high-resolution failure screenshots (`.png`), DOM snapshots, error contexts, and video recordings (`.webm`).
 

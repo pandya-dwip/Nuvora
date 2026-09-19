@@ -27,10 +27,11 @@ export default defineConfig({
   /* Parallel workers */
   workers: process.env.CI ? 1 : undefined,
 
-  /* HTML & JSON Test Reporters */
+  /* HTML, JSON & Allure Test Reporters */
   reporter: [
     ['html', { open: 'never' }],
     ['json', { outputFile: 'playwright-results.json' }],
+    ['allure-playwright', { outputFolder: 'allure-results', detail: true }],
   ],
 
   /* Shared test execution options */
